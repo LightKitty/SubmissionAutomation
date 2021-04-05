@@ -75,6 +75,8 @@ namespace SubmissionAutomation.Channels
 
             if (!Helpers.OpenFileDialog.SelectFileAndOpen(path)) return false;
 
+            Thread.Sleep(1000); //等待
+
             return true;
         }
 
@@ -108,9 +110,9 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            IWebElement titleElement = Driver.FindElement(
+            IWebElement titleElement = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.content-title-v2-container > div.content-title-v2-input-wrp > div > div > input")
-                );
+                ));
             titleElement.Clear();
             titleElement.SendKeys(title);
 
@@ -125,9 +127,10 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteIntroduction(string introduction)
         {
             //简介
-            Driver.FindElement(
+            wait.Until(wb => wb.FindElement(
                 By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.content-desc-v2-container > div.content-desc-v2-text-wrp > div > textarea")
-                ).SendKeys(introduction);
+                ))
+                .SendKeys(introduction);
 
             return true;
         }
@@ -139,9 +142,9 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            IWebElement tagElement = Driver.FindElement(
+            IWebElement tagElement = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#content-tag-v2-container > div.content-tag-v2-input-wrp > div > div.input-box-v2-1-instance > input")
-                ); //标签
+                )); //标签
 
             IEnumerable<string> _tags = tags.Take(maxTagCount);
             foreach (string tag in _tags)

@@ -106,11 +106,6 @@ namespace SubmissionAutomation.Channels
 
             Thread.Sleep(OperateInterval);
 
-            if (!SetCover(CoverPath))
-                return false;
-
-            Thread.Sleep(OperateInterval);
-
             if (!WriteTitle(Title))
                 return false;
 
@@ -130,6 +125,11 @@ namespace SubmissionAutomation.Channels
                 return false;
 
             if (!AfterOperate(AfterOperates))
+                return false;
+
+            Thread.Sleep(OperateInterval);
+
+            if (!SetCover(CoverPath))
                 return false;
 
             Thread.Sleep(OperateInterval);

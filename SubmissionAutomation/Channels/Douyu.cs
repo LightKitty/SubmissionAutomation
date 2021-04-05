@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace SubmissionAutomation.Channels
 {
     /// <summary>
-    /// 哔哩哔哩
+    /// 斗鱼
     /// </summary>
     public class Douyu : Channel
     {
@@ -65,6 +65,8 @@ namespace SubmissionAutomation.Channels
 
             if (!Helpers.OpenFileDialog.SelectFileAndOpen(path)) return false;
 
+            Thread.Sleep(1000); //等待
+
             return true;
         }
 
@@ -94,9 +96,9 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            IWebElement titleElement = Driver.FindElement(
+            IWebElement titleElement = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoTitle > div.video-title-content > span > input")
-                );
+                ));
             titleElement.Clear();
             titleElement.SendKeys(title);
 
@@ -111,9 +113,10 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteIntroduction(string introduction)
         {
             //简介
-            Driver.FindElement(
+            wait.Until(wb => wb.FindElement(
                 By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoDetail > div.detail-content > textarea")
-                ).SendKeys(introduction);
+                ))
+                .SendKeys(introduction);
 
             return true;
         }
@@ -125,9 +128,9 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            IWebElement tagElement = Driver.FindElement(
+            IWebElement tagElement = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoTags > div.postvideo-tags > div > input[type=text]")
-                ); //标签
+                )); //标签
 
             IEnumerable<string> _tags = tags.Take(maxTagCount);
             foreach (string tag in _tags)
@@ -146,9 +149,9 @@ namespace SubmissionAutomation.Channels
         internal override bool SetClassify(string name)
         {
             //分类按钮
-            IWebElement classifyButton = Driver.FindElement(
+            IWebElement classifyButton = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-input > div.cate-info")
-                );
+                ));
             classifyButton.Click();
 
             //知识分类
