@@ -54,14 +54,9 @@ namespace SubmissionAutomation.Channels
         public string ClassifyName { get; private set; }
 
         /// <summary>
-        /// 预处理方法
+        /// 来源类型（原创/转载）
         /// </summary>
-        public Func<bool>[] BeforeOperates { get; private set; }
-
-        /// <summary>
-        /// 处理后方法
-        /// </summary>
-        public Func<bool>[] AfterOperates { get; private set; }
+        public string OriginalName { get; private set; }
 
         /// <summary>
         /// 操作间隔
@@ -71,7 +66,7 @@ namespace SubmissionAutomation.Channels
         /// <summary>
         /// 
         /// </summary>
-        public Channel(string url, string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, Func<bool>[] beforeOperates, Func<bool>[] afterOperates, int operateInterval)
+        public Channel(string url, string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName, int operateInterval)
         {
             Url = url;
             VideoPath = videoPath;
@@ -79,24 +74,29 @@ namespace SubmissionAutomation.Channels
             Tags = tags;
             Title = title;
             Introduction = introduction;
-            BeforeOperates = beforeOperates;
-            AfterOperates = afterOperates;
-            OperateInterval = operateInterval;
             ClassifyName = classifyName;
+            OriginalName = originalName;
+            OperateInterval = operateInterval;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public abstract bool Operate();
 
         /// <summary>
         /// 投递
         /// </summary>
         /// <returns></returns>
-        public bool Operate()
+        internal bool Operate(Func<bool>[] beforeOperates, Func<bool>[] afterOperates)
         {
             if (!GoTo(Url))
                 return false;
 
             Thread.Sleep(OperateInterval);
 
-            if (!BeforeOperate(BeforeOperates))
+            if (!BeforeOperate(beforeOperates))
                 return false;
 
             Thread.Sleep(OperateInterval);
@@ -124,7 +124,14 @@ namespace SubmissionAutomation.Channels
             if (!SetClassify(ClassifyName))
                 return false;
 
-            if (!AfterOperate(AfterOperates))
+            Thread.Sleep(OperateInterval);
+
+            if (!OriginalStatement(OriginalName))
+                return false;
+
+            Thread.Sleep(OperateInterval);
+
+            if (!AfterOperate(afterOperates))
                 return false;
 
             Thread.Sleep(OperateInterval);
@@ -196,6 +203,13 @@ namespace SubmissionAutomation.Channels
         /// </summary>
         /// <returns></returns>
         internal abstract bool SetClassify(string name);
+
+        /// <summary>
+        /// 原创声明
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <returns></returns>
+        internal abstract bool OriginalStatement(string typeName);
 
         /// <summary>
         ///  后面附加操作

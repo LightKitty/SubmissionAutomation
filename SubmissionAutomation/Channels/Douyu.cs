@@ -18,9 +18,8 @@ namespace SubmissionAutomation.Channels
         private const string url = "https://v.douyu.com/member/mycreate/center#/uploadVideo"; //网址
         private const int maxTagCount = 10; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
-        private static readonly Func<bool>[] beforeOperates = null;//预处理方法
-        private static readonly Func<bool>[] afterOperates = null; //处理后方法
-        private static WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
+
+        private WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
 
         /// <summary>
         /// 构造函数
@@ -30,9 +29,18 @@ namespace SubmissionAutomation.Channels
         /// <param name="tags"></param>
         /// <param name="title"></param>
         /// <param name="introduction"></param>
-        public Douyu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, beforeOperates, afterOperates, operateInterval)
+        public Douyu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override bool Operate()
+        {
+            return base.Operate(null, null);
         }
 
         /// <summary>
@@ -175,6 +183,15 @@ namespace SubmissionAutomation.Channels
                 ));
             resultItem.Click();
 
+            return true;
+        }
+
+        /// <summary>
+        /// 声明原创
+        /// </summary>
+        /// <returns></returns>
+        internal override bool OriginalStatement(string typeName)
+        {
             return true;
         }
     }

@@ -111,22 +111,22 @@ namespace SubmissionAutomation.Forms
 
             if (checkBoxPublishBilibili.Checked)
             { //bilibili
-                channels.Add(new Bilibili(videoPath, coverPath, tags, title, introduction, null));
+                channels.Add(new Bilibili(videoPath, coverPath, tags, title, introduction, null, null));
             }
 
             if(checkBoxPublishDouyu.Checked)
             {
-                channels.Add(new Douyu(videoPath, coverPath, tags, title, introduction, textBoxDouyuClassify.Text.Trim()));
+                channels.Add(new Douyu(videoPath, coverPath, tags, title, introduction, textBoxDouyuClassify.Text.Trim(), null));
             }
 
             if (checkBoxPublishXigua.Checked)
             {
-                channels.Add(new Xigua(videoPath, coverPath, tags, title, introduction, null));
+                channels.Add(new Xigua(videoPath, coverPath, tags, title, introduction, null, null));
             }
 
             if (checkBoxPublishBaidu.Checked)
             {
-                channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null));
+                channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null, null));
             }
 
             return channels;

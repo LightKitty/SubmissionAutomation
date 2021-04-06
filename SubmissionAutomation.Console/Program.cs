@@ -22,17 +22,20 @@ namespace SubmissionAutomation.Console
 
                 Thread.Sleep(100);
 
-                //Channel bilibili = new Bilibili(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321" }, "title222", "啦啦啦啦啊咯", null);
+                //Channel bilibili = new Bilibili(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", null);
                 //bilibili.Operate();
 
-                //Channel douyu = new Douyu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321" }, "title222", "啦啦啦啦啊咯", "科学科普");
+                //Channel douyu = new Douyu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科学科普");
                 //douyu.Operate();
 
-                //Channel xigua = new Xigua(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321","2222","222999" }, "title222", "啦啦啦啦啊咯", null);
+                //Channel xigua = new Xigua(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321","2222","222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", null);
                 //douyu.Operate();
 
-                Channel baidu = new Baidu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321","2222","222999" }, "title222", "啦啦啦啦啊咯", null);
-                baidu.Operate();
+                //Channel baidu = new Baidu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321","2222","222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", null);
+                //baidu.Operate();
+
+                Channel wangyi = new Wangyi(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
+                wangyi.Operate();
 
                 System.Console.ReadLine();
             }

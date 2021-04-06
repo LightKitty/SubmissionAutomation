@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonSubmit = new System.Windows.Forms.Button();
+            this.textBoxIntroduction = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxTags = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxTitle = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonOpenCover = new System.Windows.Forms.Button();
+            this.textBoxCoverPath = new System.Windows.Forms.TextBox();
+            this.buttonOpenVideo = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxVideoPath = new System.Windows.Forms.TextBox();
             this.tabControlChannels = new System.Windows.Forms.TabControl();
             this.tabPageBilibili = new System.Windows.Forms.TabPage();
-            this.tabPageDouyu = new System.Windows.Forms.TabPage();
-            this.textBoxVideoPath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonOpenVideo = new System.Windows.Forms.Button();
-            this.textBoxCoverPath = new System.Windows.Forms.TextBox();
-            this.buttonOpenCover = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxTitle = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxTags = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxIntroduction = new System.Windows.Forms.TextBox();
-            this.buttonSubmit = new System.Windows.Forms.Button();
             this.checkBoxPublishBilibili = new System.Windows.Forms.CheckBox();
-            this.checkBoxPublishDouyu = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.tabPageDouyu = new System.Windows.Forms.TabPage();
             this.textBoxDouyuClassify = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBoxPublishDouyu = new System.Windows.Forms.CheckBox();
             this.tabPageXigua = new System.Windows.Forms.TabPage();
             this.checkBoxPublishXigua = new System.Windows.Forms.CheckBox();
             this.tabPageBaidu = new System.Windows.Forms.TabPage();
             this.checkBoxPublishBaidu = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
             this.tabPageDouyu.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.tabPageXigua.SuspendLayout();
             this.tabPageBaidu.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -86,6 +86,122 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "通用";
             // 
+            // buttonSubmit
+            // 
+            this.buttonSubmit.Location = new System.Drawing.Point(298, 259);
+            this.buttonSubmit.Name = "buttonSubmit";
+            this.buttonSubmit.Size = new System.Drawing.Size(75, 23);
+            this.buttonSubmit.TabIndex = 12;
+            this.buttonSubmit.Text = "发布";
+            this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
+            // 
+            // textBoxIntroduction
+            // 
+            this.textBoxIntroduction.Location = new System.Drawing.Point(56, 138);
+            this.textBoxIntroduction.Multiline = true;
+            this.textBoxIntroduction.Name = "textBoxIntroduction";
+            this.textBoxIntroduction.Size = new System.Drawing.Size(317, 115);
+            this.textBoxIntroduction.TabIndex = 11;
+            this.textBoxIntroduction.Text = "简介很长00000000000000000999999999999999";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(2, 141);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = " 简介：";
+            // 
+            // textBoxTags
+            // 
+            this.textBoxTags.Location = new System.Drawing.Point(56, 109);
+            this.textBoxTags.Name = "textBoxTags";
+            this.textBoxTags.Size = new System.Drawing.Size(317, 23);
+            this.textBoxTags.TabIndex = 9;
+            this.textBoxTags.Text = "标签 地球 拉拉";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(2, 112);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = " 标签：";
+            // 
+            // textBoxTitle
+            // 
+            this.textBoxTitle.Location = new System.Drawing.Point(56, 80);
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(317, 23);
+            this.textBoxTitle.TabIndex = 7;
+            this.textBoxTitle.Text = "标题1234522";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 17);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "标题：";
+            // 
+            // buttonOpenCover
+            // 
+            this.buttonOpenCover.Location = new System.Drawing.Point(298, 51);
+            this.buttonOpenCover.Name = "buttonOpenCover";
+            this.buttonOpenCover.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenCover.TabIndex = 5;
+            this.buttonOpenCover.Text = "打开";
+            this.buttonOpenCover.UseVisualStyleBackColor = true;
+            this.buttonOpenCover.Click += new System.EventHandler(this.buttonOpenCover_Click);
+            // 
+            // textBoxCoverPath
+            // 
+            this.textBoxCoverPath.Location = new System.Drawing.Point(56, 51);
+            this.textBoxCoverPath.Name = "textBoxCoverPath";
+            this.textBoxCoverPath.Size = new System.Drawing.Size(236, 23);
+            this.textBoxCoverPath.TabIndex = 4;
+            this.textBoxCoverPath.Text = "E:\\地球频道\\2.videos\\20200809\\vlcsnap-2020-08-09-23h21m21s931.png";
+            // 
+            // buttonOpenVideo
+            // 
+            this.buttonOpenVideo.Location = new System.Drawing.Point(298, 22);
+            this.buttonOpenVideo.Name = "buttonOpenVideo";
+            this.buttonOpenVideo.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenVideo.TabIndex = 3;
+            this.buttonOpenVideo.Text = "打开";
+            this.buttonOpenVideo.UseVisualStyleBackColor = true;
+            this.buttonOpenVideo.Click += new System.EventHandler(this.buttonOpenVideo_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "封面：";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "视频：";
+            // 
+            // textBoxVideoPath
+            // 
+            this.textBoxVideoPath.Location = new System.Drawing.Point(56, 22);
+            this.textBoxVideoPath.Name = "textBoxVideoPath";
+            this.textBoxVideoPath.Size = new System.Drawing.Size(236, 23);
+            this.textBoxVideoPath.TabIndex = 0;
+            this.textBoxVideoPath.Text = "E:\\地球频道\\2.videos\\20210402毅力号自拍\\导出.mp4";
+            // 
             // tabControlChannels
             // 
             this.tabControlChannels.Controls.Add(this.tabPageBilibili);
@@ -104,10 +220,20 @@
             this.tabPageBilibili.Location = new System.Drawing.Point(4, 26);
             this.tabPageBilibili.Name = "tabPageBilibili";
             this.tabPageBilibili.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBilibili.Size = new System.Drawing.Size(371, 507);
+            this.tabPageBilibili.Size = new System.Drawing.Size(371, 494);
             this.tabPageBilibili.TabIndex = 0;
             this.tabPageBilibili.Text = "哔哩";
             this.tabPageBilibili.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishBilibili
+            // 
+            this.checkBoxPublishBilibili.AutoSize = true;
+            this.checkBoxPublishBilibili.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishBilibili.Name = "checkBoxPublishBilibili";
+            this.checkBoxPublishBilibili.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishBilibili.TabIndex = 0;
+            this.checkBoxPublishBilibili.Text = "发布";
+            this.checkBoxPublishBilibili.UseVisualStyleBackColor = true;
             // 
             // tabPageDouyu
             // 
@@ -122,145 +248,13 @@
             this.tabPageDouyu.Text = "斗鱼";
             this.tabPageDouyu.UseVisualStyleBackColor = true;
             // 
-            // textBoxVideoPath
+            // textBoxDouyuClassify
             // 
-            this.textBoxVideoPath.Location = new System.Drawing.Point(56, 22);
-            this.textBoxVideoPath.Name = "textBoxVideoPath";
-            this.textBoxVideoPath.Size = new System.Drawing.Size(236, 23);
-            this.textBoxVideoPath.TabIndex = 0;
-            this.textBoxVideoPath.Text = "E:\\地球频道\\2.videos\\20210402毅力号自拍\\导出.mp4";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "视频：";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "封面：";
-            // 
-            // buttonOpenVideo
-            // 
-            this.buttonOpenVideo.Location = new System.Drawing.Point(298, 22);
-            this.buttonOpenVideo.Name = "buttonOpenVideo";
-            this.buttonOpenVideo.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenVideo.TabIndex = 3;
-            this.buttonOpenVideo.Text = "打开";
-            this.buttonOpenVideo.UseVisualStyleBackColor = true;
-            this.buttonOpenVideo.Click += new System.EventHandler(this.buttonOpenVideo_Click);
-            // 
-            // textBoxCoverPath
-            // 
-            this.textBoxCoverPath.Location = new System.Drawing.Point(56, 51);
-            this.textBoxCoverPath.Name = "textBoxCoverPath";
-            this.textBoxCoverPath.Size = new System.Drawing.Size(236, 23);
-            this.textBoxCoverPath.TabIndex = 4;
-            this.textBoxCoverPath.Text = "E:\\地球频道\\2.videos\\20200809\\vlcsnap-2020-08-09-23h21m21s931.png";
-            // 
-            // buttonOpenCover
-            // 
-            this.buttonOpenCover.Location = new System.Drawing.Point(298, 51);
-            this.buttonOpenCover.Name = "buttonOpenCover";
-            this.buttonOpenCover.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenCover.TabIndex = 5;
-            this.buttonOpenCover.Text = "打开";
-            this.buttonOpenCover.UseVisualStyleBackColor = true;
-            this.buttonOpenCover.Click += new System.EventHandler(this.buttonOpenCover_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 17);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "标题：";
-            // 
-            // textBoxTitle
-            // 
-            this.textBoxTitle.Location = new System.Drawing.Point(56, 80);
-            this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(317, 23);
-            this.textBoxTitle.TabIndex = 7;
-            this.textBoxTitle.Text = "标题1234522";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 112);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = " 标签：";
-            // 
-            // textBoxTags
-            // 
-            this.textBoxTags.Location = new System.Drawing.Point(56, 109);
-            this.textBoxTags.Name = "textBoxTags";
-            this.textBoxTags.Size = new System.Drawing.Size(317, 23);
-            this.textBoxTags.TabIndex = 9;
-            this.textBoxTags.Text = "标签 地球 拉拉";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 141);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 17);
-            this.label5.TabIndex = 10;
-            this.label5.Text = " 简介：";
-            // 
-            // textBoxIntroduction
-            // 
-            this.textBoxIntroduction.Location = new System.Drawing.Point(56, 138);
-            this.textBoxIntroduction.Multiline = true;
-            this.textBoxIntroduction.Name = "textBoxIntroduction";
-            this.textBoxIntroduction.Size = new System.Drawing.Size(317, 115);
-            this.textBoxIntroduction.TabIndex = 11;
-            this.textBoxIntroduction.Text = "简介很长00000000000000000999999999999999";
-            // 
-            // buttonSubmit
-            // 
-            this.buttonSubmit.Location = new System.Drawing.Point(298, 259);
-            this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(75, 23);
-            this.buttonSubmit.TabIndex = 12;
-            this.buttonSubmit.Text = "发布";
-            this.buttonSubmit.UseVisualStyleBackColor = true;
-            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
-            // 
-            // checkBoxPublishBilibili
-            // 
-            this.checkBoxPublishBilibili.AutoSize = true;
-            this.checkBoxPublishBilibili.Checked = true;
-            this.checkBoxPublishBilibili.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxPublishBilibili.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishBilibili.Name = "checkBoxPublishBilibili";
-            this.checkBoxPublishBilibili.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishBilibili.TabIndex = 0;
-            this.checkBoxPublishBilibili.Text = "发布";
-            this.checkBoxPublishBilibili.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPublishDouyu
-            // 
-            this.checkBoxPublishDouyu.AutoSize = true;
-            this.checkBoxPublishDouyu.Checked = true;
-            this.checkBoxPublishDouyu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxPublishDouyu.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishDouyu.Name = "checkBoxPublishDouyu";
-            this.checkBoxPublishDouyu.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishDouyu.TabIndex = 1;
-            this.checkBoxPublishDouyu.Text = "发布";
-            this.checkBoxPublishDouyu.UseVisualStyleBackColor = true;
+            this.textBoxDouyuClassify.Location = new System.Drawing.Point(56, 25);
+            this.textBoxDouyuClassify.Name = "textBoxDouyuClassify";
+            this.textBoxDouyuClassify.Size = new System.Drawing.Size(100, 23);
+            this.textBoxDouyuClassify.TabIndex = 13;
+            this.textBoxDouyuClassify.Text = "科学科普";
             // 
             // label6
             // 
@@ -271,29 +265,15 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "分类：";
             // 
-            // textBoxDouyuClassify
+            // checkBoxPublishDouyu
             // 
-            this.textBoxDouyuClassify.Location = new System.Drawing.Point(56, 25);
-            this.textBoxDouyuClassify.Name = "textBoxDouyuClassify";
-            this.textBoxDouyuClassify.Size = new System.Drawing.Size(100, 23);
-            this.textBoxDouyuClassify.TabIndex = 13;
-            this.textBoxDouyuClassify.Text = "科学科普";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
-            this.toolStripStatusLabel.Text = "就绪";
+            this.checkBoxPublishDouyu.AutoSize = true;
+            this.checkBoxPublishDouyu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishDouyu.Name = "checkBoxPublishDouyu";
+            this.checkBoxPublishDouyu.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishDouyu.TabIndex = 1;
+            this.checkBoxPublishDouyu.Text = "发布";
+            this.checkBoxPublishDouyu.UseVisualStyleBackColor = true;
             // 
             // tabPageXigua
             // 
@@ -309,8 +289,6 @@
             // checkBoxPublishXigua
             // 
             this.checkBoxPublishXigua.AutoSize = true;
-            this.checkBoxPublishXigua.Checked = true;
-            this.checkBoxPublishXigua.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxPublishXigua.Location = new System.Drawing.Point(6, 6);
             this.checkBoxPublishXigua.Name = "checkBoxPublishXigua";
             this.checkBoxPublishXigua.Size = new System.Drawing.Size(51, 21);
@@ -332,14 +310,28 @@
             // checkBoxPublishBaidu
             // 
             this.checkBoxPublishBaidu.AutoSize = true;
-            this.checkBoxPublishBaidu.Checked = true;
-            this.checkBoxPublishBaidu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxPublishBaidu.Location = new System.Drawing.Point(6, 6);
             this.checkBoxPublishBaidu.Name = "checkBoxPublishBaidu";
             this.checkBoxPublishBaidu.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishBaidu.TabIndex = 3;
             this.checkBoxPublishBaidu.Text = "发布";
             this.checkBoxPublishBaidu.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
+            this.toolStripStatusLabel.Text = "就绪";
             // 
             // MainForm
             // 
@@ -364,12 +356,12 @@
             this.tabPageBilibili.PerformLayout();
             this.tabPageDouyu.ResumeLayout(false);
             this.tabPageDouyu.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.tabPageXigua.ResumeLayout(false);
             this.tabPageXigua.PerformLayout();
             this.tabPageBaidu.ResumeLayout(false);
             this.tabPageBaidu.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -18,9 +18,8 @@ namespace SubmissionAutomation.Channels
         private const string url = "https://baijiahao.baidu.com/builder/rc/edit?type=video&app_id=1668272018575256"; //网址
         private const int maxTagCount = 5; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
-        private static readonly Func<bool>[] beforeOperates = null;//预处理方法
-        private static readonly Func<bool>[] afterOperates = new Func<bool>[] { OriginalStatement }; //处理后方法
-        private static WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
+
+        private WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
 
         /// <summary>
         /// 构造函数
@@ -30,9 +29,18 @@ namespace SubmissionAutomation.Channels
         /// <param name="tags"></param>
         /// <param name="title"></param>
         /// <param name="introduction"></param>
-        public Baidu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, beforeOperates, afterOperates, operateInterval)
+        public Baidu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override bool Operate()
+        {
+            return base.Operate(null, null);
         }
 
         /// <summary>
@@ -206,7 +214,7 @@ namespace SubmissionAutomation.Channels
         /// 声明原创
         /// </summary>
         /// <returns></returns>
-        public static bool OriginalStatement()
+        internal override bool OriginalStatement(string typeName)
         {
             wait.Until(wb => wb.FindElement(
                 By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.video-active > form > div.grid-edit-video-utils > div:nth-child(5) > div.ant-form-item-control-wrapper.ant-col-xs-24.ant-col-sm-20 > div > div > div > label:nth-child(2) > span:nth-child(2) > span:nth-child(1)")

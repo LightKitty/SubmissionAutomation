@@ -18,9 +18,8 @@ namespace SubmissionAutomation.Channels
         private const string url = "https://mp.toutiao.com/profile_v4/xigua/upload-video"; //网址
         private const int maxTagCount = 5; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
-        private static readonly Func<bool>[] beforeOperates = null;//预处理方法
-        private static readonly Func<bool>[] afterOperates = null; //处理后方法
-        private static WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
+
+        private WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
 
         /// <summary>
         /// 构造函数
@@ -31,9 +30,19 @@ namespace SubmissionAutomation.Channels
         /// <param name="title"></param>
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
-        public Xigua(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, beforeOperates, afterOperates, operateInterval)
+        public Xigua(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
+            : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override bool Operate()
+        {
+            return base.Operate(null, null);
         }
 
         /// <summary>
@@ -196,6 +205,16 @@ namespace SubmissionAutomation.Channels
         /// </summary>
         /// <returns></returns>
         internal override bool SetClassify(string name)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// 原创声明
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <returns></returns>
+        internal override bool OriginalStatement(string typeName)
         {
             return true;
         }
