@@ -55,6 +55,11 @@
             this.checkBoxPublishBaidu = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabPageWangyi = new System.Windows.Forms.TabPage();
+            this.checkBoxPublishWangyi = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButtonWangyiOriginal = new System.Windows.Forms.RadioButton();
+            this.radioButtonWangyiReprint = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -62,6 +67,8 @@
             this.tabPageXigua.SuspendLayout();
             this.tabPageBaidu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabPageWangyi.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -137,7 +144,7 @@
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.Size = new System.Drawing.Size(317, 23);
             this.textBoxTitle.TabIndex = 7;
-            this.textBoxTitle.Text = "标题1234522";
+            this.textBoxTitle.Text = "标题哈哈哈1234522";
             // 
             // label3
             // 
@@ -208,6 +215,7 @@
             this.tabControlChannels.Controls.Add(this.tabPageDouyu);
             this.tabControlChannels.Controls.Add(this.tabPageXigua);
             this.tabControlChannels.Controls.Add(this.tabPageBaidu);
+            this.tabControlChannels.Controls.Add(this.tabPageWangyi);
             this.tabControlChannels.Location = new System.Drawing.Point(393, 12);
             this.tabControlChannels.Name = "tabControlChannels";
             this.tabControlChannels.SelectedIndex = 0;
@@ -333,6 +341,61 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
             // 
+            // tabPageWangyi
+            // 
+            this.tabPageWangyi.Controls.Add(this.groupBox2);
+            this.tabPageWangyi.Controls.Add(this.checkBoxPublishWangyi);
+            this.tabPageWangyi.Location = new System.Drawing.Point(4, 26);
+            this.tabPageWangyi.Name = "tabPageWangyi";
+            this.tabPageWangyi.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageWangyi.Size = new System.Drawing.Size(371, 494);
+            this.tabPageWangyi.TabIndex = 4;
+            this.tabPageWangyi.Text = "网易";
+            this.tabPageWangyi.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishWangyi
+            // 
+            this.checkBoxPublishWangyi.AutoSize = true;
+            this.checkBoxPublishWangyi.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishWangyi.Name = "checkBoxPublishWangyi";
+            this.checkBoxPublishWangyi.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishWangyi.TabIndex = 4;
+            this.checkBoxPublishWangyi.Text = "发布";
+            this.checkBoxPublishWangyi.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButtonWangyiReprint);
+            this.groupBox2.Controls.Add(this.radioButtonWangyiOriginal);
+            this.groupBox2.Location = new System.Drawing.Point(6, 33);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(359, 53);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "类型";
+            // 
+            // radioButtonWangyiOriginal
+            // 
+            this.radioButtonWangyiOriginal.AutoSize = true;
+            this.radioButtonWangyiOriginal.Checked = true;
+            this.radioButtonWangyiOriginal.Location = new System.Drawing.Point(6, 22);
+            this.radioButtonWangyiOriginal.Name = "radioButtonWangyiOriginal";
+            this.radioButtonWangyiOriginal.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonWangyiOriginal.TabIndex = 0;
+            this.radioButtonWangyiOriginal.TabStop = true;
+            this.radioButtonWangyiOriginal.Text = "原创";
+            this.radioButtonWangyiOriginal.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonWangyiReprint
+            // 
+            this.radioButtonWangyiReprint.AutoSize = true;
+            this.radioButtonWangyiReprint.Location = new System.Drawing.Point(62, 22);
+            this.radioButtonWangyiReprint.Name = "radioButtonWangyiReprint";
+            this.radioButtonWangyiReprint.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonWangyiReprint.TabIndex = 1;
+            this.radioButtonWangyiReprint.Text = "转载";
+            this.radioButtonWangyiReprint.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -362,6 +425,10 @@
             this.tabPageBaidu.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabPageWangyi.ResumeLayout(false);
+            this.tabPageWangyi.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,6 +463,11 @@
         private System.Windows.Forms.CheckBox checkBoxPublishXigua;
         private System.Windows.Forms.TabPage tabPageBaidu;
         private System.Windows.Forms.CheckBox checkBoxPublishBaidu;
+        private System.Windows.Forms.TabPage tabPageWangyi;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioButtonWangyiReprint;
+        private System.Windows.Forms.RadioButton radioButtonWangyiOriginal;
+        private System.Windows.Forms.CheckBox checkBoxPublishWangyi;
     }
 }
 

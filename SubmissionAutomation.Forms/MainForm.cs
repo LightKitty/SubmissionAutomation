@@ -129,6 +129,15 @@ namespace SubmissionAutomation.Forms
                 channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null, null));
             }
 
+            if (checkBoxPublishWangyi.Checked)
+            {
+                string originalTypeName = null;
+                if (radioButtonWangyiOriginal.Checked) originalTypeName = "原创";
+                else if (radioButtonWangyiReprint.Checked) originalTypeName = "转载";
+
+                channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null, originalTypeName));
+            }
+
             return channels;
         }
 

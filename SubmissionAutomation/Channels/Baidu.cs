@@ -103,7 +103,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            Thread.Sleep(1000); //等待
+            //Thread.Sleep(1000); //等待
             IWebElement titleElement = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.video-active > form > div.grid-edit-video-content > div:nth-child(11) > div > div > div > div.client_components_titleInput > div > div.input-box > textarea")
                 ));
@@ -144,7 +144,7 @@ namespace SubmissionAutomation.Channels
             foreach (string tag in _tags)
             {
                 tagElement.SendKeys(tag + Keys.Enter);
-                Thread.Sleep(300);
+                Thread.Sleep(200);
             }
 
             return true;
