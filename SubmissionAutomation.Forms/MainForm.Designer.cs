@@ -60,6 +60,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButtonWangyiOriginal = new System.Windows.Forms.RadioButton();
             this.radioButtonWangyiReprint = new System.Windows.Forms.RadioButton();
+            this.tabPageWeibo = new System.Windows.Forms.TabPage();
+            this.tabPageZhihu = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -216,6 +218,8 @@
             this.tabControlChannels.Controls.Add(this.tabPageXigua);
             this.tabControlChannels.Controls.Add(this.tabPageBaidu);
             this.tabControlChannels.Controls.Add(this.tabPageWangyi);
+            this.tabControlChannels.Controls.Add(this.tabPageWeibo);
+            this.tabControlChannels.Controls.Add(this.tabPageZhihu);
             this.tabControlChannels.Location = new System.Drawing.Point(393, 12);
             this.tabControlChannels.Name = "tabControlChannels";
             this.tabControlChannels.SelectedIndex = 0;
@@ -396,6 +400,26 @@
             this.radioButtonWangyiReprint.Text = "转载";
             this.radioButtonWangyiReprint.UseVisualStyleBackColor = true;
             // 
+            // tabPageWeibo
+            // 
+            this.tabPageWeibo.Location = new System.Drawing.Point(4, 26);
+            this.tabPageWeibo.Name = "tabPageWeibo";
+            this.tabPageWeibo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageWeibo.Size = new System.Drawing.Size(371, 494);
+            this.tabPageWeibo.TabIndex = 5;
+            this.tabPageWeibo.Text = "微博";
+            this.tabPageWeibo.UseVisualStyleBackColor = true;
+            // 
+            // tabPageZhihu
+            // 
+            this.tabPageZhihu.Location = new System.Drawing.Point(4, 26);
+            this.tabPageZhihu.Name = "tabPageZhihu";
+            this.tabPageZhihu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageZhihu.Size = new System.Drawing.Size(371, 494);
+            this.tabPageZhihu.TabIndex = 6;
+            this.tabPageZhihu.Text = "知乎";
+            this.tabPageZhihu.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -468,6 +492,8 @@
         private System.Windows.Forms.RadioButton radioButtonWangyiReprint;
         private System.Windows.Forms.RadioButton radioButtonWangyiOriginal;
         private System.Windows.Forms.CheckBox checkBoxPublishWangyi;
+        private System.Windows.Forms.TabPage tabPageWeibo;
+        private System.Windows.Forms.TabPage tabPageZhihu;
     }
 }
 

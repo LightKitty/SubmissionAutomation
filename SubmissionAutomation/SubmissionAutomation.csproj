@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Channels\Zhihu.cs" />
     <Compile Include="Channels\Weibo.cs" />
     <Compile Include="Channels\Wangyi.cs" />
     <Compile Include="Channels\Baidu.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Channels\Douyu.cs" />
     <Compile Include="Channels\Bilibili.cs" />
     <Compile Include="Channels\Channel.cs" />
+    <Compile Include="Extensions\WebElement.cs" />
     <Compile Include="Helpers\Wait.cs" />
     <Compile Include="Helpers\OpenFileDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,8 +67,6 @@
       <Version>4.0.0-beta2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

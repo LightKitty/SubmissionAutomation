@@ -14,10 +14,10 @@ namespace SubmissionAutomation.Channels
     /// <summary>
     /// 百度（百家号）
     /// </summary>
-    public class Weibo : Channel
+    public class Zhihu : Channel
     {
 
-        private const string url = "https://weibo.com/leibizhenqi/home"; //网址
+        private const string url = "https://www.zhihu.com/creator/video-upload"; //网址
         private const int maxTagCount = 3; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -33,7 +33,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
         /// <param name="originalName"></param>
-        public Weibo(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
+        public Zhihu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
             : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
         {
 
@@ -68,18 +68,13 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool UploadVideo(string path)
         {
-            //发布区域
-            IWebElement publishertop = wait.Until(wb => wb.FindElement(
-                By.Id("v6_pl_content_publishertop")
+            IWebElement videoInput = wait.Until(x => x.FindElement(
+                By.ClassName("VideoUploadButton-fileInput")
                 ));
-
-            IWebElement videoInput = publishertop.FindElement(
-                By.Name("video")
-                );
 
             videoInput.SendKeys(path); //设置上传值
 
-            Thread.Sleep(1000); //等待弹窗
+            Thread.Sleep(1000); //等待跳转
 
             //if (!Helpers.OpenFileDialog.SelectFileAndOpen(path)) return false;
 
@@ -96,27 +91,19 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteTitle(string title)
         {
             //发布区域
-            IWebElement publishertop = wait.Until(wb => wb.FindElement(
-                By.Id("v6_pl_content_publishertop")
+            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
+                By.ClassName("ZVideoUploader-form")
                 ));
 
-            var inputs = publishertop.FindElements(
+            var inputs = ZVideoUploader_form.FindElements(
                 By.TagName("input")
                 );
 
-            //遍历input
-            foreach(var input in inputs)
-            {
-                string action_type = input.GetAttribute("action-type");
-                if(action_type== "inputTitle")
-                { //找到标题input
-                    input.Clear();
-                    input.SendKeys(title);
-                    return true;
-                }
-            }
+            var input = inputs.FindElementByAttribute("placeholder", "输入视频标题");
 
-            return false;
+            input.SendKeys(title);
+
+            return true;
         }
 
         /// <summary>
@@ -126,11 +113,17 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteIntroduction(string introduction)
         {
-            //简介区域
-            IWebElement textarea = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#v6_pl_content_publishertop > div > div.input > textarea")
+            //发布区域
+            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
+                By.ClassName("ZVideoUploader-form")
                 ));
-            textarea.Clear();
+
+            var textareas = ZVideoUploader_form.FindElements(
+                By.TagName("textarea")
+                );
+
+            var textarea = textareas.FindElementByAttribute("placeholder", "填写视频简介，让更多人找到你的视频");
+
             textarea.SendKeys(introduction);
 
             return true;
@@ -143,19 +136,6 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            //简介区域
-            IWebElement textarea = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#v6_pl_content_publishertop > div > div.input > textarea")
-                ));
-
-            textarea.SendKeys("#微博公开课#");
-
-            IEnumerable<string> _tags = tags.Take(maxTagCount - 1);
-            foreach (string tag in _tags)
-            {
-                textarea.SendKeys($"#{tag}#");
-            }
-
             return true;
         }
 
@@ -175,41 +155,6 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            //发布区域
-            IWebElement publishertop = wait.Until(wb => wb.FindElement(
-                By.Id("v6_pl_content_publishertop")
-                ));
-
-            var upbtn_v3_img = Wait.Until(publishertop, x => x.FindElement(
-                 By.ClassName("upbtn_v3_img")
-                 ));
-
-            upbtn_v3_img.Click();
-
-            var upbtn = publishertop.FindElement(
-                By.ClassName("upbtn")
-                );
-
-            upbtn.Click();
-
-            Thread.Sleep(1000); //等待上传
-            if (!Helpers.OpenFileDialog.SelectFileAndOpen(path)) return false;
-            Thread.Sleep(1000); //等待
-
-            var aTags = publishertop.FindElements(
-                By.TagName("a")
-                );
-
-            //遍历
-            foreach (var aTag in aTags)
-            {
-                string action_type = aTag.GetAttribute("action-type");
-                if (action_type == "setUploadCover")
-                { //找到确定按钮
-                    aTag.Click();
-                    break;
-                }
-            }
 
             return true;
         }
@@ -237,29 +182,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public bool CompleteBtnClick()
         {
-            //发布区域
-            IWebElement publishertop = wait.Until(wb => wb.FindElement(
-                By.Id("v6_pl_content_publishertop")
-                ));
-
-            var aTags = Wait.Until(publishertop, x => x.FindElements(
-                By.TagName("a")
-                ));
-
-            var aTag = aTags.FindElementByAttribute("node-type", "completeBtn");
-            aTag.Click();
-
-            ////遍历
-            //foreach (var aTag in aTags)
-            //{
-            //    string node_type = aTag.GetAttribute("node-type");
-            //    if (node_type == "completeBtn")
-            //    { //找到按钮
-            //        aTag.Click();
-
-            //        return true;
-            //    }
-            //}
+            
 
             return false;
         }
