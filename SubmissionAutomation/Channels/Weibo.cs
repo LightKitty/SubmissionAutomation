@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -178,11 +179,9 @@ namespace SubmissionAutomation.Channels
                 By.Id("v6_pl_content_publishertop")
                 ));
 
-            Thread.Sleep(100);
-
-            var upbtn_v3_img = publishertop.FindElement(
-                By.ClassName("upbtn_v3_img")
-                );
+            var upbtn_v3_img = Wait.Until(publishertop, x => x.FindElement(
+                 By.ClassName("upbtn_v3_img")
+                 ));
 
             upbtn_v3_img.Click();
 
@@ -242,9 +241,9 @@ namespace SubmissionAutomation.Channels
                 By.Id("v6_pl_content_publishertop")
                 ));
 
-            var aTags = publishertop.FindElements(
+            var aTags = Wait.Until(publishertop, x => x.FindElements(
                 By.TagName("a")
-                );
+                ));
 
             //遍历
             foreach (var aTag in aTags)

@@ -56,6 +56,7 @@
     <Compile Include="Channels\Douyu.cs" />
     <Compile Include="Channels\Bilibili.cs" />
     <Compile Include="Channels\Channel.cs" />
+    <Compile Include="Helpers\Wait.cs" />
     <Compile Include="Helpers\OpenFileDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +64,9 @@
     <PackageReference Include="Selenium.WebDriver">
       <Version>4.0.0-beta2</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
