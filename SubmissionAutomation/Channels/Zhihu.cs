@@ -45,7 +45,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(null, new Func<bool>[] { CompleteBtnClick });
+            return base.Operate(null, null);
         }
 
         /// <summary>
@@ -155,6 +155,37 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
+            //发布区域
+            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
+                By.ClassName("ZVideoUploader-form")
+                ));
+
+            //上传封面按钮
+            IWebElement VideoUploadForm_radioContainer = Wait.Until(ZVideoUploader_form, x => x.FindElement(
+                By.ClassName("Video-uploadPosterButton")
+                ));
+
+            VideoUploadForm_radioContainer.Click();
+
+            //弹窗区域
+            IWebElement Modal_inner = wait.Until(x => x.FindElement(
+                By.ClassName("Modal-inner")
+                ));
+
+            //上传图片区域
+            IWebElement VideoCoverFileInput_input = Wait.Until(Modal_inner, x => x.FindElement(
+                By.ClassName("VideoCoverFileInput-input")
+                ));
+
+            VideoCoverFileInput_input.SendKeys(path);
+
+            //上传图片完成按钮
+            var buttons = Wait.Until(Modal_inner, x => x.FindElements(
+                By.TagName("button")
+                ));
+
+            var saveBtn = buttons.FindElementBText("保存");
+            saveBtn.Click();
 
             return true;
         }
@@ -166,23 +197,28 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            //if (string.IsNullOrEmpty(typeName)) return true;
+            //发布区域
+            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
+                By.ClassName("ZVideoUploader-form")
+                ));
 
-            //var input = wait.Until(wb => wb.FindElement(
-            //    By.Id("spe1")
-            //    ));
-            //input.Click();
+            IWebElement VideoUploadForm_radioContainer = Wait.Until(ZVideoUploader_form, x => x.FindElement(
+                By.ClassName("VideoUploadForm-radioContainer")
+                ));
 
-            return true;
-        }
+            var radioes = Wait.Until(VideoUploadForm_radioContainer, x => x.FindElements(
+                By.ClassName("VideoUploadForm-radioLabel")
+                ));
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public bool CompleteBtnClick()
-        {
-            
+            foreach(var radio in radioes)
+            {
+                if(radio.Text == typeName)
+                {
+                    radio.Click();
+
+                    return true;
+                }
+            }
 
             return false;
         }

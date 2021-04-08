@@ -11,7 +11,7 @@ namespace SubmissionAutomation.Extensions
     /// <summary>
     /// 
     /// </summary>
-    public static class WebElement
+    public static class WebElementExtension
     {
         /// <summary>
         /// 
@@ -33,6 +33,26 @@ namespace SubmissionAutomation.Extensions
             }
 
             throw new NoSuchElementException($"No such element with attribute name '{attributeName}' and value '{attributeValue}'");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IWebElement FindElementBText(this ReadOnlyCollection<IWebElement> elements, string text)
+        {
+            //遍历
+            foreach (var element in elements)
+            {
+                if (element.Text == text)
+                {
+                    return element;
+                }
+            }
+
+            throw new NoSuchElementException($"No such element with text '{text}'");
         }
     }
 }
