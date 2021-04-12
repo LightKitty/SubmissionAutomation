@@ -40,8 +40,11 @@ namespace SubmissionAutomation.Console
                 //Channel weibo = new Weibo(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
                 //weibo.Operate();
 
-                Zhihu weibo = new Zhihu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
-                weibo.Operate();
+                //Zhihu weibo = new Zhihu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
+                //weibo.Operate();
+
+                Xiaohongshu xiaohongshu = new Xiaohongshu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
+                xiaohongshu.Operate();
 
                 System.Console.ReadLine();
             }

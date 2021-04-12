@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Channels\Xiaohongshu.cs" />
     <Compile Include="Channels\Zhihu.cs" />
     <Compile Include="Channels\Weibo.cs" />
     <Compile Include="Channels\Wangyi.cs" />

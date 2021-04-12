@@ -53,24 +53,32 @@
             this.checkBoxPublishXigua = new System.Windows.Forms.CheckBox();
             this.tabPageBaidu = new System.Windows.Forms.TabPage();
             this.checkBoxPublishBaidu = new System.Windows.Forms.CheckBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPageWangyi = new System.Windows.Forms.TabPage();
-            this.checkBoxPublishWangyi = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButtonWangyiOriginal = new System.Windows.Forms.RadioButton();
             this.radioButtonWangyiReprint = new System.Windows.Forms.RadioButton();
+            this.radioButtonWangyiOriginal = new System.Windows.Forms.RadioButton();
+            this.checkBoxPublishWangyi = new System.Windows.Forms.CheckBox();
             this.tabPageWeibo = new System.Windows.Forms.TabPage();
             this.tabPageZhihu = new System.Windows.Forms.TabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBoxPublishWeibo = new System.Windows.Forms.CheckBox();
+            this.checkBoxPublishZhihu = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonZhihuReprint = new System.Windows.Forms.RadioButton();
+            this.radioButtonZhihuOriginal = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
             this.tabPageDouyu.SuspendLayout();
             this.tabPageXigua.SuspendLayout();
             this.tabPageBaidu.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.tabPageWangyi.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPageWeibo.SuspendLayout();
+            this.tabPageZhihu.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -329,6 +337,84 @@
             this.checkBoxPublishBaidu.Text = "发布";
             this.checkBoxPublishBaidu.UseVisualStyleBackColor = true;
             // 
+            // tabPageWangyi
+            // 
+            this.tabPageWangyi.Controls.Add(this.groupBox2);
+            this.tabPageWangyi.Controls.Add(this.checkBoxPublishWangyi);
+            this.tabPageWangyi.Location = new System.Drawing.Point(4, 26);
+            this.tabPageWangyi.Name = "tabPageWangyi";
+            this.tabPageWangyi.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageWangyi.Size = new System.Drawing.Size(371, 494);
+            this.tabPageWangyi.TabIndex = 4;
+            this.tabPageWangyi.Text = "网易";
+            this.tabPageWangyi.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButtonWangyiReprint);
+            this.groupBox2.Controls.Add(this.radioButtonWangyiOriginal);
+            this.groupBox2.Location = new System.Drawing.Point(6, 33);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(359, 53);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "类型";
+            // 
+            // radioButtonWangyiReprint
+            // 
+            this.radioButtonWangyiReprint.AutoSize = true;
+            this.radioButtonWangyiReprint.Location = new System.Drawing.Point(62, 22);
+            this.radioButtonWangyiReprint.Name = "radioButtonWangyiReprint";
+            this.radioButtonWangyiReprint.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonWangyiReprint.TabIndex = 1;
+            this.radioButtonWangyiReprint.Text = "转载";
+            this.radioButtonWangyiReprint.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonWangyiOriginal
+            // 
+            this.radioButtonWangyiOriginal.AutoSize = true;
+            this.radioButtonWangyiOriginal.Checked = true;
+            this.radioButtonWangyiOriginal.Location = new System.Drawing.Point(6, 22);
+            this.radioButtonWangyiOriginal.Name = "radioButtonWangyiOriginal";
+            this.radioButtonWangyiOriginal.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonWangyiOriginal.TabIndex = 0;
+            this.radioButtonWangyiOriginal.TabStop = true;
+            this.radioButtonWangyiOriginal.Text = "原创";
+            this.radioButtonWangyiOriginal.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishWangyi
+            // 
+            this.checkBoxPublishWangyi.AutoSize = true;
+            this.checkBoxPublishWangyi.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishWangyi.Name = "checkBoxPublishWangyi";
+            this.checkBoxPublishWangyi.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishWangyi.TabIndex = 4;
+            this.checkBoxPublishWangyi.Text = "发布";
+            this.checkBoxPublishWangyi.UseVisualStyleBackColor = true;
+            // 
+            // tabPageWeibo
+            // 
+            this.tabPageWeibo.Controls.Add(this.checkBoxPublishWeibo);
+            this.tabPageWeibo.Location = new System.Drawing.Point(4, 26);
+            this.tabPageWeibo.Name = "tabPageWeibo";
+            this.tabPageWeibo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageWeibo.Size = new System.Drawing.Size(371, 494);
+            this.tabPageWeibo.TabIndex = 5;
+            this.tabPageWeibo.Text = "微博";
+            this.tabPageWeibo.UseVisualStyleBackColor = true;
+            // 
+            // tabPageZhihu
+            // 
+            this.tabPageZhihu.Controls.Add(this.groupBox3);
+            this.tabPageZhihu.Controls.Add(this.checkBoxPublishZhihu);
+            this.tabPageZhihu.Location = new System.Drawing.Point(4, 26);
+            this.tabPageZhihu.Name = "tabPageZhihu";
+            this.tabPageZhihu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageZhihu.Size = new System.Drawing.Size(371, 494);
+            this.tabPageZhihu.TabIndex = 6;
+            this.tabPageZhihu.Text = "知乎";
+            this.tabPageZhihu.UseVisualStyleBackColor = true;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -345,80 +431,58 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
             // 
-            // tabPageWangyi
+            // checkBoxPublishWeibo
             // 
-            this.tabPageWangyi.Controls.Add(this.groupBox2);
-            this.tabPageWangyi.Controls.Add(this.checkBoxPublishWangyi);
-            this.tabPageWangyi.Location = new System.Drawing.Point(4, 26);
-            this.tabPageWangyi.Name = "tabPageWangyi";
-            this.tabPageWangyi.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWangyi.Size = new System.Drawing.Size(371, 494);
-            this.tabPageWangyi.TabIndex = 4;
-            this.tabPageWangyi.Text = "网易";
-            this.tabPageWangyi.UseVisualStyleBackColor = true;
+            this.checkBoxPublishWeibo.AutoSize = true;
+            this.checkBoxPublishWeibo.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishWeibo.Name = "checkBoxPublishWeibo";
+            this.checkBoxPublishWeibo.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishWeibo.TabIndex = 5;
+            this.checkBoxPublishWeibo.Text = "发布";
+            this.checkBoxPublishWeibo.UseVisualStyleBackColor = true;
             // 
-            // checkBoxPublishWangyi
+            // checkBoxPublishZhihu
             // 
-            this.checkBoxPublishWangyi.AutoSize = true;
-            this.checkBoxPublishWangyi.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishWangyi.Name = "checkBoxPublishWangyi";
-            this.checkBoxPublishWangyi.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishWangyi.TabIndex = 4;
-            this.checkBoxPublishWangyi.Text = "发布";
-            this.checkBoxPublishWangyi.UseVisualStyleBackColor = true;
+            this.checkBoxPublishZhihu.AutoSize = true;
+            this.checkBoxPublishZhihu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishZhihu.Name = "checkBoxPublishZhihu";
+            this.checkBoxPublishZhihu.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishZhihu.TabIndex = 6;
+            this.checkBoxPublishZhihu.Text = "发布";
+            this.checkBoxPublishZhihu.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // groupBox3
             // 
-            this.groupBox2.Controls.Add(this.radioButtonWangyiReprint);
-            this.groupBox2.Controls.Add(this.radioButtonWangyiOriginal);
-            this.groupBox2.Location = new System.Drawing.Point(6, 33);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(359, 53);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "类型";
+            this.groupBox3.Controls.Add(this.radioButtonZhihuReprint);
+            this.groupBox3.Controls.Add(this.radioButtonZhihuOriginal);
+            this.groupBox3.Location = new System.Drawing.Point(6, 33);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(359, 53);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "类型";
             // 
-            // radioButtonWangyiOriginal
+            // radioButtonZhihuReprint
             // 
-            this.radioButtonWangyiOriginal.AutoSize = true;
-            this.radioButtonWangyiOriginal.Checked = true;
-            this.radioButtonWangyiOriginal.Location = new System.Drawing.Point(6, 22);
-            this.radioButtonWangyiOriginal.Name = "radioButtonWangyiOriginal";
-            this.radioButtonWangyiOriginal.Size = new System.Drawing.Size(50, 21);
-            this.radioButtonWangyiOriginal.TabIndex = 0;
-            this.radioButtonWangyiOriginal.TabStop = true;
-            this.radioButtonWangyiOriginal.Text = "原创";
-            this.radioButtonWangyiOriginal.UseVisualStyleBackColor = true;
+            this.radioButtonZhihuReprint.AutoSize = true;
+            this.radioButtonZhihuReprint.Location = new System.Drawing.Point(62, 22);
+            this.radioButtonZhihuReprint.Name = "radioButtonZhihuReprint";
+            this.radioButtonZhihuReprint.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonZhihuReprint.TabIndex = 1;
+            this.radioButtonZhihuReprint.Text = "转载";
+            this.radioButtonZhihuReprint.UseVisualStyleBackColor = true;
             // 
-            // radioButtonWangyiReprint
+            // radioButtonZhihuOriginal
             // 
-            this.radioButtonWangyiReprint.AutoSize = true;
-            this.radioButtonWangyiReprint.Location = new System.Drawing.Point(62, 22);
-            this.radioButtonWangyiReprint.Name = "radioButtonWangyiReprint";
-            this.radioButtonWangyiReprint.Size = new System.Drawing.Size(50, 21);
-            this.radioButtonWangyiReprint.TabIndex = 1;
-            this.radioButtonWangyiReprint.Text = "转载";
-            this.radioButtonWangyiReprint.UseVisualStyleBackColor = true;
-            // 
-            // tabPageWeibo
-            // 
-            this.tabPageWeibo.Location = new System.Drawing.Point(4, 26);
-            this.tabPageWeibo.Name = "tabPageWeibo";
-            this.tabPageWeibo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWeibo.Size = new System.Drawing.Size(371, 494);
-            this.tabPageWeibo.TabIndex = 5;
-            this.tabPageWeibo.Text = "微博";
-            this.tabPageWeibo.UseVisualStyleBackColor = true;
-            // 
-            // tabPageZhihu
-            // 
-            this.tabPageZhihu.Location = new System.Drawing.Point(4, 26);
-            this.tabPageZhihu.Name = "tabPageZhihu";
-            this.tabPageZhihu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageZhihu.Size = new System.Drawing.Size(371, 494);
-            this.tabPageZhihu.TabIndex = 6;
-            this.tabPageZhihu.Text = "知乎";
-            this.tabPageZhihu.UseVisualStyleBackColor = true;
+            this.radioButtonZhihuOriginal.AutoSize = true;
+            this.radioButtonZhihuOriginal.Checked = true;
+            this.radioButtonZhihuOriginal.Location = new System.Drawing.Point(6, 22);
+            this.radioButtonZhihuOriginal.Name = "radioButtonZhihuOriginal";
+            this.radioButtonZhihuOriginal.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonZhihuOriginal.TabIndex = 0;
+            this.radioButtonZhihuOriginal.TabStop = true;
+            this.radioButtonZhihuOriginal.Text = "原创";
+            this.radioButtonZhihuOriginal.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -447,12 +511,18 @@
             this.tabPageXigua.PerformLayout();
             this.tabPageBaidu.ResumeLayout(false);
             this.tabPageBaidu.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.tabPageWangyi.ResumeLayout(false);
             this.tabPageWangyi.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPageWeibo.ResumeLayout(false);
+            this.tabPageWeibo.PerformLayout();
+            this.tabPageZhihu.ResumeLayout(false);
+            this.tabPageZhihu.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,6 +564,11 @@
         private System.Windows.Forms.CheckBox checkBoxPublishWangyi;
         private System.Windows.Forms.TabPage tabPageWeibo;
         private System.Windows.Forms.TabPage tabPageZhihu;
+        private System.Windows.Forms.CheckBox checkBoxPublishWeibo;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButtonZhihuReprint;
+        private System.Windows.Forms.RadioButton radioButtonZhihuOriginal;
+        private System.Windows.Forms.CheckBox checkBoxPublishZhihu;
     }
 }
 

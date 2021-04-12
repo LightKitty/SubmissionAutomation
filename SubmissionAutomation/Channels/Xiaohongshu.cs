@@ -14,11 +14,11 @@ namespace SubmissionAutomation.Channels
     /// <summary>
     /// 百度（百家号）
     /// </summary>
-    public class Zhihu : Channel
+    public class Xiaohongshu : Channel
     {
 
-        private const string url = "https://www.zhihu.com/creator/video-upload"; //网址
-        private const int maxTagCount = 5; //最大标签个数
+        private const string url = "https://creator.xiaohongshu.com/creator/post"; //网址
+        private const int maxTagCount = 3; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
         private WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10)); //等待器
@@ -33,7 +33,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
         /// <param name="originalName"></param>
-        public Zhihu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
+        public Xiaohongshu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
             : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
         {
 
@@ -69,16 +69,10 @@ namespace SubmissionAutomation.Channels
         internal override bool UploadVideo(string path)
         {
             IWebElement videoInput = wait.Until(x => x.FindElement(
-                By.ClassName("VideoUploadButton-fileInput")
+                By.Id("upload")
                 ));
 
             videoInput.SendKeys(path); //设置上传值
-
-            Thread.Sleep(1000); //等待跳转
-
-            //if (!Helpers.OpenFileDialog.SelectFileAndOpen(path)) return false;
-
-            //Thread.Sleep(1000); //等待
 
             return true;
         }
@@ -90,18 +84,12 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            //发布区域
-            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
-                By.ClassName("ZVideoUploader-form")
+            //标题input
+            IWebElement titleInput = wait.Until(wb => wb.FindElement(
+                By.Name("title")
                 ));
 
-            var inputs = ZVideoUploader_form.FindElements(
-                By.TagName("input")
-                );
-
-            var input = inputs.FindElementByAttribute("placeholder", "输入视频标题");
-
-            input.SendKeys(title);
+            titleInput.SendKeys(title);
 
             return true;
         }
@@ -113,18 +101,12 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteIntroduction(string introduction)
         {
-            //发布区域
-            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
-                By.ClassName("ZVideoUploader-form")
+            //标题input
+            IWebElement contentInput = wait.Until(wb => wb.FindElement(
+                By.Name("content")
                 ));
 
-            var textareas = ZVideoUploader_form.FindElements(
-                By.TagName("textarea")
-                );
-
-            var textarea = textareas.FindElementByAttribute("placeholder", "填写视频简介，让更多人找到你的视频");
-
-            textarea.SendKeys(introduction);
+            contentInput.SendKeys(introduction);
 
             return true;
         }
@@ -136,6 +118,38 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
+            if(tags?.Count()>0)
+            {
+                //标题input 
+                IWebElement display_status = wait.Until(wb => wb.FindElement(
+                    By.Name("display-status")
+                    ));
+
+                display_status.Click();
+
+                Thread.Sleep(100);
+
+                IWebElement topic_input = wait.Until(wb => wb.FindElement(
+                    By.ClassName("topic-input")
+                    ));
+
+                var tag = tags.FirstOrDefault();
+
+                topic_input.SendKeys(tag);
+
+                Thread.Sleep(100);
+
+                var edit_wrapper = wait.Until(wb => wb.FindElement(
+                    By.ClassName("edit-wrapper")
+                    ));
+
+                var firstOption = Wait.Until(edit_wrapper, x => x.FindElement(
+                     By.ClassName("option")
+                     ));
+
+                firstOption.Click();
+            }
+
             return true;
         }
 
@@ -155,37 +169,25 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            //发布区域
-            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
-                By.ClassName("ZVideoUploader-form")
+            if (string.IsNullOrEmpty(path)) return true;
+
+            //封面区域
+            IWebElement video_cover_container = wait.Until(wb => wb.FindElement(
+                By.ClassName("video-cover-container")
                 ));
 
             //上传封面按钮
-            IWebElement VideoUploadForm_radioContainer = Wait.Until(ZVideoUploader_form, x => x.FindElement(
-                By.ClassName("Video-uploadPosterButton")
+            var imgs = Wait.Until(video_cover_container, x => x.FindElements(
+                By.TagName("img")
                 ));
 
-            VideoUploadForm_radioContainer.Click();
+            imgs[2].Click();
 
-            //弹窗区域
-            IWebElement Modal_inner = wait.Until(x => x.FindElement(
-                By.ClassName("Modal-inner")
-                ));
+            Thread.Sleep(1000); //等待系统弹窗
 
-            //上传图片区域
-            IWebElement VideoCoverFileInput_input = Wait.Until(Modal_inner, x => x.FindElement(
-                By.ClassName("VideoCoverFileInput-input")
-                ));
+            if (!OpenFileDialog.SelectFileAndOpen(path)) return false;
 
-            VideoCoverFileInput_input.SendKeys(path);
 
-            //上传图片完成按钮
-            var buttons = Wait.Until(Modal_inner, x => x.FindElements(
-                By.TagName("button")
-                ));
-
-            var saveBtn = buttons.FindElementBText("保存");
-            saveBtn.Click();
 
             return true;
         }
@@ -197,30 +199,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            //发布区域
-            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
-                By.ClassName("ZVideoUploader-form")
-                ));
-
-            IWebElement VideoUploadForm_radioContainer = Wait.Until(ZVideoUploader_form, x => x.FindElement(
-                By.ClassName("VideoUploadForm-radioContainer")
-                ));
-
-            var radioes = Wait.Until(VideoUploadForm_radioContainer, x => x.FindElements(
-                By.ClassName("VideoUploadForm-radioLabel")
-                ));
-
-            foreach(var radio in radioes)
-            {
-                if(radio.Text == typeName)
-                {
-                    radio.Click();
-
-                    return true;
-                }
-            }
-
-            return false;
+            return true;
         }
     }
 }
