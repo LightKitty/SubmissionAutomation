@@ -23,7 +23,7 @@ namespace SubmissionAutomation.Helpers
         /// <param name="maxWaitTime"></param>
         /// <param name="waitInterval"></param>
         /// <returns></returns>
-        public static TResult Until<T, TResult>(T waitObject,Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 100)
+        public static TResult Until<T, TResult>(T waitObject,Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500)
         {
             int waitTime = 0;
             while(true)
