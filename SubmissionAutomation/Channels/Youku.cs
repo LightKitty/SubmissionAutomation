@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static OpenQA.Selenium.RelativeBy;
 
 namespace SubmissionAutomation.Channels
 {
@@ -65,26 +66,35 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool UploadVideo(string path)
         {
-            //查找上传按钮
-            IWebElement uploadCenter = wait.Until(wb => wb.FindElement(
-                By.Id("uploadCenter")
-                ));
+            DateTime startTime = DateTime.Now;
+            while(true)
+            {
+                try
+                {
+                    //查找上传按钮
+                    var btns = wait.Until(x => x.FindElements(
+                         By.ClassName("ant-btn")
+                         ));
 
-            Thread.Sleep(1000);
-            var btns = Wait.Until(uploadCenter, x => x.FindElements(
-                 By.ClassName("ant-btn")
-                 ));
+                    var btn = btns.FindElementBText("上传视频");
+                    btn.Click();
 
-            var btn = btns.FindElementBText("上传视频");
-            btn.Click();
+                    Thread.Sleep(1000);
 
-            Thread.Sleep(1000);
+                    if (!OpenFileDialog.SelectFileAndOpen(path)) return false;
 
-            if (!OpenFileDialog.SelectFileAndOpen(path)) return false;
+                    Thread.Sleep(1000);
 
-            Thread.Sleep(1000);
+                    return true;
+                }
+                catch
+                {
+                    if ((DateTime.Now - startTime).TotalMilliseconds > 10000)
+                        throw;
 
-            return true;
+                    Thread.Sleep(500);
+                }
+            }
         }
 
         /// <summary>
@@ -129,14 +139,13 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteIntroduction(string introduction)
         {
-            var tempEle = wait.Until(wb => wb.FindElement(
-                By.ClassName("ant-form-item-control-input-content")
-                ));
-
             //简介
-            var textarea = Wait.Until(tempEle, wb => wb.FindElement(
+            var textareas = wait.Until(wb => wb.FindElements(
                 By.TagName("textarea")
                 ));
+
+            IWebElement textarea = Wait.Until(textareas, x => x.FindElementByAttribute("placeholder", "请输入视频简介"));
+            textarea.Clear();
             textarea.SendKeys(introduction);
 
             return true;
@@ -149,13 +158,16 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            IWebElement inputContent = wait.Until(wb => wb.FindElement(
-                By.ClassName("ant-form-item-control-input-content")
-                )); //标签
-
-            IWebElement tagInput = wait.Until(wb => wb.FindElement(
-                By.TagName("input")
+            var inputs = wait.Until(wb => wb.FindElements(
+                By.TagName("label")
                 ));
+
+            IWebElement tempElement = Wait.Until(inputs, x => x.FindElementByAttribute("for", "tags"));
+
+            IWebElement tagInput = Driver.FindElement(
+                WithTagName("input")
+                .RightOf(tempElement)
+                );
 
             IEnumerable<string> _tags = tags.Take(maxTagCount);
             foreach (string tag in _tags)
@@ -173,6 +185,34 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetClassify(string name)
         {
+            if(!string.IsNullOrEmpty(name))
+            {
+                string[] classes = name.Split(' ');
+                if (classes.Length == 2)
+                {
+                    IWebElement span = wait.Until(wb => wb.FindElement(
+                        By.ClassName("ant-cascader-picker-label")
+                        ));
+                    span.Click();
+                    Thread.Sleep(100);
+                    var items = wait.Until(wb => wb.FindElements(
+                    By.ClassName("ant-cascader-menu-item")
+                    ));
+                    var item = items.FindElementBText(classes[0]);
+                    item.Click();
+                    Thread.Sleep(100);
+                    items = wait.Until(wb => wb.FindElements(
+                    By.ClassName("ant-cascader-menu-item")
+                    ));
+                    item = items.FindElementBTextStart(classes[1]);
+                    item.Click();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 

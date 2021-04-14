@@ -54,5 +54,25 @@ namespace SubmissionAutomation.Extensions
 
             throw new NoSuchElementException($"No such element with text '{text}'");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IWebElement FindElementBTextStart(this ReadOnlyCollection<IWebElement> elements, string text)
+        {
+            //遍历
+            foreach (var element in elements)
+            {
+                if (element.Text.StartsWith(text))
+                {
+                    return element;
+                }
+            }
+
+            throw new NoSuchElementException($"No such element with text '{text}'");
+        }
     }
 }

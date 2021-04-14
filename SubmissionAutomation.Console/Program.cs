@@ -52,7 +52,7 @@ namespace SubmissionAutomation.Console
                 //Douyin douyin = new Douyin(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科学 天文", "原创");
                 //douyin.Operate();
 
-                Youku youku = new Youku(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科学 天文", "原创");
+                Youku youku = new Youku(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "知识/文化 科普知识", "原创");
                 youku.Operate();
 
                 System.Console.ReadLine();

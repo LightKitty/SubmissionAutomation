@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,9 @@ namespace SubmissionAutomation.Helpers
         /// <param name="maxWaitTime"></param>
         /// <param name="waitInterval"></param>
         /// <returns></returns>
-        public static TResult Until<T, TResult>(T waitObject,Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500)
+        public static TResult Until<T, TResult>(T waitObject,Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 100)
         {
-            int waitTime = 0;
+            var startTime = DateTime.Now;
             while(true)
             {
                 try
@@ -34,18 +35,13 @@ namespace SubmissionAutomation.Helpers
                 }
                 catch
                 {
-#if DEBUG
-                    Console.WriteLine("waitTime:" + waitTime);
-#endif
-                    if(waitTime> maxWaitTime)
+                    if((DateTime.Now - startTime).TotalMilliseconds > maxWaitTime)
                     {
                         throw;
                     }
                 }
                 Thread.Sleep(waitInterval);
-                waitTime += waitInterval;
             }
-
         }
     }
 }
