@@ -22,37 +22,43 @@ namespace SubmissionAutomation.Console
 
                 Thread.Sleep(100);
 
-                //Channel bilibili = new Bilibili(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", null);
+                string videoPath = @"E:\地球频道\2.videos\20210418冰岛火山\导出.mp4";
+                string coverPath = @"E:\地球频道\2.videos\20210418冰岛火山\vlcsnap-2021-04-18-14h03m52s178.png";
+                string[] tags = new string[] { "火山", "冰岛", "科技", "地球", "奇观" };
+                string title = "近距离观察火山喷发是什么体验？";
+                string introduction = "2021年3月19日至今，距冰岛首都雷克雅未克约30公里处的火山持续喷发，该火山休眠了约6000年，此次喷发暂没有造成人员伤亡，许多游客来到这里观赏难得奇景。";
+
+                //Channel bilibili = new Bilibili(videoPath, coverPath, new string[] { "123", "321" }, title, ind, null);
                 //bilibili.Operate();
 
-                //Channel douyu = new Douyu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科学科普");
+                //Channel douyu = new Douyu(videoPath, coverPath, new string[] { "123", "321" }, title, ind, "科学科普");
                 //douyu.Operate();
 
-                //Channel xigua = new Xigua(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321","2222","222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", null);
+                //Channel xigua = new Xigua(videoPath, coverPath, new string[] { "123", "321","2222","222999" }, title, ind, null);
                 //douyu.Operate();
 
-                //Channel baidu = new Baidu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321","2222","222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", null);
+                //Channel baidu = new Baidu(videoPath, coverPath, new string[] { "123", "321","2222","222999" }, title, ind, null);
                 //baidu.Operate();
 
-                //Channel wangyi = new Wangyi(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
-                //wangyi.Operate();
+                Channel wangyi = new Wangyi(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
+                wangyi.Operate();
 
-                //Channel weibo = new Weibo(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
+                //Channel weibo = new Weibo(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
                 //weibo.Operate();
 
-                //Zhihu weibo = new Zhihu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
-                //weibo.Operate();
+                Zhihu zhihu = new Zhihu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
+                zhihu.Operate();
 
-                //Xiaohongshu xiaohongshu = new Xiaohongshu(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科普·趣闻", "原创");
-                //xiaohongshu.Operate();
+                Xiaohongshu xiaohongshu = new Xiaohongshu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
+                xiaohongshu.Operate();
 
-                //Kuaishou kuaishou = new Kuaishou(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科学 天文", "原创");
+                //Kuaishou kuaishou = new Kuaishou(videoPath, coverPath, tags, title, introduction, "科学 天文", "原创");
                 //kuaishou.Operate();
 
-                //Douyin douyin = new Douyin(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "科学 天文", "原创");
-                //douyin.Operate();
+                Douyin douyin = new Douyin(videoPath, coverPath, tags, title, introduction, "科学 天文", "原创");
+                douyin.Operate();
 
-                Youku youku = new Youku(@"E:\地球频道\2.videos\20210402毅力号自拍\导出.mp4", @"E:\地球频道\2.videos\20200809\vlcsnap-2020-08-09-23h21m21s931.png", new string[] { "123", "321", "2222", "222999" }, "标题哈哈哈呀呀", "啦啦啦啦啊咯", "知识/文化 科普知识", "原创");
+                Youku youku = new Youku(videoPath, coverPath, tags, title, introduction, "知识/文化 科普知识", "原创");
                 youku.Operate();
 
                 System.Console.ReadLine();

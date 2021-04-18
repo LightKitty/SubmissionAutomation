@@ -59,14 +59,16 @@
             this.radioButtonWangyiOriginal = new System.Windows.Forms.RadioButton();
             this.checkBoxPublishWangyi = new System.Windows.Forms.CheckBox();
             this.tabPageWeibo = new System.Windows.Forms.TabPage();
-            this.tabPageZhihu = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.checkBoxPublishWeibo = new System.Windows.Forms.CheckBox();
-            this.checkBoxPublishZhihu = new System.Windows.Forms.CheckBox();
+            this.tabPageZhihu = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButtonZhihuReprint = new System.Windows.Forms.RadioButton();
             this.radioButtonZhihuOriginal = new System.Windows.Forms.RadioButton();
+            this.checkBoxPublishZhihu = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabPageXiaohongshu = new System.Windows.Forms.TabPage();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -77,12 +79,13 @@
             this.groupBox2.SuspendLayout();
             this.tabPageWeibo.SuspendLayout();
             this.tabPageZhihu.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxLog);
             this.groupBox1.Controls.Add(this.buttonSubmit);
             this.groupBox1.Controls.Add(this.textBoxIntroduction);
             this.groupBox1.Controls.Add(this.label5);
@@ -228,6 +231,7 @@
             this.tabControlChannels.Controls.Add(this.tabPageWangyi);
             this.tabControlChannels.Controls.Add(this.tabPageWeibo);
             this.tabControlChannels.Controls.Add(this.tabPageZhihu);
+            this.tabControlChannels.Controls.Add(this.tabPageXiaohongshu);
             this.tabControlChannels.Location = new System.Drawing.Point(393, 12);
             this.tabControlChannels.Name = "tabControlChannels";
             this.tabControlChannels.SelectedIndex = 0;
@@ -403,6 +407,16 @@
             this.tabPageWeibo.Text = "微博";
             this.tabPageWeibo.UseVisualStyleBackColor = true;
             // 
+            // checkBoxPublishWeibo
+            // 
+            this.checkBoxPublishWeibo.AutoSize = true;
+            this.checkBoxPublishWeibo.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishWeibo.Name = "checkBoxPublishWeibo";
+            this.checkBoxPublishWeibo.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishWeibo.TabIndex = 5;
+            this.checkBoxPublishWeibo.Text = "发布";
+            this.checkBoxPublishWeibo.UseVisualStyleBackColor = true;
+            // 
             // tabPageZhihu
             // 
             this.tabPageZhihu.Controls.Add(this.groupBox3);
@@ -414,42 +428,6 @@
             this.tabPageZhihu.TabIndex = 6;
             this.tabPageZhihu.Text = "知乎";
             this.tabPageZhihu.UseVisualStyleBackColor = true;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
-            this.toolStripStatusLabel.Text = "就绪";
-            // 
-            // checkBoxPublishWeibo
-            // 
-            this.checkBoxPublishWeibo.AutoSize = true;
-            this.checkBoxPublishWeibo.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishWeibo.Name = "checkBoxPublishWeibo";
-            this.checkBoxPublishWeibo.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishWeibo.TabIndex = 5;
-            this.checkBoxPublishWeibo.Text = "发布";
-            this.checkBoxPublishWeibo.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPublishZhihu
-            // 
-            this.checkBoxPublishZhihu.AutoSize = true;
-            this.checkBoxPublishZhihu.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishZhihu.Name = "checkBoxPublishZhihu";
-            this.checkBoxPublishZhihu.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishZhihu.TabIndex = 6;
-            this.checkBoxPublishZhihu.Text = "发布";
-            this.checkBoxPublishZhihu.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -483,6 +461,52 @@
             this.radioButtonZhihuOriginal.TabStop = true;
             this.radioButtonZhihuOriginal.Text = "原创";
             this.radioButtonZhihuOriginal.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishZhihu
+            // 
+            this.checkBoxPublishZhihu.AutoSize = true;
+            this.checkBoxPublishZhihu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishZhihu.Name = "checkBoxPublishZhihu";
+            this.checkBoxPublishZhihu.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishZhihu.TabIndex = 6;
+            this.checkBoxPublishZhihu.Text = "发布";
+            this.checkBoxPublishZhihu.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
+            this.toolStripStatusLabel.Text = "就绪";
+            // 
+            // tabPageXiaohongshu
+            // 
+            this.tabPageXiaohongshu.Location = new System.Drawing.Point(4, 26);
+            this.tabPageXiaohongshu.Name = "tabPageXiaohongshu";
+            this.tabPageXiaohongshu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageXiaohongshu.Size = new System.Drawing.Size(371, 494);
+            this.tabPageXiaohongshu.TabIndex = 7;
+            this.tabPageXiaohongshu.Text = "小红书";
+            this.tabPageXiaohongshu.UseVisualStyleBackColor = true;
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Location = new System.Drawing.Point(9, 288);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxLog.Size = new System.Drawing.Size(364, 230);
+            this.textBoxLog.TabIndex = 13;
             // 
             // MainForm
             // 
@@ -519,10 +543,10 @@
             this.tabPageWeibo.PerformLayout();
             this.tabPageZhihu.ResumeLayout(false);
             this.tabPageZhihu.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,6 +593,8 @@
         private System.Windows.Forms.RadioButton radioButtonZhihuReprint;
         private System.Windows.Forms.RadioButton radioButtonZhihuOriginal;
         private System.Windows.Forms.CheckBox checkBoxPublishZhihu;
+        private System.Windows.Forms.TabPage tabPageXiaohongshu;
+        private System.Windows.Forms.TextBox textBoxLog;
     }
 }
 

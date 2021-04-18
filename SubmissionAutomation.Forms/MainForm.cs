@@ -86,7 +86,15 @@ namespace SubmissionAutomation.Forms
 
                 foreach (Channel channel in channels)
                 {
+                try
+                {
                     channel.Operate();
+                }
+                catch(Exception ex)
+                {
+                    Log.Error($"发布错误", ex);
+                    textBoxLog.AppendText($"发布错误," + ex.ToString() + Environment.NewLine);
+                }
                 }
 
                 UpdateToolStripStatusLabel("完成");

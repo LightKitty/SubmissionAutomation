@@ -121,6 +121,7 @@ namespace SubmissionAutomation.Channels
             IWebElement titleElement = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.content-title-v2-container > div.content-title-v2-input-wrp > div > div > input")
                 ));
+            Thread.Sleep(100);
             titleElement.Clear();
             titleElement.SendKeys(title);
 

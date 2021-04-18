@@ -179,6 +179,8 @@ namespace SubmissionAutomation.Channels
 
             VideoCoverFileInput_input.SendKeys(path);
 
+            Thread.Sleep(100);
+
             //上传图片完成按钮
             var buttons = Wait.Until(Modal_inner, x => x.FindElements(
                 By.TagName("button")
