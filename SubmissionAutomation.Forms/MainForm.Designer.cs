@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.textBoxIntroduction = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,10 +66,16 @@
             this.radioButtonZhihuReprint = new System.Windows.Forms.RadioButton();
             this.radioButtonZhihuOriginal = new System.Windows.Forms.RadioButton();
             this.checkBoxPublishZhihu = new System.Windows.Forms.CheckBox();
+            this.tabPageXiaohongshu = new System.Windows.Forms.TabPage();
+            this.checkBoxPublishXiaohongshu = new System.Windows.Forms.CheckBox();
+            this.tabPageKuaishou = new System.Windows.Forms.TabPage();
+            this.tabPageDouyin = new System.Windows.Forms.TabPage();
+            this.tabPageYouku = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabPageXiaohongshu = new System.Windows.Forms.TabPage();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.checkBoxPublishKuaishou = new System.Windows.Forms.CheckBox();
+            this.checkBoxPublishDouyin = new System.Windows.Forms.CheckBox();
+            this.checkBoxPublishYouku = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -80,6 +87,10 @@
             this.tabPageWeibo.SuspendLayout();
             this.tabPageZhihu.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tabPageXiaohongshu.SuspendLayout();
+            this.tabPageKuaishou.SuspendLayout();
+            this.tabPageDouyin.SuspendLayout();
+            this.tabPageYouku.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +116,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "通用";
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Location = new System.Drawing.Point(9, 288);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
+            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textBoxLog.Size = new System.Drawing.Size(364, 230);
+            this.textBoxLog.TabIndex = 13;
             // 
             // buttonSubmit
             // 
@@ -232,6 +253,9 @@
             this.tabControlChannels.Controls.Add(this.tabPageWeibo);
             this.tabControlChannels.Controls.Add(this.tabPageZhihu);
             this.tabControlChannels.Controls.Add(this.tabPageXiaohongshu);
+            this.tabControlChannels.Controls.Add(this.tabPageKuaishou);
+            this.tabControlChannels.Controls.Add(this.tabPageDouyin);
+            this.tabControlChannels.Controls.Add(this.tabPageYouku);
             this.tabControlChannels.Location = new System.Drawing.Point(393, 12);
             this.tabControlChannels.Name = "tabControlChannels";
             this.tabControlChannels.SelectedIndex = 0;
@@ -472,6 +496,60 @@
             this.checkBoxPublishZhihu.Text = "发布";
             this.checkBoxPublishZhihu.UseVisualStyleBackColor = true;
             // 
+            // tabPageXiaohongshu
+            // 
+            this.tabPageXiaohongshu.Controls.Add(this.checkBoxPublishXiaohongshu);
+            this.tabPageXiaohongshu.Location = new System.Drawing.Point(4, 26);
+            this.tabPageXiaohongshu.Name = "tabPageXiaohongshu";
+            this.tabPageXiaohongshu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageXiaohongshu.Size = new System.Drawing.Size(371, 494);
+            this.tabPageXiaohongshu.TabIndex = 7;
+            this.tabPageXiaohongshu.Text = "小红书";
+            this.tabPageXiaohongshu.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishXiaohongshu
+            // 
+            this.checkBoxPublishXiaohongshu.AutoSize = true;
+            this.checkBoxPublishXiaohongshu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishXiaohongshu.Name = "checkBoxPublishXiaohongshu";
+            this.checkBoxPublishXiaohongshu.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishXiaohongshu.TabIndex = 7;
+            this.checkBoxPublishXiaohongshu.Text = "发布";
+            this.checkBoxPublishXiaohongshu.UseVisualStyleBackColor = true;
+            // 
+            // tabPageKuaishou
+            // 
+            this.tabPageKuaishou.Controls.Add(this.checkBoxPublishKuaishou);
+            this.tabPageKuaishou.Location = new System.Drawing.Point(4, 26);
+            this.tabPageKuaishou.Name = "tabPageKuaishou";
+            this.tabPageKuaishou.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageKuaishou.Size = new System.Drawing.Size(371, 494);
+            this.tabPageKuaishou.TabIndex = 8;
+            this.tabPageKuaishou.Text = "快手";
+            this.tabPageKuaishou.UseVisualStyleBackColor = true;
+            // 
+            // tabPageDouyin
+            // 
+            this.tabPageDouyin.Controls.Add(this.checkBoxPublishDouyin);
+            this.tabPageDouyin.Location = new System.Drawing.Point(4, 26);
+            this.tabPageDouyin.Name = "tabPageDouyin";
+            this.tabPageDouyin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageDouyin.Size = new System.Drawing.Size(371, 494);
+            this.tabPageDouyin.TabIndex = 9;
+            this.tabPageDouyin.Text = "抖音";
+            this.tabPageDouyin.UseVisualStyleBackColor = true;
+            // 
+            // tabPageYouku
+            // 
+            this.tabPageYouku.Controls.Add(this.checkBoxPublishYouku);
+            this.tabPageYouku.Location = new System.Drawing.Point(4, 26);
+            this.tabPageYouku.Name = "tabPageYouku";
+            this.tabPageYouku.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageYouku.Size = new System.Drawing.Size(371, 494);
+            this.tabPageYouku.TabIndex = 10;
+            this.tabPageYouku.Text = "优酷";
+            this.tabPageYouku.UseVisualStyleBackColor = true;
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -488,25 +566,35 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
             // 
-            // tabPageXiaohongshu
+            // checkBoxPublishKuaishou
             // 
-            this.tabPageXiaohongshu.Location = new System.Drawing.Point(4, 26);
-            this.tabPageXiaohongshu.Name = "tabPageXiaohongshu";
-            this.tabPageXiaohongshu.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageXiaohongshu.Size = new System.Drawing.Size(371, 494);
-            this.tabPageXiaohongshu.TabIndex = 7;
-            this.tabPageXiaohongshu.Text = "小红书";
-            this.tabPageXiaohongshu.UseVisualStyleBackColor = true;
+            this.checkBoxPublishKuaishou.AutoSize = true;
+            this.checkBoxPublishKuaishou.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishKuaishou.Name = "checkBoxPublishKuaishou";
+            this.checkBoxPublishKuaishou.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishKuaishou.TabIndex = 8;
+            this.checkBoxPublishKuaishou.Text = "发布";
+            this.checkBoxPublishKuaishou.UseVisualStyleBackColor = true;
             // 
-            // textBoxLog
+            // checkBoxPublishDouyin
             // 
-            this.textBoxLog.Location = new System.Drawing.Point(9, 288);
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ReadOnly = true;
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBoxLog.Size = new System.Drawing.Size(364, 230);
-            this.textBoxLog.TabIndex = 13;
+            this.checkBoxPublishDouyin.AutoSize = true;
+            this.checkBoxPublishDouyin.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishDouyin.Name = "checkBoxPublishDouyin";
+            this.checkBoxPublishDouyin.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishDouyin.TabIndex = 8;
+            this.checkBoxPublishDouyin.Text = "发布";
+            this.checkBoxPublishDouyin.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishYouku
+            // 
+            this.checkBoxPublishYouku.AutoSize = true;
+            this.checkBoxPublishYouku.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishYouku.Name = "checkBoxPublishYouku";
+            this.checkBoxPublishYouku.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishYouku.TabIndex = 8;
+            this.checkBoxPublishYouku.Text = "发布";
+            this.checkBoxPublishYouku.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -545,6 +633,14 @@
             this.tabPageZhihu.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tabPageXiaohongshu.ResumeLayout(false);
+            this.tabPageXiaohongshu.PerformLayout();
+            this.tabPageKuaishou.ResumeLayout(false);
+            this.tabPageKuaishou.PerformLayout();
+            this.tabPageDouyin.ResumeLayout(false);
+            this.tabPageDouyin.PerformLayout();
+            this.tabPageYouku.ResumeLayout(false);
+            this.tabPageYouku.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -595,6 +691,13 @@
         private System.Windows.Forms.CheckBox checkBoxPublishZhihu;
         private System.Windows.Forms.TabPage tabPageXiaohongshu;
         private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.CheckBox checkBoxPublishXiaohongshu;
+        private System.Windows.Forms.TabPage tabPageKuaishou;
+        private System.Windows.Forms.TabPage tabPageDouyin;
+        private System.Windows.Forms.TabPage tabPageYouku;
+        private System.Windows.Forms.CheckBox checkBoxPublishKuaishou;
+        private System.Windows.Forms.CheckBox checkBoxPublishDouyin;
+        private System.Windows.Forms.CheckBox checkBoxPublishYouku;
     }
 }
 

@@ -146,6 +146,36 @@ namespace SubmissionAutomation.Forms
                 channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null, originalTypeName));
             }
 
+            if (checkBoxPublishWeibo.Checked)
+            {
+                channels.Add(new Weibo(videoPath, coverPath, tags, title, introduction, null, null));
+            }
+
+            if (checkBoxPublishZhihu.Checked)
+            {
+                channels.Add(new Zhihu(videoPath, coverPath, tags, title, introduction, null, null));
+            }
+
+            if (checkBoxPublishXiaohongshu.Checked)
+            {
+                channels.Add(new Xiaohongshu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", null));
+            }
+
+            if (checkBoxPublishKuaishou.Checked)
+            {
+                channels.Add(new Kuaishou(videoPath, coverPath, tags, title, introduction, "科学 天文", null));
+            }
+
+            if (checkBoxPublishDouyin.Checked)
+            {
+                channels.Add(new Douyin(videoPath, coverPath, tags, title, introduction, "科学 天文", null));
+            }
+
+            if (checkBoxPublishYouku.Checked)
+            {
+                channels.Add(new Youku(videoPath, coverPath, tags, title, introduction, "知识/文化 科普知识", "原创"));
+            }
+
             return channels;
         }
 

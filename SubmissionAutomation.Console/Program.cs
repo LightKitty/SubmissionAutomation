@@ -22,11 +22,11 @@ namespace SubmissionAutomation.Console
 
                 Thread.Sleep(100);
 
-                string videoPath = @"E:\地球频道\2.videos\20210418冰岛火山\导出.mp4";
-                string coverPath = @"E:\地球频道\2.videos\20210418冰岛火山\vlcsnap-2021-04-18-14h03m52s178.png";
-                string[] tags = new string[] { "火山", "冰岛", "科技", "地球", "奇观" };
-                string title = "近距离观察火山喷发是什么体验？";
-                string introduction = "2021年3月19日至今，距冰岛首都雷克雅未克约30公里处的火山持续喷发，该火山休眠了约6000年，此次喷发暂没有造成人员伤亡，许多游客来到这里观赏难得奇景。";
+                string videoPath = @"E:\地球频道\2.videos\20210424\导出.mp4";
+                string coverPath = @"E:\地球频道\2.videos\20210424\vlcsnap-2021-04-24-23h25m34s546.png";
+                string[] tags = new string[] { "太空", "地球", "空间站", "夜晚", "灯光", "闪电", "卫星", "科技", "科普" };
+                string title = "国际空间站直播出现大量闪电";
+                string introduction = "北京时间2021年4月24日13点，国际空间站直播中出现大量闪电，此时空间站位于南美洲上空。";
 
                 //Channel bilibili = new Bilibili(videoPath, coverPath, new string[] { "123", "321" }, title, ind, null);
                 //bilibili.Operate();
