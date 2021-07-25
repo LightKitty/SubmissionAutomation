@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubmissionAutomation", "Sub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubmissionAutomation.Forms", "SubmissionAutomation.Forms\SubmissionAutomation.Forms.csproj", "{67D0E1BC-415F-46D5-ACD0-C64EAA34D836}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubmissionAutomation.Test", "SubmissionAutomation.Test\SubmissionAutomation.Test.csproj", "{6B9CEB88-1223-42DD-BF4B-D0295AC8B57B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{67D0E1BC-415F-46D5-ACD0-C64EAA34D836}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67D0E1BC-415F-46D5-ACD0-C64EAA34D836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67D0E1BC-415F-46D5-ACD0-C64EAA34D836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B9CEB88-1223-42DD-BF4B-D0295AC8B57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B9CEB88-1223-42DD-BF4B-D0295AC8B57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B9CEB88-1223-42DD-BF4B-D0295AC8B57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B9CEB88-1223-42DD-BF4B-D0295AC8B57B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

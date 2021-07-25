@@ -14,7 +14,7 @@ namespace SubmissionAutomation.Console
         static void Main(string[] args)
         {
             var options = new ChromeOptions();
-            options.AddArgument("--user-data-dir=C:/Users/Yang/AppData/Local/Google/Chrome/User Data"); //置顶用户文件夹路径
+            options.AddArgument("--user-data-dir=C:/Users/Yang/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
             options.AddArgument("--profile-directory=Default"); //指定用户
             using (var driver = new ChromeDriver(@"D:\WebDriver\bin", options)) //声明chrome驱动器
             {

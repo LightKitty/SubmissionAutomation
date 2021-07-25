@@ -1,11 +1,13 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static OpenQA.Selenium.RelativeBy;
 
 namespace SubmissionAutomation.Channels
 {
@@ -30,6 +32,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="title"></param>
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
+        /// <param name="originalName"></param>
         public Bilibili(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
         {
 
@@ -41,7 +44,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(new Func<bool>[] { WaitIframeLoaded }, null);
+            return base.Operate(new Func<bool>[] { WaitIframeLoaded }, new Func<bool>[] { Dongtai });
         }
 
         /// <summary>
@@ -76,6 +79,8 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool UploadVideo(string path)
         {
+            Thread.Sleep(100); // 等待系统组装
+
             IWebElement uploadButton = wait.Until(wb => wb.FindElement(By.Id("bili-upload-btn"))); //查找上传按钮
             uploadButton.Click(); //点击上传按钮
 
@@ -96,17 +101,20 @@ namespace SubmissionAutomation.Channels
         internal override bool SetCover(string path)
         {
             //获取图片上传控件
-            IWebElement coverElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.cover-v2-container > div.cover-v2-detail-wrp > div.cover-v2-preview > input[type=file]")
-                )); 
+            IWebElement coverElement = wait.Until(wb => wb.FindElements(
+                By.TagName("input")
+                ).First(x=>x.GetAttribute("accept").Contains("image/jpeg"))); 
             coverElement.SendKeys(path); //设置上传值
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
 
             //点击确定
-            wait.Until(wb => wb.FindElement(
-                By.CssSelector("#app > div.common-modal-container > div > div.common-modal-foot > div > div > div:nth-child(1)")
-                )).Click(); 
+            var ele = wait.Until(wb => wb.FindElements(
+                By.ClassName("cover-chop-modal-v2-btn")
+                ).FirstOrDefault(x => x.Text == "确认"));
+            ele.Click();
+
+            Thread.Sleep(100);
 
             return true;
         }
@@ -118,9 +126,21 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            IWebElement titleElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.content-title-v2-container > div.content-title-v2-input-wrp > div > div > input")
+            //IWebElement titleElement = wait.Until(wb => wb.FindElement(
+            //    By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.content-title-v2-container > div.content-title-v2-input-wrp > div > div > input")
+            //    ));
+            //Thread.Sleep(100);
+            //titleElement.Clear();
+            //titleElement.SendKeys(title);
+
+            Thread.Sleep(100);
+
+            var inputs = wait.Until(wb => wb.FindElements(
+                By.TagName("input")
                 ));
+
+            IWebElement titleElement = inputs.FirstOrDefault(x => x.GetAttribute("placeholder").Contains("标题"));
+
             Thread.Sleep(100);
             titleElement.Clear();
             titleElement.SendKeys(title);
@@ -136,9 +156,9 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteIntroduction(string introduction)
         {
             //简介
-            wait.Until(wb => wb.FindElement(
-                By.CssSelector("#app > div.upload-v2-container > div.upload-v2-step2-container > div.file-content-v2-container > div.normal-v2-container > div.content-desc-v2-container > div.content-desc-v2-text-wrp > div > textarea")
-                ))
+            wait.Until(wb => wb.FindElements(
+                By.ClassName("ql-editor")
+                ).FirstOrDefault(x=>x.GetAttribute("data-placeholder") == "填写更全面的相关信息，让更多的人能找到你的视频吧"))
                 .SendKeys(introduction);
 
             return true;
@@ -151,15 +171,15 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            IWebElement tagElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#content-tag-v2-container > div.content-tag-v2-input-wrp > div > div.input-box-v2-1-instance > input")
-                )); //标签
+            IWebElement tagElement = wait.Until(wb => wb.FindElements(
+                By.TagName("input")
+                ).FirstOrDefault(x=>x.GetAttribute("placeholder") == "按回车键Enter创建标签")); //标签
 
             IEnumerable<string> _tags = tags.Take(maxTagCount);
             foreach (string tag in _tags)
             {
-                tagElement.SendKeys(tag + Keys.Enter);
-                Thread.Sleep(300);
+                tagElement.SendKeys(tag+ Keys.Enter);
+                Thread.Sleep(1000);
             }
 
             return true;
@@ -180,6 +200,28 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
+            IWebElement webElement = wait.Until(wb => wb.FindElements(
+                By.TagName("p")
+                ).FirstOrDefault(x => x.Text == "未经作者授权 禁止转载"));
+
+            //IWebElement tagInput = Driver.FindElement(
+            //    WithTagName("i")
+            //    .LeftOf(webElement)
+            //    );
+
+            webElement.Click();
+
+            return true;
+        }
+
+        internal bool Dongtai()
+        {
+            IWebElement webElement = wait.Until(wb => wb.FindElements(
+                By.ClassName("ql-editor")
+                ).FirstOrDefault(x => x.GetAttribute("data-placeholder").Contains("有趣的动态描述")));
+
+            webElement.SendKeys(Title);
+
             return true;
         }
     }

@@ -104,14 +104,20 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            //IWebElement coverElement = wait.Until(wb => wb.FindElement(
-            //    By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCover.use-video-auto-cover > div.cover-content > div > form > input[type=file]")
-            //    )); //获取图片上传控件
-            //coverElement.SendKeys(path); //设置上传值
-            //Thread.Sleep(500);
-            //wait.Until(wb => wb.FindElement(
-            //    By.CssSelector("body > div:nth-child(15) > div.shark-Modal-wrapper.shark-Modal-wrapper--center.VideoDialog > div > div > div > div.shark-Modal-body > div > div.upload-cover-mod-footer > button:nth-child(2)")
-            //    )).Click(); //点击确定
+            IWebElement coverElement = wait.Until(wb => wb.FindElement(
+                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCover.use-video-auto-cover > div.cover-content > div > form > input[type=file]")
+                )); //获取图片上传控件
+            coverElement.SendKeys(path); //设置上传值
+            Thread.Sleep(500);
+            wait.Until(wb => wb.FindElement(
+                By.CssSelector("body > div:nth-child(15) > div.shark-Modal-wrapper.shark-Modal-wrapper--center.VideoDialog > div > div > div > div.shark-Modal-body > div > div.upload-cover-mod-footer > button:nth-child(2)")
+                )).Click(); //点击确定
+
+            //var inputs = wait.Until(wb => wb.FindElements(
+            //    By.TagName("input")
+            //    ));
+
+            //IWebElement inputTitle = inputs.First(x => x.GetAttribute("placeholder").Contains("标题"));
 
             return true;
         }

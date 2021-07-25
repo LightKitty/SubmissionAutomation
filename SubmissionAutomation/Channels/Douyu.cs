@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using SubmissionAutomation.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,14 +87,24 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            IWebElement coverElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCover.use-video-auto-cover > div.cover-content > div > form > input[type=file]")
-                )); //获取图片上传控件
+            IWebElement coverElement = wait.Until(wb => wb.FindElements(
+                By.TagName("input")
+                ).FirstOrDefault(x=>x.GetAttribute("accept").Contains(".jpg"))); //获取图片上传控件
             coverElement.SendKeys(path); //设置上传值
+
             Thread.Sleep(500);
-            wait.Until(wb => wb.FindElement(
-                By.CssSelector("body > div:nth-child(15) > div.shark-Modal-wrapper.shark-Modal-wrapper--center.VideoDialog > div > div > div > div.shark-Modal-body > div > div.upload-cover-mod-footer > button:nth-child(2)")
-                )).Click(); //点击确定
+
+            //点击确定
+            IWebElement okBtn = wait.Until(wb => wb.FindElementByTagAndText("button", "确定", true));
+            okBtn.Click();
+
+            wait.Until(ExpectedConditions.AlertIsPresent());
+            //关闭弹窗 https://stackoverflow.com/questions/41758813/selenium-close-a-window-with-a-confirmation-alert-c-sharp
+            var alert = Driver.SwitchTo().Alert();
+            alert.Accept(); // or alert.dismiss()
+
+            //Press the Cancel button
+            //alert.Dismiss();
 
             return true;
         }
@@ -104,9 +116,9 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            IWebElement titleElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoTitle > div.video-title-content > span > input")
-                ));
+            IWebElement titleElement = wait.Until(wb => 
+                wb.FindElementByTagAndAttribute("input", "placeholder", "请输入标题")
+            );
             titleElement.Clear();
             titleElement.SendKeys(title);
 
