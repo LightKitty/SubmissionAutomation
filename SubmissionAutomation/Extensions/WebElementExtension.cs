@@ -39,9 +39,29 @@ namespace SubmissionAutomation.Extensions
         /// 
         /// </summary>
         /// <param name="elements"></param>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
+        public static IWebElement FindElementByTagName(this ReadOnlyCollection<IWebElement> elements, string tagName)
+        {
+            //遍历
+            foreach (var element in elements)
+            {
+                if (element.TagName == tagName)
+                {
+                    return element;
+                }
+            }
+
+            throw new NoSuchElementException($"No such element with attribute name '{tagName}'");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elements"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static IWebElement FindElementBText(this ReadOnlyCollection<IWebElement> elements, string text)
+        public static IWebElement FindElementByText(this ReadOnlyCollection<IWebElement> elements, string text)
         {
             //遍历
             foreach (var element in elements)
@@ -61,7 +81,7 @@ namespace SubmissionAutomation.Extensions
         /// <param name="elements"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static IWebElement FindElementBTextStart(this ReadOnlyCollection<IWebElement> elements, string text)
+        public static IWebElement FindElementByTextStart(this ReadOnlyCollection<IWebElement> elements, string text)
         {
             //遍历
             foreach (var element in elements)

@@ -76,7 +76,7 @@ namespace SubmissionAutomation.Channels
                          By.ClassName("ant-btn")
                          ));
 
-                    var btn = btns.FindElementBText("上传视频");
+                    var btn = btns.FindElementByText("上传视频");
                     btn.Click();
 
                     Thread.Sleep(1000);
@@ -204,13 +204,13 @@ namespace SubmissionAutomation.Channels
                     var items = wait.Until(wb => wb.FindElements(
                     By.ClassName("ant-cascader-menu-item")
                     ));
-                    var item = items.FindElementBText(classes[0]);
+                    var item = items.FindElementByText(classes[0]);
                     item.Click();
                     Thread.Sleep(100);
                     items = wait.Until(wb => wb.FindElements(
                     By.ClassName("ant-cascader-menu-item")
                     ));
-                    item = items.FindElementBTextStart(classes[1]);
+                    item = items.FindElementByTextStart(classes[1]);
                     item.Click();
                 }
                 else

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(null, null);
+            return base.Operate(new Func<bool>[] { ClearRegion }, null);
         }
 
         /// <summary>
@@ -52,6 +53,46 @@ namespace SubmissionAutomation.Channels
         {
             Driver.SwitchTo().NewWindow(WindowType.Tab);
             Driver.Navigate().GoToUrl(url);
+
+            return true;
+        }
+
+        internal bool ClearRegion()
+        {
+            //去除视频历史
+            var removeBtns = Driver.FindElements(
+                By.ClassName("remove-btn")
+                );
+
+            foreach(var removeBtn in removeBtns)
+            {
+                try
+                {
+                    removeBtn.Click();
+                    wait.Until(x => x.FindElementByTagAndText("button", "确 定", true)).Click();
+                }
+                catch
+                {
+
+                }
+            }
+
+            //去除封面历史
+            removeBtns = Driver.FindElements(
+                By.ClassName("op-remove")
+                );
+
+            foreach (var removeBtn in removeBtns)
+            {
+                try
+                {
+                    removeBtn.Click();
+                }
+                catch
+                {
+
+                }
+            }
 
             return true;
         }
@@ -81,8 +122,8 @@ namespace SubmissionAutomation.Channels
 
             //查找上传按钮
             IWebElement uploadButton = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.updataCoverBox > input[type=file]")
-                ));
+                By.ClassName("updataCoverBox")
+                )).FindElement(By.TagName("input"));
             uploadButton.SendKeys(path); //设置上传值
 
             //uploadButton.Click(); //点击上传按钮
@@ -104,9 +145,7 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteTitle(string title)
         {
             //Thread.Sleep(1000); //等待
-            IWebElement titleElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.video-active > form > div.grid-edit-video-content > div:nth-child(11) > div > div > div > div.client_components_titleInput > div > div.input-box > textarea")
-                ));
+            IWebElement titleElement = wait.Until(wb => wb.FindElementByTagAndAttribute("textarea", "placeholder", "标题", true));
             titleElement.Clear();
             titleElement.SendKeys(title);
 
@@ -121,10 +160,11 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteIntroduction(string introduction)
         {
             //简介
-            wait.Until(wb => wb.FindElement(
+            IWebElement element = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#desc")
-                ))
-                .SendKeys(introduction);
+                ));
+            element.Clear();
+            element.SendKeys(introduction);
 
             return true;
         }
@@ -136,9 +176,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            IWebElement tagElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.video-active > form > div.grid-edit-video-utils > div:nth-child(3) > div.ant-form-item-control-wrapper.ant-col-xs-24.ant-col-sm-20 > div > div > div.tags-container > input")
-                )); //标签
+            IWebElement tagElement = wait.Until(wb => wb.FindElementByTagAndAttribute("input", "placeholder", "标签", true)); //标签
             tagElement.Clear();
             IEnumerable<string> _tags = tags.Take(maxTagCount);
             foreach (string tag in _tags)
@@ -193,19 +231,17 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            IWebElement coverElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.video-active > form > div.grid-edit-video-utils > div:nth-child(1) > div.ant-form-item-control-wrapper.ant-col-xs-24.ant-col-sm-20 > div > div.client_pages_edit_cover.one > div.cover-list.cover-list-one > div > div > div > div > div.DraggableTags-tag-drag > div > div")
-                )); //获取图片上传控件
-            coverElement.Click();
+            Driver.ExecuteScript("document.getElementsByClassName('container')[0].click()"); //不知为啥只能用js方式
+            
             IWebElement coverElement2 = wait.Until(wb => wb.FindElement(
-                By.XPath("/html/body/div[3]/div/div[2]/div/div[1]/div[1]/div/div/div[2]/div/div/div/div/div/div/span/div/span/input")
-                )); //获取图片上传控件
+                By.ClassName("ant-upload")
+                )).FindElement(
+                By.TagName("input")
+                ); //获取图片上传控件
             //coverElement2.Click();
             coverElement2.SendKeys(path); //设置上传值
-            Thread.Sleep(500);
-            wait.Until(wb => wb.FindElement(
-                By.XPath("/html/body/div[3]/div/div[2]/div/div[1]/div[2]/button[2]")
-                )).Click(); //点击确定
+            Thread.Sleep(1000);
+            wait.Until(wb => wb.FindElementByTagAndText("button", "确 认", true)).Click(); //点击确定
 
             return true;
         }
@@ -216,9 +252,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            wait.Until(wb => wb.FindElement(
-                By.CssSelector("#root > div > div > div.mp-content > div > div > div.scale-box > div > div > div.ant-tabs-content.ant-tabs-content-no-animated > div.ant-tabs-tabpane.ant-tabs-tabpane-active > div > div > div.video-active > form > div.grid-edit-video-utils > div:nth-child(5) > div.ant-form-item-control-wrapper.ant-col-xs-24.ant-col-sm-20 > div > div > div > label:nth-child(2) > span:nth-child(2) > span:nth-child(1)")
-                )).Click();
+            wait.Until(wb => wb.FindElementByTagAndText("span", "原创")).Click();
 
             return true;
         }

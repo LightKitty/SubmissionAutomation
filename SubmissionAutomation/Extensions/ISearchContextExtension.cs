@@ -34,6 +34,20 @@ namespace SubmissionAutomation.Extensions
         }
 
         /// <summary>
+        /// 依据标签名和Class查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tagName"></param>
+        /// <param name="className"></param>
+        /// <returns></returns>
+        public static IWebElement FindElementByTagAndClassName(this ISearchContext context, string tagName, string className)
+        {
+            return context.FindElements(
+                    By.ClassName(className)
+                ).FindElementByTagName(tagName);
+        }
+
+        /// <summary>
         /// 依据标签名和文本查询
         /// </summary>
         /// <param name="context"></param>
@@ -45,6 +59,26 @@ namespace SubmissionAutomation.Extensions
         {
             return context.FindElements(
                     By.TagName(tagName)
+                )
+                .FirstOrDefault(x =>
+                    textFuzzySearch
+                        ? x.Text.Contains(text)
+                        : x.Text == text
+                );
+        }
+
+        /// <summary>
+        /// 依据Class和文本查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="className"></param>
+        /// <param name="text"></param>
+        /// <param name="textFuzzySearch"></param>
+        /// <returns></returns>
+        public static IWebElement FindElementByClassAndText(this ISearchContext context, string className, string text, bool textFuzzySearch = false)
+        {
+            return context.FindElements(
+                    By.ClassName(className)
                 )
                 .FirstOrDefault(x =>
                     textFuzzySearch

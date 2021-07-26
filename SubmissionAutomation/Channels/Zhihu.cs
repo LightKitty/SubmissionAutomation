@@ -186,7 +186,7 @@ namespace SubmissionAutomation.Channels
                 By.TagName("button")
                 ));
 
-            var saveBtn = buttons.FindElementBText("保存");
+            var saveBtn = buttons.FindElementByText("保存");
             saveBtn.Click();
 
             return true;

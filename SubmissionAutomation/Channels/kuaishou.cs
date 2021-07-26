@@ -150,7 +150,7 @@ namespace SubmissionAutomation.Channels
                         By.ClassName("el-select-dropdown__item")
                         ));
 
-                    var item1 = selectItems.FindElementBText(names[0]);
+                    var item1 = selectItems.FindElementByText(names[0]);
                     item1.Click();
 
                     Thread.Sleep(100);
@@ -166,7 +166,7 @@ namespace SubmissionAutomation.Channels
                         By.ClassName("el-select-dropdown__item")
                         ));
 
-                    var item2 = selectItems.FindElementBText(names[1]);
+                    var item2 = selectItems.FindElementByText(names[1]);
                     item2.Click();
                 }
             }

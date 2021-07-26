@@ -1,11 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Extensions;
+using SubmissionAutomation.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static OpenQA.Selenium.RelativeBy;
 
 namespace SubmissionAutomation.Channels
 {
@@ -122,23 +125,26 @@ namespace SubmissionAutomation.Channels
             IWebElement okBtn1 = wait.Until(wb => wb.FindElement(
                 By.CssSelector("#tc-ie-base-content > div.tc-ie-base > div.base-content-wrap > div.footer-btns > div.btns > button.btn-l.btn-sure.ml16"))
                 );
-            while (true)
-            {
-                string opacity = okBtn1.GetCssValue("opacity");
-                if (opacity == "1")
-                {
-                    okBtn1.Click();
-                    break;
-                }
-                Thread.Sleep(100);
-            }
+
+            Wait.UntilTrue(okBtn1, x => x.GetCssValue("opacity") == "1", 20000);
+            okBtn1.Click();
+
+            //while (true)
+            //{
+            //    string opacity = okBtn1.GetCssValue("opacity");
+            //    if (opacity == "1")
+            //    {
+            //        okBtn1.Click();
+            //        break;
+            //    }
+            //    Thread.Sleep(100);
+            //}
 
             Thread.Sleep(100);
 
-            //再次点击确定
-            wait.Until(wb => wb.FindElement(
-                By.CssSelector("body > div:nth-child(26) > div > div.m-content > div > div.footer.undefined > button.m-button.red.undefined")
-                )).Click();
+            //点击确定
+            IWebElement okBtn2 = wait.Until(wb => wb.FindElementByClassAndText("m-button", "确定"));
+            okBtn2.Click();
 
             return true;
         }
@@ -171,6 +177,13 @@ namespace SubmissionAutomation.Channels
                 By.CssSelector("#root > div > div > div.byte-tabs-content.byte-tabs-content-horizontal > div > div.byte-tabs-content-item.byte-tabs-content-item-active > div > div > div > div.video-list-content > div > div.video-from-container > div.video-form-bone.video-form-basic > div.video-form-wrapper > div.video-form-item.form-item-abstract > div.video-form-item-wrapper > div > div > textarea")
                 ))
                 .SendKeys(introduction);
+
+            //IWebElement tempElement = wait.Until(x => x.FindElementByTagAndText("span", "简介", true));
+            //IWebElement incElement = Driver.FindElement(
+            //    WithTagName("input")
+            //    .RightOf(tempElement)
+            //    );
+            //incElement.SendKeys(introduction);
 
             return true;
         }

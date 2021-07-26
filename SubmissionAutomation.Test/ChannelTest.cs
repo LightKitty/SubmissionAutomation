@@ -31,8 +31,8 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void BilibiliTest()
         {
-            Channel bilibili = new Bilibili(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
-            bilibili.Operate();
+            Channel channle = new Bilibili(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            channle.Operate();
             Console.ReadLine();
         }
 
@@ -42,8 +42,30 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void DouyuTest()
         {
-            Channel bilibili = new Douyu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "科学科普", null);
-            bilibili.Operate();
+            Channel channle = new Douyu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识", null);
+            channle.Operate();
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 西瓜
+        /// </summary>
+        [TestMethod]
+        public void XiguaTest()
+        {
+            Channel channle = new Xigua(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            channle.Operate();
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 百度
+        /// </summary>
+        [TestMethod]
+        public void BaiduTest()
+        {
+            Channel channle = new Baidu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            channle.Operate();
             Console.ReadLine();
         }
     }

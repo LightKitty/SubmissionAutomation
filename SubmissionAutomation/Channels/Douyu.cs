@@ -101,10 +101,7 @@ namespace SubmissionAutomation.Channels
             wait.Until(ExpectedConditions.AlertIsPresent());
             //关闭弹窗 https://stackoverflow.com/questions/41758813/selenium-close-a-window-with-a-confirmation-alert-c-sharp
             var alert = Driver.SwitchTo().Alert();
-            alert.Accept(); // or alert.dismiss()
-
-            //Press the Cancel button
-            //alert.Dismiss();
+            alert.Accept(); // or alert.Dismiss()
 
             return true;
         }
@@ -134,7 +131,7 @@ namespace SubmissionAutomation.Channels
         {
             //简介
             wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoDetail > div.detail-content > textarea")
+                By.ClassName("detail-textarea")
                 ))
                 .SendKeys(introduction);
 
@@ -148,9 +145,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetTags(string[] tags)
         {
-            IWebElement tagElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoTags > div.postvideo-tags > div > input[type=text]")
-                )); //标签
+            IWebElement tagElement = wait.Until(wb => wb.FindElementByTagAndAttribute("input", "placeholder", "标签", true)); //标签
 
             IEnumerable<string> _tags = tags.Take(maxTagCount);
             foreach (string tag in _tags)
@@ -170,30 +165,26 @@ namespace SubmissionAutomation.Channels
         {
             //分类按钮
             IWebElement classifyButton = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-input > div.cate-info")
+                By.ClassName("cate-info")
                 ));
             classifyButton.Click();
 
             //知识分类
-            IWebElement zhishiButton = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-selected > div > div.CateSelect > div.cate-scrollbar-first > div:nth-child(1) > div:nth-child(12)")
-                )); 
+            IWebElement zhishiButton = wait.Until(wb => wb.FindElementByClassAndText("cate-item-first", name, true)); 
             zhishiButton.Click();
 
-            //输入搜索文本
-            IWebElement searchButton = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-selected > div > div.CateSelect > div.cate-search > div.search-wrap > div > input")
-                )); 
-            searchButton.Clear();
-            searchButton.SendKeys(name);
+            ////输入搜索文本
+            //IWebElement searchButton = wait.Until(wb => wb.FindElement(
+            //    By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-selected > div > div.CateSelect > div.cate-search > div.search-wrap > div > input")
+            //    )); 
+            //searchButton.Clear();
+            //searchButton.SendKeys(name);
 
-            Thread.Sleep(100); //等待搜索结果
+            //Thread.Sleep(100); //等待搜索结果
 
-            //上传按钮
-            IWebElement resultItem = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-selected > div > div.CateSelect > div.cate-search > div.cate-scrollbar-second > div:nth-child(1) > div > p")
-                ));
-            resultItem.Click();
+            //IWebElement resultItem = wait.Until(wb => wb.FindElement(
+            //    By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCate > div.cate-selected > div > div.CateSelect > div.cate-search > div.cate-scrollbar-second > div:nth-child(1) > div > p")
+            //    ));
 
             return true;
         }
