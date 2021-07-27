@@ -68,5 +68,27 @@ namespace SubmissionAutomation.Test
             channle.Operate();
             Console.ReadLine();
         }
+
+        /// <summary>
+        /// 网易
+        /// </summary>
+        [TestMethod]
+        public void WangyiTest()
+        {
+            Channel channle = new Wangyi(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "科普·趣闻", "原创");
+            channle.Operate();
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 微博
+        /// </summary>
+        [TestMethod]
+        public void WeiboTest()
+        {
+            Channel channle = new Weibo(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            channle.Operate();
+            Console.ReadLine();
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Extensions;
+using SubmissionAutomation.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +75,11 @@ namespace SubmissionAutomation.Channels
                     )).Click();
             }
 
+            //关闭弹窗
+            Wait.Until(Driver, x => x.FindElement(
+                 By.ClassName("icon-delete2")
+                 ), 3000, 100, false)?.Click();
+
             return true;
         }
 
@@ -107,10 +114,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool WriteTitle(string title)
         {
-            //Thread.Sleep(1000); //等待
-            IWebElement titleElement = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#neatui-form-title")
-                ));
+            IWebElement titleElement = wait.Until(wb => wb.FindElementByTagAndAttribute("input", "placeholder", "标题", true));
             titleElement.Clear();
             titleElement.SendKeys(title);
 
@@ -160,35 +164,38 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetClassify(string name)
         {
-            var spans = wait.Until(wb => wb.FindElements(
+            if(!string.IsNullOrEmpty(name))
+            {
+                var spans = wait.Until(wb => wb.FindElements(
                 By.ClassName("ne-tag-content")
                 ));
-            foreach(var span in spans)
-            {
-                if(span.Text=="科技")
+                foreach (var span in spans)
                 {
-                    span.Click();
-                    Thread.Sleep(200);
-                    break;
+                    if (span.Text == "科技")
+                    {
+                        span.Click();
+                        Thread.Sleep(200);
+                        break;
+                    }
                 }
-            }
 
-            //分类按钮
-            var classifyButtons = wait.Until(wb => wb.FindElements(
-                By.ClassName("ne-menu-item")
-                ));
+                //分类按钮
+                var classifyButtons = wait.Until(wb => wb.FindElements(
+                    By.ClassName("ne-menu-item")
+                    ));
 
-            //var classifyButtons = classifyButton1.FindElements(
-            //    By.ClassName("ne-menu-item")
-            //    );
+                //var classifyButtons = classifyButton1.FindElements(
+                //    By.ClassName("ne-menu-item")
+                //    );
 
-            foreach (var btn in classifyButtons)
-            {
-                var text = btn.Text;
-                if (text.StartsWith(name))
+                foreach (var btn in classifyButtons)
                 {
-                    btn.Click();
-                    break;
+                    var text = btn.Text;
+                    if (text.StartsWith(name))
+                    {
+                        btn.Click();
+                        break;
+                    }
                 }
             }
 
@@ -203,31 +210,20 @@ namespace SubmissionAutomation.Channels
         internal override bool SetCover(string path)
         {
             IWebElement coverElement = wait.Until(wb => wb.FindElement(
-                By.Id("cropper-input")
+                By.ClassName("cropper-input")
                 )); //获取图片上传控件
-            coverElement.SendKeys(path); //设置上传值
-            Thread.Sleep(500);
-            
-            var divs = wait.Until(wb => wb.FindElements(
-               By.ClassName("controller")
-               ));
+            coverElement.Click();
 
-            foreach(var div in divs)
-            {
-                var btns = div.FindElements(
-                    By.TagName("button")
-                    );
-                foreach(var btn in btns)
-                {
-                    if (btn.Text == "确 定")
-                    {
-                        btn.Click();
-                        goto Jump2;
-                    }
-                }
-            }
-            
-            Jump2:
+            IWebElement bdscBtn = wait.Until(wb => wb.FindElementByTagAndText("div", "本地上传"));
+            bdscBtn.Click();
+
+            IWebElement scInput = wait.Until(wb => wb.FindElement(
+                By.Id("cropper-input")
+                ));
+            scInput.SendKeys(path);
+
+            IWebElement okBth = wait.Until(wb => wb.FindElementByTagAndText("button", "确 定"));
+            okBth.SendKeys(Keys.Enter); //Click会报错
 
             return true;
         }
@@ -239,17 +235,8 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            var spans = wait.Until(wb => wb.FindElements(
-                By.ClassName("ne-switch-base-label-text")
-                ));
-            foreach (var span in spans)
-            {
-                if (span.Text == typeName)
-                {
-                    span.Click();
-                    break;
-                }
-            }
+            var span = wait.Until(wb => wb.FindElementByTagAndText("span", "原创"));
+            span.Click();
 
             return true;
         }

@@ -175,41 +175,16 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            //发布区域
-            IWebElement publishertop = wait.Until(wb => wb.FindElement(
-                By.Id("v6_pl_content_publishertop")
-                ));
+            IWebElement element = wait.Until(wb => wb.FindElementByTagAndText("a", "设置视频封面", true));
+            element.Click();
 
-            var upbtn_v3_img = Wait.Until(publishertop, x => x.FindElement(
-                 By.ClassName("upbtn_v3_img")
-                 ));
+            IWebElement input = wait.Until(wb => wb.FindElementByTagAndAttribute("input", "accept", ".png", true));
+            input.SendKeys(path);
 
-            upbtn_v3_img.Click();
-
-            var upbtn = publishertop.FindElement(
-                By.ClassName("upbtn")
-                );
-
-            upbtn.Click();
-
-            Thread.Sleep(1000); //等待上传
-            if (!Helpers.OpenFileDialog.SelectFileAndOpen(path)) return false;
-            Thread.Sleep(1000); //等待
-
-            var aTags = publishertop.FindElements(
-                By.TagName("a")
-                );
-
-            //遍历
-            foreach (var aTag in aTags)
-            {
-                string action_type = aTag.GetAttribute("action-type");
-                if (action_type == "setUploadCover")
-                { //找到确定按钮
-                    aTag.Click();
-                    break;
-                }
-            }
+            IWebElement ok = wait.Until(wb => wb.FindElement(By.LinkText("确定")));
+            Wait.UntilTrue(ok, x => x.GetAttribute("style").Contains("inline-block"));
+            Thread.Sleep(100);
+            ok.Click();
 
             return true;
         }

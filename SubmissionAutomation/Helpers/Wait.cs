@@ -22,14 +22,14 @@ namespace SubmissionAutomation.Helpers
         /// <typeparam name="TResult"></typeparam>
         /// <param name="waitObject"></param>
         /// <param name="condition"></param>
-        /// <param name="maxWaitTime"></param>
+        /// <param name="maxWaitTime">ms</param>
         /// <param name="waitInterval"></param>
+        /// <param name="isThrowException"></param>
         /// <returns></returns>
-        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500)
+        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            //var startTime = DateTime.Now;
             while(true)
             {
                 try
@@ -38,9 +38,13 @@ namespace SubmissionAutomation.Helpers
                 }
                 catch
                 {
-                    if (sw.Elapsed.TotalSeconds >= maxWaitTime)
+                    if (sw.Elapsed.TotalMilliseconds >= maxWaitTime)
                     {
-                        throw;
+                        if (isThrowException) throw;
+                        else
+                        {
+                            return default(TResult);
+                        }
                     }
                 }
                 Thread.Sleep(waitInterval);
@@ -53,14 +57,14 @@ namespace SubmissionAutomation.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="waitObject"></param>
         /// <param name="condition"></param>
-        /// <param name="maxWaitTime"></param>
+        /// <param name="maxWaitTime">ms</param>
         /// <param name="waitInterval"></param>
+        /// <param name="isThrowException"></param>
         /// <returns></returns>
-        public static bool UntilTrue<T>(T waitObject, Func<T, bool> condition, int maxWaitTime = 10000, int waitInterval = 500)
+        public static bool UntilTrue<T>(T waitObject, Func<T, bool> condition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            //var startTime = DateTime.Now;
             while (true)
             {
                 try
@@ -72,9 +76,10 @@ namespace SubmissionAutomation.Helpers
                 }
                 catch
                 {
-                    if (sw.Elapsed.TotalSeconds >= maxWaitTime)
+                    if (sw.Elapsed.TotalMilliseconds >= maxWaitTime)
                     {
-                        throw new TimeoutException("UntilTrue timeout");
+                        if (isThrowException) throw new TimeoutException("Method UntilTrue Timeout");
+                        return false;
                     }
                 }
                 Thread.Sleep(waitInterval);
