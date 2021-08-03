@@ -19,7 +19,7 @@ namespace SubmissionAutomation.Test
 
         public ChannelTest()
         {
-            options.AddArgument("--user-data-dir=C:/Users/Yang/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
+            options.AddArgument("--user-data-dir=C:/Users/Administrator/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
             options.AddArgument("--profile-directory=Default"); //指定用户
             driver = new ChromeDriver(@"D:\WebDriver\bin", options);
             Channel.Driver = driver;
