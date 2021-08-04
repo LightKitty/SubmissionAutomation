@@ -113,6 +113,7 @@ namespace SubmissionAutomation.Test
             Channel channle = new Xiaohongshu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
             channle.Operate();
             Console.ReadLine();
+
         }
     }
 }
