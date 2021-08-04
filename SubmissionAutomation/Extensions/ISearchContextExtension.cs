@@ -110,6 +110,31 @@ namespace SubmissionAutomation.Extensions
         /// <param name="text"></param>
         /// <param name="textFuzzySearch">文本是否模糊查询</param>
         /// <returns></returns>
+        public static IWebElement FindInnermostElementByTagAndText(this ISearchContext context, string tagName, string text, bool textFuzzySearch = false)
+        {
+            var innerElement = context.FindElements(
+                    By.TagName(tagName)
+                    )
+                    .FirstOrDefault(x =>
+                        textFuzzySearch
+                            ? x.Text.Contains(text)
+                            : x.Text == text
+                    );
+            if (innerElement == null) return context as IWebElement;
+            else
+            {
+                return FindInnermostElementByTagAndText(innerElement, tagName, text, textFuzzySearch);
+            }
+        }
+
+        /// <summary>
+        /// 依据标签名和文本查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tagName"></param>
+        /// <param name="text"></param>
+        /// <param name="textFuzzySearch">文本是否模糊查询</param>
+        /// <returns></returns>
         public static IEnumerable<IWebElement> FindElementsByTagAndText(this ISearchContext context, string tagName, string text, bool textFuzzySearch = false)
         {
             return context.FindElements(
@@ -140,6 +165,31 @@ namespace SubmissionAutomation.Extensions
                         ? x.Text.Contains(text)
                         : x.Text == text
                 );
+        }
+
+        /// <summary>
+        /// 依据Class和文本查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="className"></param>
+        /// <param name="text"></param>
+        /// <param name="textFuzzySearch"></param>
+        /// <returns></returns>
+        public static IWebElement FindInnermostElementByClassAndText(this ISearchContext context, string className, string text, bool textFuzzySearch = false)
+        {
+            var innerElement = context.FindElements(
+                    By.ClassName(className)
+                )
+                .FirstOrDefault(x =>
+                    textFuzzySearch
+                        ? x.Text.Contains(text)
+                        : x.Text == text
+                );
+            if (innerElement == null) return context as IWebElement;
+            else
+            {
+                return FindInnermostElementByClassAndText(innerElement, className, text, textFuzzySearch);
+            }
         }
 
         /// <summary>

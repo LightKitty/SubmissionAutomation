@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Chrome;
 using SubmissionAutomation.Channels;
+using SubmissionAutomation.Consts;
 
 namespace SubmissionAutomation.Test
 {
@@ -19,6 +20,7 @@ namespace SubmissionAutomation.Test
 
         public ChannelTest()
         {
+            Config.Init();
             options.AddArgument("--user-data-dir=C:/Users/Administrator/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
             options.AddArgument("--profile-directory=Default"); //指定用户
             driver = new ChromeDriver(@"D:\WebDriver\bin", options);
@@ -98,6 +100,17 @@ namespace SubmissionAutomation.Test
         public void ZhihuTest()
         {
             Channel channle = new Zhihu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
+            channle.Operate();
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 小红书
+        /// </summary>
+        [TestMethod]
+        public void XiaohongshuTest()
+        {
+            Channel channle = new Xiaohongshu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
             channle.Operate();
             Console.ReadLine();
         }

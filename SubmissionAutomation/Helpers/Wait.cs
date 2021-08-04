@@ -25,8 +25,9 @@ namespace SubmissionAutomation.Helpers
         /// <param name="maxWaitTime">ms</param>
         /// <param name="waitInterval"></param>
         /// <param name="isThrowException"></param>
+        /// <param name="notDefault">不获取默认值结果</param>
         /// <returns></returns>
-        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true)
+        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true, bool notDefault = true)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -34,7 +35,9 @@ namespace SubmissionAutomation.Helpers
             {
                 try
                 {
-                    return condition(waitObject);
+                    var result = condition(waitObject);
+                    if (!notDefault || !(result.Equals(default(TResult)))) //可获取默认值 || 不是默认值
+                        return result;
                 }
                 catch
                 {
