@@ -59,6 +59,26 @@ namespace SubmissionAutomation.Extensions
         /// 
         /// </summary>
         /// <param name="elements"></param>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
+        public static List<IWebElement> FindElementsByTagName(this ReadOnlyCollection<IWebElement> elements, string tagName)
+        {
+            var result = new List<IWebElement>();
+            //遍历
+            foreach (var element in elements)
+            {
+                if (element.TagName == tagName)
+                {
+                    result.Add(element);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="elements"></param>
         /// <param name="text"></param>
         /// <returns></returns>
         public static IWebElement FindElementByText(this ReadOnlyCollection<IWebElement> elements, string text)

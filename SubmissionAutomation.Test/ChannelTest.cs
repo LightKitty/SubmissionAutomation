@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Chrome;
 using SubmissionAutomation.Channels;
@@ -11,8 +11,8 @@ namespace SubmissionAutomation.Test
         ChromeOptions options = new ChromeOptions();
         ChromeDriver driver = null;
 
-        string videoPath = @"E:\地球频道\2.videos\20210424\导出.mp4";
-        string coverPath = @"E:\地球频道\2.videos\20210424\vlcsnap-2021-04-24-23h25m34s546.png";
+        string videoPath = @"D:\地球频道\2.videos\20210424\导出.mp4";
+        string coverPath = @"D:\地球频道\2.videos\20210424\vlcsnap-2021-04-24-23h25m34s546.png";
         string[] tags = new string[] { "太空", "地球", "空间站", "夜晚", "灯光", "闪电", "卫星", "科技", "科普" };
         string title = "国际空间站直播出现大量闪电";
         string introduction = "北京时间2021年4月24日13点，国际空间站直播中出现大量闪电，此时空间站位于南美洲上空。";
@@ -87,6 +87,17 @@ namespace SubmissionAutomation.Test
         public void WeiboTest()
         {
             Channel channle = new Weibo(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            channle.Operate();
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 知乎
+        /// </summary>
+        [TestMethod]
+        public void ZhihuTest()
+        {
+            Channel channle = new Zhihu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
             channle.Operate();
             Console.ReadLine();
         }

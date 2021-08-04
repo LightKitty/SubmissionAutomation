@@ -73,6 +73,8 @@ namespace SubmissionAutomation.Channels
                 By.Id("v6_pl_content_publishertop")
                 ));
 
+            Thread.Sleep(100);
+
             IWebElement videoInput = publishertop.FindElement(
                 By.Name("video")
                 );

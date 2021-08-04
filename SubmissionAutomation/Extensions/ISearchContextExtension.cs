@@ -34,6 +34,27 @@ namespace SubmissionAutomation.Extensions
         }
 
         /// <summary>
+        /// 依据标签名和属性值查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tagName"></param>
+        /// <param name="attributeName"></param>
+        /// <param name="attributeValue"></param>
+        /// <param name="attributeFuzzySearch">属性值是否模糊查询</param>
+        /// <returns></returns>
+        public static IEnumerable<IWebElement> FindElementsByTagAndAttribute(this ISearchContext context, string tagName, string attributeName, string attributeValue, bool attributeFuzzySearch = false)
+        {
+            return context.FindElements(
+                    By.TagName(tagName)
+                )
+                .Where(x =>
+                    attributeFuzzySearch
+                        ? x.GetAttribute(attributeName).Contains(attributeValue)
+                        : x.GetAttribute(attributeName) == attributeValue
+                );
+        }
+
+        /// <summary>
         /// 依据标签名和Class查询
         /// </summary>
         /// <param name="context"></param>
@@ -45,6 +66,20 @@ namespace SubmissionAutomation.Extensions
             return context.FindElements(
                     By.ClassName(className)
                 ).FindElementByTagName(tagName);
+        }
+
+        /// <summary>
+        /// 依据标签名和Class查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tagName"></param>
+        /// <param name="className"></param>
+        /// <returns></returns>
+        public static List<IWebElement> FindElementsByTagAndClassName(this ISearchContext context, string tagName, string className)
+        {
+            return context.FindElements(
+                    By.ClassName(className)
+                ).FindElementsByTagName(tagName);
         }
 
         /// <summary>
@@ -68,6 +103,26 @@ namespace SubmissionAutomation.Extensions
         }
 
         /// <summary>
+        /// 依据标签名和文本查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="tagName"></param>
+        /// <param name="text"></param>
+        /// <param name="textFuzzySearch">文本是否模糊查询</param>
+        /// <returns></returns>
+        public static IEnumerable<IWebElement> FindElementsByTagAndText(this ISearchContext context, string tagName, string text, bool textFuzzySearch = false)
+        {
+            return context.FindElements(
+                    By.TagName(tagName)
+                )
+                .Where(x =>
+                    textFuzzySearch
+                        ? x.Text.Contains(text)
+                        : x.Text == text
+                );
+        }
+
+        /// <summary>
         /// 依据Class和文本查询
         /// </summary>
         /// <param name="context"></param>
@@ -81,6 +136,26 @@ namespace SubmissionAutomation.Extensions
                     By.ClassName(className)
                 )
                 .FirstOrDefault(x =>
+                    textFuzzySearch
+                        ? x.Text.Contains(text)
+                        : x.Text == text
+                );
+        }
+
+        /// <summary>
+        /// 依据Class和文本查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="className"></param>
+        /// <param name="text"></param>
+        /// <param name="textFuzzySearch"></param>
+        /// <returns></returns>
+        public static IEnumerable<IWebElement> FindElementsByClassAndText(this ISearchContext context, string className, string text, bool textFuzzySearch = false)
+        {
+            return context.FindElements(
+                    By.ClassName(className)
+                )
+                .Where(x =>
                     textFuzzySearch
                         ? x.Text.Contains(text)
                         : x.Text == text

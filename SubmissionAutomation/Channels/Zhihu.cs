@@ -200,17 +200,7 @@ namespace SubmissionAutomation.Channels
         internal override bool OriginalStatement(string typeName)
         {
             //发布区域
-            IWebElement ZVideoUploader_form = wait.Until(wb => wb.FindElement(
-                By.ClassName("ZVideoUploader-form")
-                ));
-
-            IWebElement VideoUploadForm_radioContainer = Wait.Until(ZVideoUploader_form, x => x.FindElement(
-                By.ClassName("VideoUploadForm-radioContainer")
-                ));
-
-            var radioes = Wait.Until(VideoUploadForm_radioContainer, x => x.FindElements(
-                By.ClassName("VideoUploadForm-radioLabel")
-                ));
+            var radioes = wait.Until(x => x.FindElementsByTagAndClassName("label", "VideoUploadForm-radioLabel"));
 
             foreach(var radio in radioes)
             {
