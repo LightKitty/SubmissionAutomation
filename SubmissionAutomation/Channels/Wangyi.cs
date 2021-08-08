@@ -115,6 +115,7 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteTitle(string title)
         {
             IWebElement titleElement = wait.Until(wb => wb.FindElementByTagAndAttribute("input", "placeholder", "标题", true));
+            Thread.Sleep(100);
             titleElement.Clear();
             titleElement.SendKeys(title);
 
@@ -223,6 +224,7 @@ namespace SubmissionAutomation.Channels
             scInput.SendKeys(path);
 
             IWebElement okBth = wait.Until(wb => wb.FindElementByTagAndText("button", "确 定"));
+            Thread.Sleep(100);
             okBth.SendKeys(Keys.Enter); //Click会报错
 
             return true;
