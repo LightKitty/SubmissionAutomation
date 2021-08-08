@@ -177,7 +177,10 @@ namespace SubmissionAutomation.Channels
         /// 上传
         /// </summary>
         /// <returns></returns>
-        internal abstract bool SetCover(string path);
+        internal virtual bool SetCover(string path)
+        {
+            return true;
+        }
 
         /// <summary>
         /// 写标题

@@ -21,13 +21,13 @@ namespace SubmissionAutomation.Helpers
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TResult"></typeparam>
         /// <param name="waitObject"></param>
-        /// <param name="condition"></param>
+        /// <param name="searchCondition"></param>
         /// <param name="maxWaitTime">ms</param>
         /// <param name="waitInterval"></param>
         /// <param name="isThrowException"></param>
         /// <param name="notDefault">不获取默认值结果</param>
         /// <returns></returns>
-        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> condition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true, bool notDefault = true)
+        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> searchCondition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true, bool notDefault = true)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -35,8 +35,48 @@ namespace SubmissionAutomation.Helpers
             {
                 try
                 {
-                    var result = condition(waitObject);
+                    var result = searchCondition(waitObject);
                     if (!notDefault || !(result.Equals(default(TResult)))) //可获取默认值 || 不是默认值
+                        return result;
+                }
+                catch
+                {
+                    if (sw.Elapsed.TotalMilliseconds >= maxWaitTime)
+                    {
+                        if (isThrowException) throw;
+                        else
+                        {
+                            return default(TResult);
+                        }
+                    }
+                }
+                Thread.Sleep(waitInterval);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="waitObject"></param>
+        /// <param name="searchCondition"></param>
+        /// <param name="returnCondition"></param>
+        /// <param name="maxWaitTime"></param>
+        /// <param name="waitInterval"></param>
+        /// <param name="isThrowException"></param>
+        /// <param name="notDefault"></param>
+        /// <returns></returns>
+        public static TResult Until<T, TResult>(T waitObject, Func<T, TResult> searchCondition, Func<TResult, bool> returnCondition, int maxWaitTime = 10000, int waitInterval = 500, bool isThrowException = true, bool notDefault = true)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            while (true)
+            {
+                try
+                {
+                    var result = searchCondition(waitObject);
+                    if ((!notDefault || !(result.Equals(default(TResult)))) && returnCondition(result)) //可获取默认值 || 不是默认值
                         return result;
                 }
                 catch

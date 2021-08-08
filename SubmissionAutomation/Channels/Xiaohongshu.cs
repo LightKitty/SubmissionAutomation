@@ -46,7 +46,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(new Func<bool>[] { Login }, null);
+            return base.Operate(new Func<bool>[] { Login }, new Func<bool>[] { SetCover });
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public bool Login()
         {
-            var phoneNumberInput = Wait.Until(Driver, x => x.FindElementByTagAndAttribute("input", "placeholder", "手机号"), 5000, 100);
+            var phoneNumberInput = Wait.Until(Driver, x => x.FindElementByTagAndAttribute("input", "placeholder", "手机号"), 5000, 100, false);
             if (phoneNumberInput != null)
             {
                 phoneNumberInput.SendKeys(Config.Account);
@@ -146,6 +146,8 @@ namespace SubmissionAutomation.Channels
                     By.Name("display-status")
                     ));
 
+                Thread.Sleep(100);
+
                 display_status.Click();
 
                 Thread.Sleep(100);
@@ -184,12 +186,12 @@ namespace SubmissionAutomation.Channels
         }
 
         /// <summary>
-        /// 设置封面
+        /// 
         /// </summary>
-        /// <param name="path"></param>
         /// <returns></returns>
-        internal override bool SetCover(string path)
+        public bool SetCover()
         {
+            string path = CoverPath;
             if (string.IsNullOrEmpty(path)) return true;
 
             //封面区域
@@ -200,15 +202,13 @@ namespace SubmissionAutomation.Channels
             //上传封面按钮
             var imgs = Wait.Until(video_cover_container, x => x.FindElements(
                 By.TagName("img")
-                ));
+                ), y => y.Count >= 3);
 
             imgs[2].Click();
 
             Thread.Sleep(1000); //等待系统弹窗
 
             if (!OpenFileDialog.SelectFileAndOpen(path)) return false;
-
-
 
             return true;
         }

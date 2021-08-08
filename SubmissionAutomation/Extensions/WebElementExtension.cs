@@ -14,6 +14,26 @@ namespace SubmissionAutomation.Extensions
     public static class WebElementExtension
     {
         /// <summary>
+        /// 获取父节点
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <returns></returns>
+        public static IWebElement GetParent(this IWebElement webElement)
+        {
+            return webElement.FindElement(By.XPath("./.."));
+        }
+
+        /// <summary>
+        /// 获取所有子节点
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <returns></returns>
+        public static ReadOnlyCollection<IWebElement> GetChildern(this IWebElement webElement)
+        {
+            return webElement.FindElements(By.XPath("./*"));
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="elements"></param>
