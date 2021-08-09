@@ -20,6 +20,11 @@ namespace SubmissionAutomation.Consts
         public static string Account { get; private set; }
 
         /// <summary>
+        /// 密码
+        /// </summary>
+        public static string Password { get; private set; }
+
+        /// <summary>
         /// 配置初始化
         /// </summary>
         public static void Init()
@@ -39,6 +44,9 @@ namespace SubmissionAutomation.Consts
                         {
                             case "Account":
                                 Account = value;
+                                break;
+                            case "Password":
+                                Password = value;
                                 break;
                             default:
                                 break;

@@ -113,7 +113,28 @@ namespace SubmissionAutomation.Test
             Channel channle = new Xiaohongshu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
             channle.Operate();
             Console.ReadLine();
+        }
 
+        /// <summary>
+        /// 抖音
+        /// </summary>
+        [TestMethod]
+        public void DouyinTest()
+        {
+            Channel channle = new Douyin(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
+            channle.Operate();
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// 优酷
+        /// </summary>
+        [TestMethod]
+        public void YoukuTest()
+        {
+            Channel channle = new Youku(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识/文化 科普知识", "原创");
+            channle.Operate();
+            Console.ReadLine();
         }
     }
 }

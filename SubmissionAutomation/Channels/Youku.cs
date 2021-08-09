@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
 using System;
@@ -43,7 +44,33 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(null, null);
+            return base.Operate(new Func<bool>[] { Login }, null);
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        public bool Login()
+        {
+            var iframe = Wait.Until(Driver, wb => wb.FindElement(By.Id("alibaba-login-box")), 3000, 500, false);
+            if (iframe != null)
+            {
+                //string originalWindow = Driver.CurrentWindowHandle;
+                Driver.SwitchTo().Frame(iframe);
+                var phoneNumberInput = Wait.Until(Driver, x => x.FindElementByTagAndAttribute("input", "placeholder", "请输入手机号码"));
+                phoneNumberInput.SendKeys(Config.Account);
+                var sendBtn = wait.Until(x => x.FindElement(By.ClassName("send-btn")));
+                sendBtn.Click();
+                SoundHelper.Remind();
+
+                //Driver.SwitchTo().Window(originalWindow);
+                Driver.SwitchTo().DefaultContent();
+                var publishButton = Wait.Until(Driver, x => x.FindInnermostElementByTagAndText("span", "发布视频"), 60000);
+                publishButton.Click();
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -104,14 +131,14 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            //IWebElement coverElement = wait.Until(wb => wb.FindElement(
-            //    By.CssSelector("#Content > div > div.HomePage-container > div > div.SingleUpload > div.EditVideo > div.EditVideo-videoCover.use-video-auto-cover > div.cover-content > div > form > input[type=file]")
-            //    )); //获取图片上传控件
-            //coverElement.SendKeys(path); //设置上传值
-            //Thread.Sleep(500);
-            //wait.Until(wb => wb.FindElement(
-            //    By.CssSelector("body > div:nth-child(15) > div.shark-Modal-wrapper.shark-Modal-wrapper--center.VideoDialog > div > div > div > div.shark-Modal-body > div > div.upload-cover-mod-footer > button:nth-child(2)")
-            //    )).Click(); //点击确定
+            var upload = Wait.Until(Driver, x => x.FindInnermostElementByTagAndText("div", "上传"));
+            upload.Click();
+            Thread.Sleep(1000);
+            OpenFileDialog.SelectFileAndOpen(path);
+            Thread.Sleep(1000);
+
+            var okBtn = Wait.Until(Driver, x => x.FindInnermostElementByTagAndText("button", "保 存"));
+            okBtn.Click();
 
             return true;
         }
@@ -126,7 +153,14 @@ namespace SubmissionAutomation.Channels
             IWebElement titleInput = wait.Until(wb => wb.FindElement(
                 By.Id("title")
                 ));
-            titleInput.Clear();
+
+            //清理文本
+            int textLen = titleInput.GetAttribute("value").Length;
+            for (int i = 0; i < textLen; i++)
+            {
+                titleInput.SendKeys(Keys.Backspace);
+            }
+            
             titleInput.SendKeys(title);
 
             return true;

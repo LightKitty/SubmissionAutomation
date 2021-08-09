@@ -68,12 +68,13 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public bool Login()
         {
-            var phoneNumberInput = Wait.Until(Driver, x => x.FindElementByTagAndAttribute("input", "placeholder", "手机号"), 5000, 100, false);
+            var phoneNumberInput = Wait.Until(Driver, x => x.FindElementByTagAndAttribute("input", "placeholder", "手机号"), 3000, 100, false);
             if (phoneNumberInput != null)
             {
                 phoneNumberInput.SendKeys(Config.Account);
-                var sendButtom = wait.Until(x => x.FindInnermostElementByTagAndText("div", "发送验证码", true));
-                sendButtom.Click();
+                var sendButton = wait.Until(x => x.FindInnermostElementByTagAndText("div", "发送验证码", true));
+                sendButton.Click();
+                SoundHelper.Remind();
 
                 var publishButton = Wait.Until(Driver, x => x.FindInnermostElementByClassAndText("btn","发布视频"), 60000, 500);
                 publishButton.Click();

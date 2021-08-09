@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
 using System;
@@ -45,7 +46,40 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(null, null);
+            return base.Operate(new Func<bool>[] { Login }, null);
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        public bool Login()
+        {
+            var flag = Wait.Until(Driver, x => x.FindElementByTagAndText("div", "登录帐号"), 3000, 100, false);
+            if (flag != null)
+            {
+                IWebElement okBtn = Wait.Until(Driver, x => x.FindElementByTagAndText("button", "确认"));
+                okBtn.Click();
+
+                IWebElement phoneBtn = Wait.Until(Driver, x => x.FindInnermostElementByTagAndText("div", "手机号登录"));
+                phoneBtn.Click();
+
+                IWebElement phoneNumberInput = Wait.Until(Driver, x => x.FindElementByTagAndAttribute("input", "placeholder", "请输入手机号"));
+
+                var agreementButton = Wait.Until(Driver, x => x.FindElement(By.ClassName("agreement"))).GetChildern().First();
+                agreementButton.Click();
+
+                phoneNumberInput.SendKeys(Config.Account);
+                var sendButtom = wait.Until(x => x.FindElementByTagAndText("span", "发送验证码"));
+                sendButtom.Click();
+
+                SoundHelper.Remind();
+
+                var publishBtn = Wait.Until(Driver, x => x.FindElementByTagAndText("button", "发布视频", true), 600000);
+                publishBtn.Click();
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -121,8 +155,9 @@ namespace SubmissionAutomation.Channels
                 foreach(string tag in _tag)
                 {
                     element.SendKeys("#" + tag);
-                    Thread.Sleep(300);
+                    Thread.Sleep(500);
                     element.SendKeys(Keys.Enter);
+                    Thread.Sleep(100);
                 }
             }
 

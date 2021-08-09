@@ -66,6 +66,7 @@
     <Compile Include="Extensions\ISearchContextExtension.cs" />
     <Compile Include="Extensions\WebElementExtension.cs" />
     <Compile Include="Consts\Config.cs" />
+    <Compile Include="Helpers\SoundHelper.cs" />
     <Compile Include="Helpers\Wait.cs" />
     <Compile Include="Helpers\OpenFileDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
