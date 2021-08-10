@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using SubmissionAutomation.Extensions;
+using SubmissionAutomation.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(null, null);
+            return base.Operate(new Func<bool>[] { Login }, null);
         }
 
         /// <summary>
@@ -54,6 +55,22 @@ namespace SubmissionAutomation.Channels
         {
             Driver.SwitchTo().NewWindow(WindowType.Tab);
             Driver.Navigate().GoToUrl(url);
+
+            return true;
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        public bool Login()
+        {
+            var tag = Wait.Until(Driver, wb => wb.FindElementByTagAndText("div", "安全登录", true), 3000, 500, false);
+            if (tag != null)
+            {
+                SoundHelper.Remind();
+                Wait.Until(Driver, x => x.FindElement(By.LinkText("上传视频")), 600000, 500).Click();
+            }
 
             return true;
         }

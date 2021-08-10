@@ -1,6 +1,7 @@
 ﻿using LightLog;
 using OpenQA.Selenium.Chrome;
 using SubmissionAutomation.Channels;
+using SubmissionAutomation.Consts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,8 @@ namespace SubmissionAutomation.Forms
         public MainForm()
         {
             InitializeComponent();
+
+            InitChromeDriver();
         }
 
         /// <summary>
@@ -28,18 +31,13 @@ namespace SubmissionAutomation.Forms
         /// </summary>
         private void InitChromeDriver()
         {
-            lock (initChromeDriverLock)
-            {
-                if (Channel.Driver == null)
-                {
-                    var options = new ChromeOptions();
-                    options.AddArgument("--user-data-dir=C:/Users/Yang/AppData/Local/Google/Chrome/User Data"); //置顶用户文件夹路径
-                    options.AddArgument("--profile-directory=Default"); //指定用户
-                    Channel.Driver = new ChromeDriver(@"D:\WebDriver\bin", options); //声明chrome驱动器
-                    Channel.Driver.Manage().Window.Maximize();
-                    Channel.Driver.Navigate().GoToUrl("chrome://newtab");
-                }
-            }
+            Config.Init();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--user-data-dir=C:/Users/Administrator/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
+            options.AddArgument("--profile-directory=Default"); //指定用户
+            Channel.Driver = new ChromeDriver(@"D:\WebDriver\bin", options);
+            Channel.Driver.Manage().Window.Maximize();
+            Channel.Driver.Navigate().GoToUrl("chrome://newtab");
         }
 
         private void buttonOpenVideo_Click(object sender, EventArgs e)
@@ -74,29 +72,36 @@ namespace SubmissionAutomation.Forms
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-
-            UpdateToolStripStatusLabel("开始发布");
-
-            InitChromeDriver();
-
-            Thread.Sleep(100);
-
-            List<Channel> channels = GetPublishChannels();
-
-            foreach (Channel channel in channels)
+            buttonSubmit.Enabled = false;
+            try
             {
-                try
-                {
-                    channel.Operate();
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"发布错误", ex);
-                    textBoxLog.AppendText($"发布错误," + ex.ToString() + Environment.NewLine);
-                }
-            }
+                UpdateToolStripStatusLabel("开始发布");
 
-            UpdateToolStripStatusLabel("完成");
+                Thread.Sleep(100);
+
+                List<Channel> channels = GetPublishChannels();
+
+                foreach (Channel channel in channels)
+                {
+                    try
+                    {
+                        channel.Operate();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"渠道发布错误", ex);
+                        textBoxLog.AppendText($"渠道发布错误," + ex.ToString() + Environment.NewLine);
+                    }
+                }
+
+                UpdateToolStripStatusLabel("完成");
+            }
+            catch(Exception ex)
+            {
+                Log.Error($"发布错误", ex);
+                textBoxLog.AppendText($"发布错误," + ex.ToString() + Environment.NewLine);
+            }
+            buttonSubmit.Enabled = true;
         }
 
         private List<Channel> GetPublishChannels()
@@ -111,7 +116,8 @@ namespace SubmissionAutomation.Forms
 
             if (checkBoxPublishBilibili.Checked)
             { //bilibili
-                channels.Add(new Bilibili(videoPath, coverPath, tags, title, introduction, null, null));
+                string original = checkBoxOriginalBilibili.Checked.ToString();
+                channels.Add(new Bilibili(videoPath, coverPath, tags, title, introduction, null, original));
             }
 
             if (checkBoxPublishDouyu.Checked)
@@ -135,7 +141,7 @@ namespace SubmissionAutomation.Forms
                 if (radioButtonWangyiOriginal.Checked) originalTypeName = "原创";
                 else if (radioButtonWangyiReprint.Checked) originalTypeName = "转载";
 
-                channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null, originalTypeName));
+                channels.Add(new Wangyi(videoPath, coverPath, tags, title, introduction, null, originalTypeName));
             }
 
             if (checkBoxPublishWeibo.Checked)

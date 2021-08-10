@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
 using System;
@@ -45,7 +46,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(null, null);
+            return base.Operate(new Func<bool>[] { Login }, null);
         }
 
         /// <summary>
@@ -62,6 +63,24 @@ namespace SubmissionAutomation.Channels
         }
 
         /// <summary>
+        /// 登录
+        /// </summary>
+        /// <returns></returns>
+        public bool Login()
+        {
+            var input = Wait.Until(Driver, wb => wb.FindElementByTagAndAttribute("input", "placeholder", "手机号"), 3000, 500, false);
+            if (input != null)
+            {
+                input.SendKeys(Config.Account);
+                Wait.Until(Driver, wb => wb.FindElementByTagAndText("span", "获取验证码")).Click();
+                SoundHelper.Remind();
+                Wait.Until(Driver, x => x.FindElement(By.ClassName("byte-upload-trigger-tip")), 600000, 500);
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// 上传视频
         /// </summary>
         /// <param name="path"></param>
@@ -69,9 +88,11 @@ namespace SubmissionAutomation.Channels
         internal override bool UploadVideo(string path)
         {
             //查找上传按钮
-            IWebElement uploadButton = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#root > div > div.byte-tabs.byte-tabs-horizontal.byte-tabs-line.byte-tabs-size-default.xigua-upload-manage > div.byte-tabs-content.byte-tabs-content-horizontal > div > div.byte-tabs-content-item.byte-tabs-content-item-active > div > div > div > div.upload-video-trigger")
-                ));
+            //IWebElement uploadButton = wait.Until(wb => wb.FindElement(
+            //    By.CssSelector("#root > div > div.byte-tabs.byte-tabs-horizontal.byte-tabs-line.byte-tabs-size-default.xigua-upload-manage > div.byte-tabs-content.byte-tabs-content-horizontal > div > div.byte-tabs-content-item.byte-tabs-content-item-active > div > div > div > div.upload-video-trigger")
+            //    ));
+
+            IWebElement uploadButton = Wait.Until(Driver, x => x.FindElement(By.ClassName("byte-upload-trigger-tip")));
             uploadButton.Click(); //点击上传按钮
 
             Thread.Sleep(1000); //等待系统弹窗

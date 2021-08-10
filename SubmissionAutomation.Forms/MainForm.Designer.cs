@@ -76,6 +76,7 @@
             this.checkBoxPublishYouku = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBoxOriginalBilibili = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -205,7 +206,7 @@
             this.textBoxCoverPath.Name = "textBoxCoverPath";
             this.textBoxCoverPath.Size = new System.Drawing.Size(236, 23);
             this.textBoxCoverPath.TabIndex = 4;
-            this.textBoxCoverPath.Text = "E:\\地球频道\\2.videos\\20200809\\vlcsnap-2020-08-09-23h21m21s931.png";
+            this.textBoxCoverPath.Text = "D:\\地球频道\\2.videos\\20200809\\vlcsnap-2020-08-09-23h21m21s931.png";
             // 
             // buttonOpenVideo
             // 
@@ -241,7 +242,7 @@
             this.textBoxVideoPath.Name = "textBoxVideoPath";
             this.textBoxVideoPath.Size = new System.Drawing.Size(236, 23);
             this.textBoxVideoPath.TabIndex = 0;
-            this.textBoxVideoPath.Text = "E:\\地球频道\\2.videos\\20210402毅力号自拍\\导出.mp4";
+            this.textBoxVideoPath.Text = "D:\\地球频道\\2.videos\\20210402毅力号自拍\\导出.mp4";
             // 
             // tabControlChannels
             // 
@@ -264,6 +265,7 @@
             // 
             // tabPageBilibili
             // 
+            this.tabPageBilibili.Controls.Add(this.checkBoxOriginalBilibili);
             this.tabPageBilibili.Controls.Add(this.checkBoxPublishBilibili);
             this.tabPageBilibili.Location = new System.Drawing.Point(4, 26);
             this.tabPageBilibili.Name = "tabPageBilibili";
@@ -618,6 +620,16 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
             // 
+            // checkBoxOriginalBilibili
+            // 
+            this.checkBoxOriginalBilibili.AutoSize = true;
+            this.checkBoxOriginalBilibili.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxOriginalBilibili.Name = "checkBoxOriginalBilibili";
+            this.checkBoxOriginalBilibili.Size = new System.Drawing.Size(75, 21);
+            this.checkBoxOriginalBilibili.TabIndex = 1;
+            this.checkBoxOriginalBilibili.Text = "声明原创";
+            this.checkBoxOriginalBilibili.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -720,6 +732,7 @@
         private System.Windows.Forms.CheckBox checkBoxPublishKuaishou;
         private System.Windows.Forms.CheckBox checkBoxPublishDouyin;
         private System.Windows.Forms.CheckBox checkBoxPublishYouku;
+        private System.Windows.Forms.CheckBox checkBoxOriginalBilibili;
     }
 }
 

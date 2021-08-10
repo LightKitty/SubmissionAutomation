@@ -38,6 +38,8 @@ namespace SubmissionAutomation.Helpers
                     var result = searchCondition(waitObject);
                     if (!notDefault || !(result.Equals(default(TResult)))) //可获取默认值 || 不是默认值
                         return result;
+                    else
+                        throw new Exception("不满足条件");
                 }
                 catch
                 {
@@ -78,6 +80,8 @@ namespace SubmissionAutomation.Helpers
                     var result = searchCondition(waitObject);
                     if ((!notDefault || !(result.Equals(default(TResult)))) && returnCondition(result)) //可获取默认值 || 不是默认值
                         return result;
+                    else
+                        throw new Exception("不满足条件");
                 }
                 catch
                 {
@@ -116,6 +120,8 @@ namespace SubmissionAutomation.Helpers
                     {
                         return true;
                     }
+                    else
+                        throw new Exception("不满足条件");
                 }
                 catch
                 {

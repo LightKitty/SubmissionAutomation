@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
 using System;
 using System.Collections.Generic;
@@ -200,16 +201,28 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            IWebElement webElement = wait.Until(wb => wb.FindElements(
-                By.TagName("p")
-                ).FirstOrDefault(x => x.Text == "未经作者授权 禁止转载"));
+            if(typeName != true.ToString())
+            {
+                //判断是否点击更多选项
+                IWebElement moreSetting = Wait.Until(Driver, x => x.FindElementByTagAndText("h1", "更多选项"));
+                IWebElement btn = Wait.Until(moreSetting, x => x.GetFollowingSibling(), y => y.Count > 0)?.FirstOrDefault();
+                if (!string.IsNullOrEmpty(btn.GetAttribute("style")))
+                { //需点击更多选项
+                    btn.Click();
+                }
 
-            //IWebElement tagInput = Driver.FindElement(
-            //    WithTagName("i")
-            //    .LeftOf(webElement)
-            //    );
 
-            webElement.Click();
+                IWebElement webElement = wait.Until(wb => wb.FindElements(
+                    By.TagName("p")
+                    ).FirstOrDefault(x => x.Text == "未经作者授权 禁止转载"));
+
+                //IWebElement tagInput = Driver.FindElement(
+                //    WithTagName("i")
+                //    .LeftOf(webElement)
+                //    );
+
+                webElement.Click();
+            }
 
             return true;
         }

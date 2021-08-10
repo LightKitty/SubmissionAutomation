@@ -34,6 +34,26 @@ namespace SubmissionAutomation.Extensions
         }
 
         /// <summary>
+        /// 获取前面的兄弟节点
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <returns></returns>
+        public static ReadOnlyCollection<IWebElement> GetPrecedingSibling(this IWebElement webElement)
+        {
+            return webElement.FindElements(By.XPath("./preceding-sibling::*"));
+        }
+
+        /// <summary>
+        /// 获取后面的兄弟节点
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <returns></returns>
+        public static ReadOnlyCollection<IWebElement> GetFollowingSibling(this IWebElement webElement)
+        {
+            return webElement.FindElements(By.XPath("./following-sibling::*"));
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="elements"></param>

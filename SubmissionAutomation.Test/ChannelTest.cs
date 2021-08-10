@@ -9,9 +9,6 @@ namespace SubmissionAutomation.Test
     [TestClass]
     public class ChannelTest
     {
-        ChromeOptions options = new ChromeOptions();
-        ChromeDriver driver = null;
-
         string videoPath = @"D:\地球频道\2.videos\20210424\导出.mp4";
         string coverPath = @"D:\地球频道\2.videos\20210424\vlcsnap-2021-04-24-23h25m34s546.png";
         string[] tags = new string[] { "太空", "地球", "空间站", "夜晚", "灯光", "闪电", "卫星", "科技", "科普" };
@@ -21,9 +18,10 @@ namespace SubmissionAutomation.Test
         public ChannelTest()
         {
             Config.Init();
+            ChromeOptions options = new ChromeOptions();
             options.AddArgument("--user-data-dir=C:/Users/Administrator/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
             options.AddArgument("--profile-directory=Default"); //指定用户
-            driver = new ChromeDriver(@"D:\WebDriver\bin", options);
+            ChromeDriver driver = new ChromeDriver(@"D:\WebDriver\bin", options);
             Channel.Driver = driver;
         }
 
