@@ -28,7 +28,7 @@ namespace SubmissionAutomation.Forms
         /// </summary>
         private void InitChromeDriver()
         {
-            lock(initChromeDriverLock)
+            lock (initChromeDriverLock)
             {
                 if (Channel.Driver == null)
                 {
@@ -51,7 +51,7 @@ namespace SubmissionAutomation.Forms
                 Multiselect = false
             };
 
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 textBoxVideoPath.Text = openFileDialog.FileName;
             }
@@ -74,37 +74,29 @@ namespace SubmissionAutomation.Forms
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-                UpdateToolStripStatusLabel("开始发布");
 
-                InitChromeDriver();
+            UpdateToolStripStatusLabel("开始发布");
+
+            InitChromeDriver();
 
             Thread.Sleep(100);
 
-                List<Channel> channels = GetPublishChannels();
+            List<Channel> channels = GetPublishChannels();
 
-                foreach (Channel channel in channels)
-                {
+            foreach (Channel channel in channels)
+            {
                 try
                 {
                     channel.Operate();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Log.Error($"发布错误", ex);
                     textBoxLog.AppendText($"发布错误," + ex.ToString() + Environment.NewLine);
                 }
-                }
+            }
 
-                UpdateToolStripStatusLabel("完成");
-            //}
-            //catch(Exception ex)
-            //{
-            //    Log.Error("发布错误", ex);
-            //    UpdateToolStripStatusLabel("发布错误");
-            //    MessageBox.Show(ex.ToString(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            UpdateToolStripStatusLabel("完成");
         }
 
         private List<Channel> GetPublishChannels()
@@ -122,7 +114,7 @@ namespace SubmissionAutomation.Forms
                 channels.Add(new Bilibili(videoPath, coverPath, tags, title, introduction, null, null));
             }
 
-            if(checkBoxPublishDouyu.Checked)
+            if (checkBoxPublishDouyu.Checked)
             {
                 channels.Add(new Douyu(videoPath, coverPath, tags, title, introduction, textBoxDouyuClassify.Text.Trim(), null));
             }

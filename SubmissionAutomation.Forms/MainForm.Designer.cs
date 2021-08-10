@@ -69,13 +69,13 @@
             this.tabPageXiaohongshu = new System.Windows.Forms.TabPage();
             this.checkBoxPublishXiaohongshu = new System.Windows.Forms.CheckBox();
             this.tabPageKuaishou = new System.Windows.Forms.TabPage();
+            this.checkBoxPublishKuaishou = new System.Windows.Forms.CheckBox();
             this.tabPageDouyin = new System.Windows.Forms.TabPage();
+            this.checkBoxPublishDouyin = new System.Windows.Forms.CheckBox();
             this.tabPageYouku = new System.Windows.Forms.TabPage();
+            this.checkBoxPublishYouku = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBoxPublishKuaishou = new System.Windows.Forms.CheckBox();
-            this.checkBoxPublishDouyin = new System.Windows.Forms.CheckBox();
-            this.checkBoxPublishYouku = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -276,7 +276,9 @@
             // checkBoxPublishBilibili
             // 
             this.checkBoxPublishBilibili.AutoSize = true;
-            this.checkBoxPublishBilibili.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishBilibili.Checked = true;
+            this.checkBoxPublishBilibili.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishBilibili.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishBilibili.Name = "checkBoxPublishBilibili";
             this.checkBoxPublishBilibili.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishBilibili.TabIndex = 0;
@@ -298,7 +300,7 @@
             // 
             // textBoxDouyuClassify
             // 
-            this.textBoxDouyuClassify.Location = new System.Drawing.Point(56, 25);
+            this.textBoxDouyuClassify.Location = new System.Drawing.Point(56, 6);
             this.textBoxDouyuClassify.Name = "textBoxDouyuClassify";
             this.textBoxDouyuClassify.Size = new System.Drawing.Size(100, 23);
             this.textBoxDouyuClassify.TabIndex = 13;
@@ -307,7 +309,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 28);
+            this.label6.Location = new System.Drawing.Point(6, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 17);
             this.label6.TabIndex = 13;
@@ -316,7 +318,9 @@
             // checkBoxPublishDouyu
             // 
             this.checkBoxPublishDouyu.AutoSize = true;
-            this.checkBoxPublishDouyu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishDouyu.Checked = true;
+            this.checkBoxPublishDouyu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishDouyu.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishDouyu.Name = "checkBoxPublishDouyu";
             this.checkBoxPublishDouyu.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishDouyu.TabIndex = 1;
@@ -337,7 +341,9 @@
             // checkBoxPublishXigua
             // 
             this.checkBoxPublishXigua.AutoSize = true;
-            this.checkBoxPublishXigua.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishXigua.Checked = true;
+            this.checkBoxPublishXigua.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishXigua.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishXigua.Name = "checkBoxPublishXigua";
             this.checkBoxPublishXigua.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishXigua.TabIndex = 2;
@@ -358,7 +364,9 @@
             // checkBoxPublishBaidu
             // 
             this.checkBoxPublishBaidu.AutoSize = true;
-            this.checkBoxPublishBaidu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishBaidu.Checked = true;
+            this.checkBoxPublishBaidu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishBaidu.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishBaidu.Name = "checkBoxPublishBaidu";
             this.checkBoxPublishBaidu.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishBaidu.TabIndex = 3;
@@ -381,9 +389,9 @@
             // 
             this.groupBox2.Controls.Add(this.radioButtonWangyiReprint);
             this.groupBox2.Controls.Add(this.radioButtonWangyiOriginal);
-            this.groupBox2.Location = new System.Drawing.Point(6, 33);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(359, 53);
+            this.groupBox2.Size = new System.Drawing.Size(126, 56);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "类型";
@@ -413,7 +421,9 @@
             // checkBoxPublishWangyi
             // 
             this.checkBoxPublishWangyi.AutoSize = true;
-            this.checkBoxPublishWangyi.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishWangyi.Checked = true;
+            this.checkBoxPublishWangyi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishWangyi.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishWangyi.Name = "checkBoxPublishWangyi";
             this.checkBoxPublishWangyi.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishWangyi.TabIndex = 4;
@@ -434,7 +444,9 @@
             // checkBoxPublishWeibo
             // 
             this.checkBoxPublishWeibo.AutoSize = true;
-            this.checkBoxPublishWeibo.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishWeibo.Checked = true;
+            this.checkBoxPublishWeibo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishWeibo.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishWeibo.Name = "checkBoxPublishWeibo";
             this.checkBoxPublishWeibo.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishWeibo.TabIndex = 5;
@@ -457,9 +469,9 @@
             // 
             this.groupBox3.Controls.Add(this.radioButtonZhihuReprint);
             this.groupBox3.Controls.Add(this.radioButtonZhihuOriginal);
-            this.groupBox3.Location = new System.Drawing.Point(6, 33);
+            this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(359, 53);
+            this.groupBox3.Size = new System.Drawing.Size(126, 56);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "类型";
@@ -489,7 +501,9 @@
             // checkBoxPublishZhihu
             // 
             this.checkBoxPublishZhihu.AutoSize = true;
-            this.checkBoxPublishZhihu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishZhihu.Checked = true;
+            this.checkBoxPublishZhihu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishZhihu.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishZhihu.Name = "checkBoxPublishZhihu";
             this.checkBoxPublishZhihu.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishZhihu.TabIndex = 6;
@@ -510,7 +524,9 @@
             // checkBoxPublishXiaohongshu
             // 
             this.checkBoxPublishXiaohongshu.AutoSize = true;
-            this.checkBoxPublishXiaohongshu.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxPublishXiaohongshu.Checked = true;
+            this.checkBoxPublishXiaohongshu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishXiaohongshu.Location = new System.Drawing.Point(314, 6);
             this.checkBoxPublishXiaohongshu.Name = "checkBoxPublishXiaohongshu";
             this.checkBoxPublishXiaohongshu.Size = new System.Drawing.Size(51, 21);
             this.checkBoxPublishXiaohongshu.TabIndex = 7;
@@ -528,6 +544,18 @@
             this.tabPageKuaishou.Text = "快手";
             this.tabPageKuaishou.UseVisualStyleBackColor = true;
             // 
+            // checkBoxPublishKuaishou
+            // 
+            this.checkBoxPublishKuaishou.AutoSize = true;
+            this.checkBoxPublishKuaishou.Checked = true;
+            this.checkBoxPublishKuaishou.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishKuaishou.Location = new System.Drawing.Point(314, 6);
+            this.checkBoxPublishKuaishou.Name = "checkBoxPublishKuaishou";
+            this.checkBoxPublishKuaishou.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishKuaishou.TabIndex = 8;
+            this.checkBoxPublishKuaishou.Text = "发布";
+            this.checkBoxPublishKuaishou.UseVisualStyleBackColor = true;
+            // 
             // tabPageDouyin
             // 
             this.tabPageDouyin.Controls.Add(this.checkBoxPublishDouyin);
@@ -539,6 +567,18 @@
             this.tabPageDouyin.Text = "抖音";
             this.tabPageDouyin.UseVisualStyleBackColor = true;
             // 
+            // checkBoxPublishDouyin
+            // 
+            this.checkBoxPublishDouyin.AutoSize = true;
+            this.checkBoxPublishDouyin.Checked = true;
+            this.checkBoxPublishDouyin.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishDouyin.Location = new System.Drawing.Point(314, 6);
+            this.checkBoxPublishDouyin.Name = "checkBoxPublishDouyin";
+            this.checkBoxPublishDouyin.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishDouyin.TabIndex = 8;
+            this.checkBoxPublishDouyin.Text = "发布";
+            this.checkBoxPublishDouyin.UseVisualStyleBackColor = true;
+            // 
             // tabPageYouku
             // 
             this.tabPageYouku.Controls.Add(this.checkBoxPublishYouku);
@@ -549,6 +589,18 @@
             this.tabPageYouku.TabIndex = 10;
             this.tabPageYouku.Text = "优酷";
             this.tabPageYouku.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPublishYouku
+            // 
+            this.checkBoxPublishYouku.AutoSize = true;
+            this.checkBoxPublishYouku.Checked = true;
+            this.checkBoxPublishYouku.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishYouku.Location = new System.Drawing.Point(314, 6);
+            this.checkBoxPublishYouku.Name = "checkBoxPublishYouku";
+            this.checkBoxPublishYouku.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxPublishYouku.TabIndex = 8;
+            this.checkBoxPublishYouku.Text = "发布";
+            this.checkBoxPublishYouku.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -565,36 +617,6 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
-            // 
-            // checkBoxPublishKuaishou
-            // 
-            this.checkBoxPublishKuaishou.AutoSize = true;
-            this.checkBoxPublishKuaishou.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishKuaishou.Name = "checkBoxPublishKuaishou";
-            this.checkBoxPublishKuaishou.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishKuaishou.TabIndex = 8;
-            this.checkBoxPublishKuaishou.Text = "发布";
-            this.checkBoxPublishKuaishou.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPublishDouyin
-            // 
-            this.checkBoxPublishDouyin.AutoSize = true;
-            this.checkBoxPublishDouyin.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishDouyin.Name = "checkBoxPublishDouyin";
-            this.checkBoxPublishDouyin.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishDouyin.TabIndex = 8;
-            this.checkBoxPublishDouyin.Text = "发布";
-            this.checkBoxPublishDouyin.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPublishYouku
-            // 
-            this.checkBoxPublishYouku.AutoSize = true;
-            this.checkBoxPublishYouku.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxPublishYouku.Name = "checkBoxPublishYouku";
-            this.checkBoxPublishYouku.Size = new System.Drawing.Size(51, 21);
-            this.checkBoxPublishYouku.TabIndex = 8;
-            this.checkBoxPublishYouku.Text = "发布";
-            this.checkBoxPublishYouku.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
