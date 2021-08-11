@@ -66,7 +66,12 @@ namespace SubmissionAutomation.Channels
         /// <summary>
         /// 
         /// </summary>
-        public Channel(string url, string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName, int operateInterval)
+        public Action<string, Exception> HandelException { get; private set; } 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Channel(string url, string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName, int operateInterval, Action<string, Exception> handelException = null)
         {
             Url = url;
             VideoPath = videoPath;
@@ -77,6 +82,11 @@ namespace SubmissionAutomation.Channels
             ClassifyName = classifyName;
             OriginalName = originalName;
             OperateInterval = operateInterval;
+            //HandelErrorMessage = handelErrorMessage;
+            HandelException = handelException ?? new Action<string, Exception>((message, exception) => 
+            {
+                throw new Exception(message, exception);
+            });
         }
 
         /// <summary>
@@ -91,8 +101,15 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal bool Operate(Func<bool>[] beforeOperates, Func<bool>[] afterOperates)
         {
-            if (!GoTo(Url))
-                return false;
+            try
+            {
+                if (!GoTo(Url))
+                    return false;
+            }
+            catch(Exception ex)
+            {
+                HandelException($"{nameof(GoTo)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
@@ -101,38 +118,87 @@ namespace SubmissionAutomation.Channels
 
             Thread.Sleep(OperateInterval);
 
-            if (!UploadVideo(VideoPath))
-                return false;
+            try
+            {
+                if (!UploadVideo(VideoPath))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(UploadVideo)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
-            if (!SetCover(CoverPath))
-                return false;
+            try
+            {
+                if (!SetCover(CoverPath))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(SetCover)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
-            if (!WriteTitle(Title))
-                return false;
+            try
+            {
+                if (!WriteTitle(Title))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(WriteTitle)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
-            if (!WriteIntroduction(Introduction))
-                return false;
+            try
+            {
+                if (!WriteIntroduction(Introduction))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(WriteIntroduction)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
-            if (!OriginalStatement(OriginalName))
-                return false;
+            try
+            {
+                if (!OriginalStatement(OriginalName))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(OriginalStatement)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
-            if (!SetTags(Tags))
-                return false;
+            try
+            {
+                if (!SetTags(Tags))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(SetTags)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
-            if (!SetClassify(ClassifyName))
-                return false;
+            try
+            {
+                if (!SetClassify(ClassifyName))
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                HandelException($"{nameof(SetClassify)} error", ex);
+            }
 
             Thread.Sleep(OperateInterval);
 
@@ -161,7 +227,14 @@ namespace SubmissionAutomation.Channels
             if (oerates == null) return true;
             foreach (var operate in oerates)
             {
-                if (!operate()) return false;
+                try
+                {
+                    if (!operate()) return false;
+                }
+                catch (Exception ex)
+                {
+                    HandelException($"{nameof(BeforeOperate)} {nameof(operate)} error", ex);
+                }
                 Thread.Sleep(OperateInterval);
             }
             return true;
@@ -224,7 +297,14 @@ namespace SubmissionAutomation.Channels
             if (oerates == null) return true;
             foreach(var operate in oerates)
             {
-                if (!operate()) return false;
+                try
+                {
+                    if (!operate()) return false;
+                }
+                catch (Exception ex)
+                {
+                    HandelException($"{nameof(AfterOperate)} {nameof(operate)} error", ex);
+                }
                 Thread.Sleep(OperateInterval);
             }
             return true;
