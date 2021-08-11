@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,13 @@ using System.Threading.Tasks;
 namespace SubmissionAutomation.Channels
 {
     /// <summary>
-    /// 百度（百家号）
+    /// 微博
     /// </summary>
     public class Weibo : Channel
     {
 
-        private const string url = "https://weibo.com/leibizhenqi/home"; //网址
+        public override string Url { get; } = "https://weibo.com/leibizhenqi/home"; //网址
+        public override string Name { get; } = "微博";
         private const int maxTagCount = 3; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -33,8 +35,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
         /// <param name="originalName"></param>
-        public Weibo(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
-            : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Weibo(ChannelInitParam initParam) : base(initParam)
         {
 
         }

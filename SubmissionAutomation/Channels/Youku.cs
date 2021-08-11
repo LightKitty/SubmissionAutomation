@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace SubmissionAutomation.Channels
     public class Youku : Channel
     {
 
-        private const string url = "https://mp.youku.com/v2/mp/upload_home"; //网址
+        public override string Url { get; } = "https://mp.youku.com/v2/mp/upload_home"; //网址
+        public override string Name { get; } = "优酷";
         private const int maxTagCount = 10; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -33,7 +35,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="tags"></param>
         /// <param name="title"></param>
         /// <param name="introduction"></param>
-        public Youku(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Youku(ChannelInitParam initParam) : base(initParam)
         {
 
         }

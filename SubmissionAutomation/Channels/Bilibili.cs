@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace SubmissionAutomation.Channels
     public class Bilibili : Channel
     {
 
-        private const string url = "https://member.bilibili.com/platform/upload/video/frame"; //网址
+        public override string Url { get; } = "https://member.bilibili.com/platform/upload/video/frame"; //网址
+        public override string Name { get; } = "哔哩哔哩";
         private const int maxTagCount = 10; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -34,7 +36,8 @@ namespace SubmissionAutomation.Channels
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
         /// <param name="originalName"></param>
-        public Bilibili(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        /// <param name="handelException"></param>
+        public Bilibili(ChannelInitParam initParam) : base(initParam)
         {
 
         }
@@ -70,6 +73,8 @@ namespace SubmissionAutomation.Channels
             wait.Until(wb => wb.FindElements(By.TagName("iframe")).Count() > 0);
             Driver.SwitchTo().Frame(1);
 
+            Thread.Sleep(500); // 等待系统组装
+
             return true;
         }
 
@@ -80,8 +85,6 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool UploadVideo(string path)
         {
-            Thread.Sleep(100); // 等待系统组装
-
             IWebElement uploadButton = wait.Until(wb => wb.FindElement(By.Id("bili-upload-btn"))); //查找上传按钮
             uploadButton.Click(); //点击上传按钮
 

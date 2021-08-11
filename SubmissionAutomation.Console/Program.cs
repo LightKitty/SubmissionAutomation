@@ -40,26 +40,26 @@ namespace SubmissionAutomation.Console
                 //Channel baidu = new Baidu(videoPath, coverPath, new string[] { "123", "321","2222","222999" }, title, ind, null);
                 //baidu.Operate();
 
-                Channel wangyi = new Wangyi(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
-                wangyi.Operate();
+                //Channel wangyi = new Wangyi(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
+                //wangyi.Operate();
 
                 //Channel weibo = new Weibo(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
                 //weibo.Operate();
 
-                Zhihu zhihu = new Zhihu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
-                zhihu.Operate();
+                //Zhihu zhihu = new Zhihu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
+                //zhihu.Operate();
 
-                Xiaohongshu xiaohongshu = new Xiaohongshu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
-                xiaohongshu.Operate();
+                //Xiaohongshu xiaohongshu = new Xiaohongshu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", "原创");
+                //xiaohongshu.Operate();
 
                 //Kuaishou kuaishou = new Kuaishou(videoPath, coverPath, tags, title, introduction, "科学 天文", "原创");
                 //kuaishou.Operate();
 
-                Douyin douyin = new Douyin(videoPath, coverPath, tags, title, introduction, "科学 天文", "原创");
-                douyin.Operate();
+                //Douyin douyin = new Douyin(videoPath, coverPath, tags, title, introduction, "科学 天文", "原创");
+                //douyin.Operate();
 
-                Youku youku = new Youku(videoPath, coverPath, tags, title, introduction, "知识/文化 科普知识", "原创");
-                youku.Operate();
+                //Youku youku = new Youku(videoPath, coverPath, tags, title, introduction, "知识/文化 科普知识", "原创");
+                //youku.Operate();
 
                 System.Console.ReadLine();
             }

@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,13 @@ using System.Threading.Tasks;
 namespace SubmissionAutomation.Channels
 {
     /// <summary>
-    /// 百度（百家号）
+    /// 网易
     /// </summary>
     public class Wangyi : Channel
     {
 
-        private const string url = "https://mp.163.com/index.html#/post/video"; //网址
+        public override string Url { get; } = "https://mp.163.com/index.html#/post/video"; //网址
+        public override string Name { get; } = "网易";
         private const int maxTagCount = 5; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -32,8 +34,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="title"></param>
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
-        public Wangyi(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
-            : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Wangyi(ChannelInitParam initParam) : base(initParam)
         {
 
         }

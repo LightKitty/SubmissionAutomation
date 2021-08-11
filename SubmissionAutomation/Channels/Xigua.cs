@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,8 @@ namespace SubmissionAutomation.Channels
     public class Xigua : Channel
     {
 
-        private const string url = "https://mp.toutiao.com/profile_v4/xigua/upload-video"; //网址
+        public override string Url { get; } = "https://mp.toutiao.com/profile_v4/xigua/upload-video"; //网址
+        public override string Name { get; } = "西瓜";
         private const int maxTagCount = 5; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -34,8 +36,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="title"></param>
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
-        public Xigua(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
-            : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Xigua(ChannelInitParam initParam) : base(initParam)
         {
 
         }
@@ -250,6 +251,15 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
+            var eles = Wait.Until(Driver, x => x.FindElements(By.ClassName("byte-radio-inner-text")), y => y.Count > 2);
+            foreach(var ele in eles)
+            {
+                if(ele.Text == typeName)
+                {
+                    ele.Click();
+                    break;
+                }
+            }
             return true;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium.Chrome;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,12 @@ namespace SubmissionAutomation.Channels
         /// <summary>
         /// 网址
         /// </summary>
-        public string Url { get; private set; }
+        public abstract string Url { get; }
+
+        /// <summary>
+        /// 渠道名称
+        /// </summary>
+        public abstract string Name { get; }
 
         /// <summary>
         /// 视频地址
@@ -71,22 +77,17 @@ namespace SubmissionAutomation.Channels
         /// <summary>
         /// 
         /// </summary>
-        public Channel(string url, string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName, int operateInterval, Action<string, Exception> handelException = null)
+        public Channel(ChannelInitParam initParam)
         {
-            Url = url;
-            VideoPath = videoPath;
-            CoverPath = coverPath;
-            Tags = tags;
-            Title = title;
-            Introduction = introduction;
-            ClassifyName = classifyName;
-            OriginalName = originalName;
-            OperateInterval = operateInterval;
-            //HandelErrorMessage = handelErrorMessage;
-            HandelException = handelException ?? new Action<string, Exception>((message, exception) => 
-            {
-                throw new Exception(message, exception);
-            });
+            VideoPath = initParam.VideoPath;
+            CoverPath = initParam.CoverPath;
+            Tags = initParam.Tags;
+            Title = initParam.Title;
+            Introduction = initParam.Introduction;
+            ClassifyName = initParam.ClassifyName;
+            OriginalName = initParam.OriginalName;
+            OperateInterval = initParam.OperateInterval;
+            HandelException = initParam.HandelException;
         }
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace SubmissionAutomation.Channels
             }
             catch(Exception ex)
             {
-                HandelException($"{nameof(GoTo)} error", ex);
+                HandelException($"{Name} {nameof(GoTo)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -125,7 +126,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(UploadVideo)} error", ex);
+                HandelException($"{Name} {nameof(UploadVideo)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -137,7 +138,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(SetCover)} error", ex);
+                HandelException($"{Name} {nameof(SetCover)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -149,7 +150,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(WriteTitle)} error", ex);
+                HandelException($"{Name} {nameof(WriteTitle)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -161,7 +162,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(WriteIntroduction)} error", ex);
+                HandelException($"{Name} {nameof(WriteIntroduction)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -173,7 +174,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(OriginalStatement)} error", ex);
+                HandelException($"{Name} {nameof(OriginalStatement)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -185,7 +186,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(SetTags)} error", ex);
+                HandelException($"{Name} {nameof(SetTags)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -197,7 +198,7 @@ namespace SubmissionAutomation.Channels
             }
             catch (Exception ex)
             {
-                HandelException($"{nameof(SetClassify)} error", ex);
+                HandelException($"{Name} {nameof(SetClassify)} error", ex);
             }
 
             Thread.Sleep(OperateInterval);
@@ -233,7 +234,7 @@ namespace SubmissionAutomation.Channels
                 }
                 catch (Exception ex)
                 {
-                    HandelException($"{nameof(BeforeOperate)} {nameof(operate)} error", ex);
+                    HandelException($"{Name} {nameof(BeforeOperate)} {nameof(operate)} error", ex);
                 }
                 Thread.Sleep(OperateInterval);
             }
@@ -250,10 +251,7 @@ namespace SubmissionAutomation.Channels
         /// 上传
         /// </summary>
         /// <returns></returns>
-        internal virtual bool SetCover(string path)
-        {
-            return true;
-        }
+        internal abstract bool SetCover(string path);
 
         /// <summary>
         /// 写标题
@@ -303,7 +301,7 @@ namespace SubmissionAutomation.Channels
                 }
                 catch (Exception ex)
                 {
-                    HandelException($"{nameof(AfterOperate)} {nameof(operate)} error", ex);
+                    HandelException($"{Name} {nameof(AfterOperate)} {nameof(operate)} error", ex);
                 }
                 Thread.Sleep(OperateInterval);
             }

@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,13 @@ using static OpenQA.Selenium.RelativeBy;
 namespace SubmissionAutomation.Channels
 {
     /// <summary>
-    /// 优酷
+    /// 央视频
     /// </summary>
     public class Yangshipin : Channel
     {
 
-        private const string url = "https://mp.yangshipin.cn/publish/uploadVideo"; //网址
+        public override string Url { get; } = "https://mp.yangshipin.cn/publish/uploadVideo"; //网址
+        public override string Name { get; } = "央视频";
         private const int maxTagCount = 10; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -32,7 +34,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="tags"></param>
         /// <param name="title"></param>
         /// <param name="introduction"></param>
-        public Yangshipin(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Yangshipin(ChannelInitParam initParam) : base(initParam)
         {
 
         }

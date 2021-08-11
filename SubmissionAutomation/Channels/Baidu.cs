@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
+using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +18,8 @@ namespace SubmissionAutomation.Channels
     /// </summary>
     public class Baidu : Channel
     {
-
-        private const string url = "https://baijiahao.baidu.com/builder/rc/edit?type=video&app_id=1668272018575256"; //网址
+        public override string Url { get; } = "https://baijiahao.baidu.com/builder/rc/edit?type=video&app_id=1668272018575256"; //网址
+        public override string Name { get; } = "百度";
         private const int maxTagCount = 5; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -30,7 +33,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="tags"></param>
         /// <param name="title"></param>
         /// <param name="introduction"></param>
-        public Baidu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Baidu(ChannelInitParam initParam) : base(initParam)
         {
 
         }
@@ -41,7 +44,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         public override bool Operate()
         {
-            return base.Operate(new Func<bool>[] { ClearRegion }, null);
+            return base.Operate(new Func<bool>[] { Login, ClearRegion }, null);
         }
 
         /// <summary>
@@ -53,6 +56,25 @@ namespace SubmissionAutomation.Channels
         {
             Driver.SwitchTo().NewWindow(WindowType.Tab);
             Driver.Navigate().GoToUrl(url);
+
+            return true;
+        }
+
+        internal bool Login()
+        {
+            IWebElement flag = Wait.Until(Driver, x => x.FindElement(By.Id("pass-login-main")), 5000, 500, false);
+            if (flag != null)
+            {
+                IWebElement msgBtn = Wait.Until(Driver, x => x.FindInnermostElementByTagAndText("div", "短信快捷登录"));
+                msgBtn.Click();
+                IWebElement userName = Wait.Until(Driver, x => x.FindElement(By.Name("username")));
+                userName.SendKeys(Config.Account);
+                IWebElement code = Wait.Until(Driver, x => x.FindElementByTagAndText("button", "发送验证码"));
+                code.Click();
+                SoundHelper.Remind();
+                IWebElement publich = Wait.Until(Driver, x => x.FindElementByTagAndText("span", "发布", true), 60000);
+                Driver.Navigate().GoToUrl(Url);
+            }
 
             return true;
         }
@@ -252,7 +274,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            wait.Until(wb => wb.FindElementByTagAndText("span", "原创")).Click();
+            wait.Until(wb => wb.FindElementByTagAndText("span", typeName)).Click();
 
             return true;
         }

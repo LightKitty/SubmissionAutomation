@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using SubmissionAutomation.Channels;
 using SubmissionAutomation.Consts;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -73,35 +74,54 @@ namespace SubmissionAutomation.Forms
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             buttonSubmit.Enabled = false;
-            try
+            Task.Run(() =>
             {
-                UpdateToolStripStatusLabel("开始发布");
-
-                Thread.Sleep(100);
-
-                List<Channel> channels = GetPublishChannels();
-
-                foreach (Channel channel in channels)
+                try
                 {
-                    try
-                    {
-                        channel.Operate();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error($"渠道发布错误", ex);
-                        textBoxLog.AppendText($"渠道发布错误," + ex.ToString() + Environment.NewLine);
-                    }
-                }
+                    UpdateToolStripStatusLabel("开始发布");
 
-                UpdateToolStripStatusLabel("完成");
-            }
-            catch(Exception ex)
+                    Thread.Sleep(100);
+
+                    List<Channel> channels = GetPublishChannels();
+
+                    foreach (Channel channel in channels)
+                    {
+                        try
+                        {
+                            channel.Operate();
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error($"{channel.Name}发布错误", ex);
+                            ShowErrorMessageInvoke($"{channel.Name}发布错误", ex);
+                        }
+                    }
+
+                    UpdateToolStripStatusLabel("完成");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"发布错误", ex);
+                    ShowErrorMessageInvoke($"发布错误", ex);
+                }
+                finally
+                {
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        buttonSubmit.Enabled = true;
+                    }));
+                }
+            });
+        }
+
+        public void ShowErrorMessageInvoke(string message, Exception ex)
+        {
+            this.BeginInvoke(new Action(() =>
             {
-                Log.Error($"发布错误", ex);
-                textBoxLog.AppendText($"发布错误," + ex.ToString() + Environment.NewLine);
-            }
-            buttonSubmit.Enabled = true;
+                textBoxLog.AppendText(DateTime.Now.ToString() + Environment.NewLine);
+                if (message!=null) textBoxLog.AppendText(message + Environment.NewLine);
+                if(ex != null) textBoxLog.AppendText(ex.Message + Environment.NewLine);
+            }));
         }
 
         private List<Channel> GetPublishChannels()
@@ -116,62 +136,178 @@ namespace SubmissionAutomation.Forms
 
             if (checkBoxPublishBilibili.Checked)
             { //bilibili
-                string original = checkBoxOriginalBilibili.Checked.ToString();
-                channels.Add(new Bilibili(videoPath, coverPath, tags, title, introduction, null, original));
+                channels.Add(new Bilibili(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = null,
+                    OriginalName = checkBoxOriginalBilibili.Checked.ToString(),
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishDouyu.Checked)
-            {
-                channels.Add(new Douyu(videoPath, coverPath, tags, title, introduction, textBoxDouyuClassify.Text.Trim(), null));
+            { //斗鱼
+                channels.Add(new Douyu(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = textBoxDouyuClassify.Text.Trim(),
+                    OriginalName = null,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishXigua.Checked)
-            {
-                channels.Add(new Xigua(videoPath, coverPath, tags, title, introduction, null, null));
+            { //西瓜
+                string originalTypeName = null;
+                if (radioButtonXiguaOriginal.Checked) originalTypeName = "原创";
+                else if (radioButtonXiguaReprint.Checked) originalTypeName = "转载";
+
+                channels.Add(new Xigua(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = null,
+                    OriginalName = originalTypeName,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishBaidu.Checked)
-            {
-                channels.Add(new Baidu(videoPath, coverPath, tags, title, introduction, null, null));
+            { //百度
+                string originalTypeName = null;
+                if (radioButtonBaiduOriginal.Checked) originalTypeName = radioButtonBaiduOriginal.Text;
+                else if (radioButtonBaiduReprint.Checked) originalTypeName = radioButtonBaiduReprint.Text;
+                channels.Add(new Baidu(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = null,
+                    OriginalName = null,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishWangyi.Checked)
-            {
+            { //网易
                 string originalTypeName = null;
                 if (radioButtonWangyiOriginal.Checked) originalTypeName = "原创";
                 else if (radioButtonWangyiReprint.Checked) originalTypeName = "转载";
 
-                channels.Add(new Wangyi(videoPath, coverPath, tags, title, introduction, null, originalTypeName));
+                channels.Add(new Wangyi(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = "科普·趣闻",
+                    OriginalName = originalTypeName,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishWeibo.Checked)
-            {
-                channels.Add(new Weibo(videoPath, coverPath, tags, title, introduction, null, null));
+            { //微博
+                channels.Add(new Weibo(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = null,
+                    OriginalName = null,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishZhihu.Checked)
-            {
-                channels.Add(new Zhihu(videoPath, coverPath, tags, title, introduction, null, null));
+            { //知乎
+                channels.Add(new Zhihu(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = null,
+                    OriginalName = "原创",
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishXiaohongshu.Checked)
-            {
-                channels.Add(new Xiaohongshu(videoPath, coverPath, tags, title, introduction, "科普·趣闻", null));
+            { //小红书
+                channels.Add(new Xiaohongshu(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = "科普·趣闻",
+                    OriginalName = null,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishKuaishou.Checked)
-            {
-                channels.Add(new Kuaishou(videoPath, coverPath, tags, title, introduction, "科学 天文", null));
+            { //快手
+                channels.Add(new Kuaishou(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = "科学 天文",
+                    OriginalName = null,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishDouyin.Checked)
-            {
-                channels.Add(new Douyin(videoPath, coverPath, tags, title, introduction, "科学 天文", null));
+            { //抖音
+                channels.Add(new Douyin(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    OriginalName = null,
+                    ClassifyName = null,
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             if (checkBoxPublishYouku.Checked)
-            {
-                channels.Add(new Youku(videoPath, coverPath, tags, title, introduction, "知识/文化 科普知识", "原创"));
+            { //优酷
+                channels.Add(new Youku(new ChannelInitParam
+                {
+                    VideoPath = videoPath,
+                    CoverPath = coverPath,
+                    Tags = tags,
+                    Title = title,
+                    Introduction = introduction,
+                    ClassifyName = "知识/文化 科普知识",
+                    OriginalName = "原创",
+                    HandelException = ShowErrorMessageInvoke
+                }));
             }
 
             return channels;

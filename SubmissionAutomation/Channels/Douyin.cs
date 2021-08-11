@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace SubmissionAutomation.Channels
     public class Douyin : Channel
     {
 
-        private const string url = "https://creator.douyin.com/content/upload"; //网址
+        public override string Url { get; } = "https://creator.douyin.com/content/upload"; //网址
+        public override string Name { get; } = "抖音";
         private const int maxTagCount = 3; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -34,8 +36,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
         /// <param name="originalName"></param>
-        public Douyin(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
-            : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Douyin(ChannelInitParam initParam) : base(initParam)
         {
 
         }

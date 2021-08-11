@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Chrome;
 using SubmissionAutomation.Channels;
 using SubmissionAutomation.Consts;
+using SubmissionAutomation.Models;
 
 namespace SubmissionAutomation.Test
 {
@@ -31,7 +32,15 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void BilibiliTest()
         {
-            Channel channle = new Bilibili(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            //Channel channle = new Bilibili(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            Channel channle = new Bilibili(new ChannelInitParam
+            {
+                VideoPath = videoPath,
+                CoverPath = coverPath,
+                Tags = new string[] { "123", "321" },
+                Title =title,
+                Introduction = introduction
+            });
             channle.Operate();
             Console.ReadLine();
         }
@@ -42,9 +51,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void DouyuTest()
         {
-            Channel channle = new Douyu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识", null);
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Douyu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识", null);
+            //channle.Operate();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -53,7 +62,16 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void XiguaTest()
         {
-            Channel channle = new Xigua(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            //Channel channle = new Xigua(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            Channel channle = new Xigua(new ChannelInitParam
+            {
+                VideoPath = videoPath,
+                CoverPath = coverPath,
+                Tags = new string[] { "123", "321" },
+                Title = title,
+                Introduction = introduction,
+                OriginalName = "原创"
+            });
             channle.Operate();
             Console.ReadLine();
         }
@@ -64,7 +82,16 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void BaiduTest()
         {
-            Channel channle = new Baidu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            //Channel channle = new Baidu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            Channel channle = new Baidu(new ChannelInitParam
+            {
+                VideoPath = videoPath,
+                CoverPath = coverPath,
+                Tags = new string[] { "123", "321" },
+                Title = title,
+                Introduction = introduction,
+                OriginalName = "原创"
+            });
             channle.Operate();
             Console.ReadLine();
         }
@@ -75,9 +102,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void WangyiTest()
         {
-            Channel channle = new Wangyi(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "科普·趣闻", "原创");
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Wangyi(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "科普·趣闻", "原创");
+            //channle.Operate();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -86,9 +113,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void WeiboTest()
         {
-            Channel channle = new Weibo(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Weibo(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, null);
+            //channle.Operate();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -97,9 +124,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void ZhihuTest()
         {
-            Channel channle = new Zhihu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Zhihu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
+            //channle.Operate();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -108,9 +135,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void XiaohongshuTest()
         {
-            Channel channle = new Xiaohongshu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Xiaohongshu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
+            //channle.Operate();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -119,9 +146,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void DouyinTest()
         {
-            Channel channle = new Douyin(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Douyin(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, null, "原创");
+            //channle.Operate();
+            //Console.ReadLine();
         }
 
         /// <summary>
@@ -130,9 +157,9 @@ namespace SubmissionAutomation.Test
         [TestMethod]
         public void YoukuTest()
         {
-            Channel channle = new Youku(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识/文化 科普知识", "原创");
-            channle.Operate();
-            Console.ReadLine();
+            //Channel channle = new Youku(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识/文化 科普知识", "原创");
+            //channle.Operate();
+            //Console.ReadLine();
         }
     }
 }

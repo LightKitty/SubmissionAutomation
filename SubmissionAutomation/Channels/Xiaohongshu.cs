@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SubmissionAutomation.Consts;
 using SubmissionAutomation.Extensions;
 using SubmissionAutomation.Helpers;
+using SubmissionAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,13 @@ using System.Threading.Tasks;
 namespace SubmissionAutomation.Channels
 {
     /// <summary>
-    /// 百度（百家号）
+    /// 小红书
     /// </summary>
     public class Xiaohongshu : Channel
     {
 
-        private const string url = "https://creator.xiaohongshu.com/creator/post"; //网址
+        public override string Url { get; } = "https://creator.xiaohongshu.com/creator/post"; //网址
+        public override string Name { get; } = "小红书";
         private const int maxTagCount = 3; //最大标签个数
         private const int operateInterval = 100; //默认操作间隔
 
@@ -34,8 +36,7 @@ namespace SubmissionAutomation.Channels
         /// <param name="introduction"></param>
         /// <param name="classifyName"></param>
         /// <param name="originalName"></param>
-        public Xiaohongshu(string videoPath, string coverPath, string[] tags, string title, string introduction, string classifyName, string originalName) 
-            : base(url, videoPath, coverPath, tags, title, introduction, classifyName, originalName, operateInterval)
+        public Xiaohongshu(ChannelInitParam initParam) : base(initParam)
         {
 
         }
@@ -182,6 +183,11 @@ namespace SubmissionAutomation.Channels
         /// </summary>
         /// <returns></returns>
         internal override bool SetClassify(string name)
+        {
+            return true;
+        }
+
+        internal override bool SetCover(string path)
         {
             return true;
         }
