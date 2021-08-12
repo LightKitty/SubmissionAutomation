@@ -45,14 +45,21 @@
             this.textBoxVideoPath = new System.Windows.Forms.TextBox();
             this.tabControlChannels = new System.Windows.Forms.TabControl();
             this.tabPageBilibili = new System.Windows.Forms.TabPage();
+            this.checkBoxOriginalBilibili = new System.Windows.Forms.CheckBox();
             this.checkBoxPublishBilibili = new System.Windows.Forms.CheckBox();
             this.tabPageDouyu = new System.Windows.Forms.TabPage();
             this.textBoxDouyuClassify = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBoxPublishDouyu = new System.Windows.Forms.CheckBox();
             this.tabPageXigua = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioButtonXiguaReprint = new System.Windows.Forms.RadioButton();
+            this.radioButtonXiguaOriginal = new System.Windows.Forms.RadioButton();
             this.checkBoxPublishXigua = new System.Windows.Forms.CheckBox();
             this.tabPageBaidu = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioButtonBaiduReprint = new System.Windows.Forms.RadioButton();
+            this.radioButtonBaiduOriginal = new System.Windows.Forms.RadioButton();
             this.checkBoxPublishBaidu = new System.Windows.Forms.CheckBox();
             this.tabPageWangyi = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -76,19 +83,14 @@
             this.checkBoxPublishYouku = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBoxOriginalBilibili = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButtonXiguaReprint = new System.Windows.Forms.RadioButton();
-            this.radioButtonXiguaOriginal = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButtonBaiduReprint = new System.Windows.Forms.RadioButton();
-            this.radioButtonBaiduOriginal = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
             this.tabPageDouyu.SuspendLayout();
             this.tabPageXigua.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPageBaidu.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.tabPageWangyi.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPageWeibo.SuspendLayout();
@@ -99,8 +101,6 @@
             this.tabPageDouyin.SuspendLayout();
             this.tabPageYouku.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -283,6 +283,16 @@
             this.tabPageBilibili.Text = "哔哩";
             this.tabPageBilibili.UseVisualStyleBackColor = true;
             // 
+            // checkBoxOriginalBilibili
+            // 
+            this.checkBoxOriginalBilibili.AutoSize = true;
+            this.checkBoxOriginalBilibili.Location = new System.Drawing.Point(6, 6);
+            this.checkBoxOriginalBilibili.Name = "checkBoxOriginalBilibili";
+            this.checkBoxOriginalBilibili.Size = new System.Drawing.Size(75, 21);
+            this.checkBoxOriginalBilibili.TabIndex = 1;
+            this.checkBoxOriginalBilibili.Text = "声明原创";
+            this.checkBoxOriginalBilibili.UseVisualStyleBackColor = true;
+            // 
             // checkBoxPublishBilibili
             // 
             this.checkBoxPublishBilibili.AutoSize = true;
@@ -314,7 +324,7 @@
             this.textBoxDouyuClassify.Name = "textBoxDouyuClassify";
             this.textBoxDouyuClassify.Size = new System.Drawing.Size(100, 23);
             this.textBoxDouyuClassify.TabIndex = 13;
-            this.textBoxDouyuClassify.Text = "科学科普";
+            this.textBoxDouyuClassify.Text = "知识";
             // 
             // label6
             // 
@@ -349,6 +359,39 @@
             this.tabPageXigua.Text = "西瓜";
             this.tabPageXigua.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButtonXiguaReprint);
+            this.groupBox4.Controls.Add(this.radioButtonXiguaOriginal);
+            this.groupBox4.Location = new System.Drawing.Point(6, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(126, 56);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "类型";
+            // 
+            // radioButtonXiguaReprint
+            // 
+            this.radioButtonXiguaReprint.AutoSize = true;
+            this.radioButtonXiguaReprint.Checked = true;
+            this.radioButtonXiguaReprint.Location = new System.Drawing.Point(62, 22);
+            this.radioButtonXiguaReprint.Name = "radioButtonXiguaReprint";
+            this.radioButtonXiguaReprint.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonXiguaReprint.TabIndex = 1;
+            this.radioButtonXiguaReprint.TabStop = true;
+            this.radioButtonXiguaReprint.Text = "转载";
+            this.radioButtonXiguaReprint.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonXiguaOriginal
+            // 
+            this.radioButtonXiguaOriginal.AutoSize = true;
+            this.radioButtonXiguaOriginal.Location = new System.Drawing.Point(6, 22);
+            this.radioButtonXiguaOriginal.Name = "radioButtonXiguaOriginal";
+            this.radioButtonXiguaOriginal.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonXiguaOriginal.TabIndex = 0;
+            this.radioButtonXiguaOriginal.Text = "原创";
+            this.radioButtonXiguaOriginal.UseVisualStyleBackColor = true;
+            // 
             // checkBoxPublishXigua
             // 
             this.checkBoxPublishXigua.AutoSize = true;
@@ -372,6 +415,39 @@
             this.tabPageBaidu.TabIndex = 3;
             this.tabPageBaidu.Text = "百度";
             this.tabPageBaidu.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.radioButtonBaiduReprint);
+            this.groupBox5.Controls.Add(this.radioButtonBaiduOriginal);
+            this.groupBox5.Location = new System.Drawing.Point(6, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(156, 56);
+            this.groupBox5.TabIndex = 7;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "类型";
+            // 
+            // radioButtonBaiduReprint
+            // 
+            this.radioButtonBaiduReprint.AutoSize = true;
+            this.radioButtonBaiduReprint.Checked = true;
+            this.radioButtonBaiduReprint.Location = new System.Drawing.Point(62, 22);
+            this.radioButtonBaiduReprint.Name = "radioButtonBaiduReprint";
+            this.radioButtonBaiduReprint.Size = new System.Drawing.Size(86, 21);
+            this.radioButtonBaiduReprint.TabIndex = 1;
+            this.radioButtonBaiduReprint.TabStop = true;
+            this.radioButtonBaiduReprint.Text = "不声明原创";
+            this.radioButtonBaiduReprint.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonBaiduOriginal
+            // 
+            this.radioButtonBaiduOriginal.AutoSize = true;
+            this.radioButtonBaiduOriginal.Location = new System.Drawing.Point(6, 22);
+            this.radioButtonBaiduOriginal.Name = "radioButtonBaiduOriginal";
+            this.radioButtonBaiduOriginal.Size = new System.Drawing.Size(50, 21);
+            this.radioButtonBaiduOriginal.TabIndex = 0;
+            this.radioButtonBaiduOriginal.Text = "原创";
+            this.radioButtonBaiduOriginal.UseVisualStyleBackColor = true;
             // 
             // checkBoxPublishBaidu
             // 
@@ -630,82 +706,6 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
             // 
-            // checkBoxOriginalBilibili
-            // 
-            this.checkBoxOriginalBilibili.AutoSize = true;
-            this.checkBoxOriginalBilibili.Location = new System.Drawing.Point(6, 6);
-            this.checkBoxOriginalBilibili.Name = "checkBoxOriginalBilibili";
-            this.checkBoxOriginalBilibili.Size = new System.Drawing.Size(75, 21);
-            this.checkBoxOriginalBilibili.TabIndex = 1;
-            this.checkBoxOriginalBilibili.Text = "声明原创";
-            this.checkBoxOriginalBilibili.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioButtonXiguaReprint);
-            this.groupBox4.Controls.Add(this.radioButtonXiguaOriginal);
-            this.groupBox4.Location = new System.Drawing.Point(6, 6);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(126, 56);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "类型";
-            // 
-            // radioButtonXiguaReprint
-            // 
-            this.radioButtonXiguaReprint.AutoSize = true;
-            this.radioButtonXiguaReprint.Checked = true;
-            this.radioButtonXiguaReprint.Location = new System.Drawing.Point(62, 22);
-            this.radioButtonXiguaReprint.Name = "radioButtonXiguaReprint";
-            this.radioButtonXiguaReprint.Size = new System.Drawing.Size(50, 21);
-            this.radioButtonXiguaReprint.TabIndex = 1;
-            this.radioButtonXiguaReprint.TabStop = true;
-            this.radioButtonXiguaReprint.Text = "转载";
-            this.radioButtonXiguaReprint.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonXiguaOriginal
-            // 
-            this.radioButtonXiguaOriginal.AutoSize = true;
-            this.radioButtonXiguaOriginal.Location = new System.Drawing.Point(6, 22);
-            this.radioButtonXiguaOriginal.Name = "radioButtonXiguaOriginal";
-            this.radioButtonXiguaOriginal.Size = new System.Drawing.Size(50, 21);
-            this.radioButtonXiguaOriginal.TabIndex = 0;
-            this.radioButtonXiguaOriginal.Text = "原创";
-            this.radioButtonXiguaOriginal.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.radioButtonBaiduReprint);
-            this.groupBox5.Controls.Add(this.radioButtonBaiduOriginal);
-            this.groupBox5.Location = new System.Drawing.Point(6, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(156, 56);
-            this.groupBox5.TabIndex = 7;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "类型";
-            // 
-            // radioButtonBaiduReprint
-            // 
-            this.radioButtonBaiduReprint.AutoSize = true;
-            this.radioButtonBaiduReprint.Checked = true;
-            this.radioButtonBaiduReprint.Location = new System.Drawing.Point(62, 22);
-            this.radioButtonBaiduReprint.Name = "radioButtonBaiduReprint";
-            this.radioButtonBaiduReprint.Size = new System.Drawing.Size(86, 21);
-            this.radioButtonBaiduReprint.TabIndex = 1;
-            this.radioButtonBaiduReprint.TabStop = true;
-            this.radioButtonBaiduReprint.Text = "不声明原创";
-            this.radioButtonBaiduReprint.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonBaiduOriginal
-            // 
-            this.radioButtonBaiduOriginal.AutoSize = true;
-            this.radioButtonBaiduOriginal.Location = new System.Drawing.Point(6, 22);
-            this.radioButtonBaiduOriginal.Name = "radioButtonBaiduOriginal";
-            this.radioButtonBaiduOriginal.Size = new System.Drawing.Size(50, 21);
-            this.radioButtonBaiduOriginal.TabIndex = 0;
-            this.radioButtonBaiduOriginal.Text = "原创";
-            this.radioButtonBaiduOriginal.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -731,8 +731,12 @@
             this.tabPageDouyu.PerformLayout();
             this.tabPageXigua.ResumeLayout(false);
             this.tabPageXigua.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPageBaidu.ResumeLayout(false);
             this.tabPageBaidu.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tabPageWangyi.ResumeLayout(false);
             this.tabPageWangyi.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -753,10 +757,6 @@
             this.tabPageYouku.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

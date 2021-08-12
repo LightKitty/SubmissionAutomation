@@ -52,8 +52,17 @@ namespace SubmissionAutomation.Test
         public void DouyuTest()
         {
             //Channel channle = new Douyu(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "知识", null);
-            //channle.Operate();
-            //Console.ReadLine();
+            Channel channle = new Douyu(new ChannelInitParam
+            {
+                VideoPath = videoPath,
+                CoverPath = coverPath,
+                Tags = new string[] { "123", "321" },
+                Title = title,
+                Introduction = introduction,
+                ClassifyName = "知识"
+            });
+            channle.Operate();
+            Console.ReadLine();
         }
 
         /// <summary>
