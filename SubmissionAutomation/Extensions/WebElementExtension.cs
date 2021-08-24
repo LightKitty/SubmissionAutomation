@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,17 @@ namespace SubmissionAutomation.Extensions
     /// </summary>
     public static class WebElementExtension
     {
+        /// <summary>
+        /// 滚动至元素可见
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="driver"></param>
+        public static IWebElement ScrollIntoView(this IWebElement webElement, ChromeDriver driver)
+        {
+            driver.ExecuteScript("arguments[0].scrollIntoView();", webElement);
+            return webElement;
+        }
+
         /// <summary>
         /// 获取父节点
         /// </summary>

@@ -20,9 +20,26 @@ namespace SubmissionAutomation.Forms
     {
         private static readonly object initChromeDriverLock = new object();
 
+        CheckBox[] checkBoxes = null;
+
         public MainForm()
         {
             InitializeComponent();
+
+            checkBoxes = new CheckBox[]
+            {
+                checkBoxPublishBilibili,
+                checkBoxPublishDouyu,
+                checkBoxPublishXigua,
+                checkBoxPublishBaidu,
+                checkBoxPublishWangyi,
+                checkBoxPublishWeibo,
+                checkBoxPublishZhihu,
+                checkBoxPublishXiaohongshu,
+                checkBoxPublishKuaishou,
+                checkBoxPublishDouyin,
+                checkBoxPublishYouku
+            };
 
             InitChromeDriver();
         }
@@ -321,6 +338,14 @@ namespace SubmissionAutomation.Forms
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Channel.Driver?.Dispose();
+        }
+
+        private void checkBoxPublishAll_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (CheckBox checkBox in checkBoxes)
+            {
+                checkBox.Checked = checkBoxPublishAll.Checked;
+            }
         }
     }
 }

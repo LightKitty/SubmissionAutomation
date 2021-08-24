@@ -225,8 +225,9 @@ namespace SubmissionAutomation.Channels
             scInput.SendKeys(path);
 
             IWebElement okBth = wait.Until(wb => wb.FindElementByTagAndText("button", "确 定"));
-            Thread.Sleep(100);
+            Thread.Sleep(500);
             okBth.SendKeys(Keys.Enter); //Click会报错
+            Thread.Sleep(1000);
 
             return true;
         }

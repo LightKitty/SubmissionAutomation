@@ -83,6 +83,7 @@
             this.checkBoxPublishYouku = new System.Windows.Forms.CheckBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBoxPublishAll = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.tabControlChannels.SuspendLayout();
             this.tabPageBilibili.SuspendLayout();
@@ -105,6 +106,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBoxPublishAll);
             this.groupBox1.Controls.Add(this.textBoxLog);
             this.groupBox1.Controls.Add(this.buttonSubmit);
             this.groupBox1.Controls.Add(this.textBoxIntroduction);
@@ -706,6 +708,19 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel.Text = "就绪";
             // 
+            // checkBoxPublishAll
+            // 
+            this.checkBoxPublishAll.AutoSize = true;
+            this.checkBoxPublishAll.Checked = true;
+            this.checkBoxPublishAll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPublishAll.Location = new System.Drawing.Point(9, 259);
+            this.checkBoxPublishAll.Name = "checkBoxPublishAll";
+            this.checkBoxPublishAll.Size = new System.Drawing.Size(63, 21);
+            this.checkBoxPublishAll.TabIndex = 14;
+            this.checkBoxPublishAll.Text = "全发布";
+            this.checkBoxPublishAll.UseVisualStyleBackColor = true;
+            this.checkBoxPublishAll.CheckedChanged += new System.EventHandler(this.checkBoxPublishAll_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -819,6 +834,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton radioButtonBaiduReprint;
         private System.Windows.Forms.RadioButton radioButtonBaiduOriginal;
+        private System.Windows.Forms.CheckBox checkBoxPublishAll;
     }
 }
 

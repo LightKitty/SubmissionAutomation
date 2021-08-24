@@ -114,6 +114,19 @@ namespace SubmissionAutomation.Test
             //Channel channle = new Wangyi(videoPath, coverPath, new string[] { "123", "321" }, title, introduction, "科普·趣闻", "原创");
             //channle.Operate();
             //Console.ReadLine();
+
+            Channel channle = new Wangyi(new ChannelInitParam
+            {
+                VideoPath = videoPath,
+                CoverPath = coverPath,
+                Tags = new string[] { "123", "321" },
+                Title = title,
+                Introduction = introduction,
+                OriginalName = "原创",
+                ClassifyName = "科普·趣闻"
+            });
+            channle.Operate();
+            Console.ReadLine();
         }
 
         /// <summary>

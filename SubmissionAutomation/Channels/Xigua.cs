@@ -167,6 +167,8 @@ namespace SubmissionAutomation.Channels
             //点击确定
             IWebElement okBtn2 = wait.Until(wb => wb.FindElementByClassAndText("m-button", "确定"));
             okBtn2.Click();
+            Thread.Sleep(100);
+            Wait.UntilTrue(okBtn1, x => x.GetCssValue("opacity") == "1");
 
             return true;
         }
@@ -251,7 +253,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            var eles = Wait.Until(Driver, x => x.FindElements(By.ClassName("byte-radio-inner-text")), y => y.Count > 2);
+            var eles = Wait.Until(Driver, x => x.FindElements(By.ClassName("byte-radio-inner-text")), y => y.Count >= 2);
             foreach(var ele in eles)
             {
                 if(ele.Text == typeName)

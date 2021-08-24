@@ -183,7 +183,7 @@ namespace SubmissionAutomation.Channels
         {
             //简介
             IWebElement element = wait.Until(wb => wb.FindElement(
-                By.CssSelector("#desc")
+                By.Id("desc")
                 ));
             element.Clear();
             element.SendKeys(introduction);
@@ -253,15 +253,24 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool SetCover(string path)
         {
-            Driver.ExecuteScript("document.getElementsByClassName('container')[0].click()"); //不知为啥只能用js方式
+            IWebElement replaceBtn = Wait.Until(Driver, x => x.FindElement(By.ClassName("replace-icon")), 1000, 500, false);
+            if(replaceBtn!=null)
+            {
+                replaceBtn.ScrollIntoView(Driver) //滚动至元素可见
+                    .Click();
+            }
+            else
+            {
+                Driver.ExecuteScript("document.getElementsByClassName('container')[0].click()"); //不知为啥只能用js方式
+            }
             
-            IWebElement coverElement2 = wait.Until(wb => wb.FindElement(
-                By.ClassName("ant-upload")
-                )).FindElement(
-                By.TagName("input")
-                ); //获取图片上传控件
+            IWebElement uploader = wait.Until(wb => wb.FindElement(
+                By.ClassName("uploader"))); //获取图片上传控件
+            uploader.Click();
             //coverElement2.Click();
-            coverElement2.SendKeys(path); //设置上传值
+            //coverElement2.SendKeys(path); //设置上传值
+            Thread.Sleep(1000);
+            OpenFileDialog.SelectFileAndOpen(path);
             Thread.Sleep(1000);
             wait.Until(wb => wb.FindElementByTagAndText("button", "确 认", true)).Click(); //点击确定
 
@@ -274,7 +283,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool OriginalStatement(string typeName)
         {
-            wait.Until(wb => wb.FindElementByTagAndText("span", typeName)).Click();
+            wait.Until(wb => wb.FindInnermostElementByTagAndText("span", typeName)).Click();
 
             return true;
         }
