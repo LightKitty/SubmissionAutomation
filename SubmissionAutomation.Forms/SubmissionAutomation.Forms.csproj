@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>上传视频.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LightLog">
       <HintPath>..\..\LightLog\LightLog\bin\Release\LightLog.dll</HintPath>
@@ -99,6 +102,10 @@
     <PackageReference Include="Selenium.WebDriver">
       <Version>4.0.0-beta4</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="上传视频.ico" />
+    <Content Include="视频上传列表.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
