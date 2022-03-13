@@ -63,7 +63,7 @@
     <Compile Include="Channels\Bilibili.cs" />
     <Compile Include="Channels\Channel.cs" />
     <Compile Include="Consts\CommonConst.cs" />
-    <Compile Include="Consts\Context.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="Extensions\ChromeDriverExtension.cs" />
     <Compile Include="Extensions\ISearchContextExtension.cs" />
     <Compile Include="Extensions\WebElementExtension.cs" />
