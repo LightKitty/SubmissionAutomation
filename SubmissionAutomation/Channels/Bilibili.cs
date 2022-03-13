@@ -85,7 +85,7 @@ namespace SubmissionAutomation.Channels
         /// <returns></returns>
         internal override bool UploadVideo(string path)
         {
-            IWebElement uploadButton = wait.Until(wb => wb.FindElement(By.Id("bili-upload-btn"))); //查找上传按钮
+            IWebElement uploadButton = wait.Until(wb => wb.FindElement(By.ClassName("upload-btn"))); //查找上传按钮
             uploadButton.Click(); //点击上传按钮
 
             Thread.Sleep(1000); //等待系统弹窗
@@ -113,12 +113,10 @@ namespace SubmissionAutomation.Channels
             Thread.Sleep(500);
 
             //点击确定
-            var ele = wait.Until(wb => wb.FindElements(
-                By.ClassName("cover-chop-modal-v2-btn")
-                ).FirstOrDefault(x => x.Text == "确认"));
+            var ele = wait.Until(wb => wb.FindElementByTagAndText("span", "确认"));
             ele.Click();
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
 
             return true;
         }
@@ -146,7 +144,10 @@ namespace SubmissionAutomation.Channels
             IWebElement titleElement = inputs.FirstOrDefault(x => x.GetAttribute("placeholder").Contains("标题"));
 
             Thread.Sleep(100);
-            titleElement.Clear();
+            //titleElement.Clear();
+            titleElement.Click();
+            titleElement.ClearValue();
+            Thread.Sleep(100);
             titleElement.SendKeys(title);
 
             return true;
@@ -160,10 +161,9 @@ namespace SubmissionAutomation.Channels
         internal override bool WriteIntroduction(string introduction)
         {
             //简介
-            wait.Until(wb => wb.FindElements(
-                By.ClassName("ql-editor")
-                ).FirstOrDefault(x=>x.GetAttribute("data-placeholder") == "填写更全面的相关信息，让更多的人能找到你的视频吧"))
-                .SendKeys(introduction);
+            var ele = wait.Until(wb => wb.FindElementByClassAndAttribute("ql-editor", "data-placeholder", "填写更全面的相关信息", true));
+            ele.Click();
+            ele.SendKeys(introduction);
 
             return true;
         }
@@ -207,17 +207,15 @@ namespace SubmissionAutomation.Channels
             if(typeName != true.ToString())
             {
                 //判断是否点击更多选项
-                IWebElement moreSetting = Wait.Until(Driver, x => x.FindElementByTagAndText("h1", "更多选项"));
-                IWebElement btn = Wait.Until(moreSetting, x => x.GetFollowingSibling(), y => y.Count > 0)?.FirstOrDefault();
-                if (!string.IsNullOrEmpty(btn.GetAttribute("style")))
+                IWebElement moreSetting = Wait.Until(Driver, x => x.FindElementByClassAndText("title", "更多设置", true));
+                IWebElement flag = Wait.Until(moreSetting, x => x.GetFollowingSibling(), y => y.Count > 0)?.FirstOrDefault();
+                if (!string.IsNullOrEmpty(flag.GetAttribute("style")))
                 { //需点击更多选项
-                    btn.Click();
+                    moreSetting.GetChildern().First().Click();
                 }
 
 
-                IWebElement webElement = wait.Until(wb => wb.FindElements(
-                    By.TagName("p")
-                    ).FirstOrDefault(x => x.Text == "未经作者授权 禁止转载"));
+                IWebElement webElement = wait.Until(wb => wb.FindElementByTagAndText("span", "未经作者授权 禁止转载"));
 
                 //IWebElement tagInput = Driver.FindElement(
                 //    WithTagName("i")

@@ -53,9 +53,11 @@ namespace SubmissionAutomation.Forms
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--user-data-dir=C:/Users/Administrator/AppData/Local/Google/Chrome/User Data"); //指定用户文件夹路径
             options.AddArgument("--profile-directory=Default"); //指定用户
-            Channel.Driver = new ChromeDriver(@"D:\WebDriver\bin", options);
-            Channel.Driver.Manage().Window.Maximize();
-            Channel.Driver.Navigate().GoToUrl("chrome://newtab");
+            var driver = new ChromeDriver(@"D:\WebDriver\bin", options);
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("chrome://newtab");
+            Context.Driver = driver;
+            Channel.Driver = driver;
         }
 
         private void buttonOpenVideo_Click(object sender, EventArgs e)

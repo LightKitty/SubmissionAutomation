@@ -10,8 +10,8 @@ namespace SubmissionAutomation.Test
     [TestClass]
     public class ChannelTest
     {
-        string videoPath = @"D:\地球频道\2.videos\20210424\导出.mp4";
-        string coverPath = @"D:\地球频道\2.videos\20210424\vlcsnap-2021-04-24-23h25m34s546.png";
+        string videoPath = @"D:\地球频道\2.videos\20220116汤加火山\Tsunami hits Tonga after massive volcano eruption seen from space..mp4";
+        string coverPath = @"C:\Users\Administrator\Pictures\vlcsnap-2022-03-12-11h07m46s029.png";
         string[] tags = new string[] { "太空", "地球", "空间站", "夜晚", "灯光", "闪电", "卫星", "科技", "科普" };
         string title = "国际空间站直播出现大量闪电";
         string introduction = "北京时间2021年4月24日13点，国际空间站直播中出现大量闪电，此时空间站位于南美洲上空。";
@@ -24,6 +24,7 @@ namespace SubmissionAutomation.Test
             options.AddArgument("--profile-directory=Default"); //指定用户
             ChromeDriver driver = new ChromeDriver(@"D:\WebDriver\bin", options);
             Channel.Driver = driver;
+            Context.Driver = driver;
         }
 
         /// <summary>

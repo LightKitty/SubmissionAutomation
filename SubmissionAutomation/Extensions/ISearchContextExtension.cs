@@ -13,6 +13,27 @@ namespace SubmissionAutomation.Extensions
     public static class ISearchContextExtension
     {
         /// <summary>
+        /// 依据class和属性值查询
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="className"></param>
+        /// <param name="attributeName"></param>
+        /// <param name="attributeValue"></param>
+        /// <param name="attributeFuzzySearch"></param>
+        /// <returns></returns>
+        public static IWebElement FindElementByClassAndAttribute(this ISearchContext context, string className, string attributeName, string attributeValue, bool attributeFuzzySearch = false)
+        {
+            return context.FindElements(
+                    By.ClassName(className)
+                )
+                .FirstOrDefault(x =>
+                    attributeFuzzySearch
+                        ? x.GetAttribute(attributeName).Contains(attributeValue)
+                        : x.GetAttribute(attributeName) == attributeValue
+                );
+        }
+
+        /// <summary>
         /// 依据标签名和属性值查询
         /// </summary>
         /// <param name="context"></param>

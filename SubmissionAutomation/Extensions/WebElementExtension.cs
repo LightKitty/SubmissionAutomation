@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SubmissionAutomation.Channels;
+using SubmissionAutomation.Consts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,45 @@ namespace SubmissionAutomation.Extensions
     /// </summary>
     public static class WebElementExtension
     {
+        /// <summary>
+        /// 清除value
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="driver"></param>
+        /// <returns></returns>
+        public static IWebElement ClearValue(this IWebElement webElement)
+        {
+            return SetValue(webElement, "");
+        }
+
+        /// <summary>
+        /// 设置value
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static IWebElement SetValue(this IWebElement webElement, string value)
+        {
+            string js = $"arguments[0].value = '{value}'";
+            Context.Driver.ExecuteScript(js, webElement);
+            return webElement;
+        }
+
+        /// <summary>
+        /// 设置属性
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <param name="driver"></param>
+        /// <param name="attributeName"></param>
+        /// <param name="attributeValue"></param>
+        /// <returns></returns>
+        public static IWebElement SetAttribute(this IWebElement webElement, ChromeDriver driver, string attributeName, string attributeValue)
+        {
+            string js = $"arguments[0].setAttribute('{attributeName}', '{attributeValue}');";
+            driver.ExecuteScript(js, webElement);
+            return webElement;
+        }
+
         /// <summary>
         /// 滚动至元素可见
         /// </summary>
